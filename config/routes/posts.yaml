@@ -1,0 +1,41 @@
+# posts routing table
+
+# Admin panel
+
+# create posts
+## view:
+view.posts.create:
+  path: /admin/posts/create
+  controller: App\Controller\AdminView\PostsController::create
+## api version 1:
+api.v1.posts.create:
+  path: /api/v1/posts/create
+  controller: App\Controller\APIv1\PostsController::create
+
+# edit posts
+## view:
+view.posts.edit:
+  path: /admin/posts/edit/{id}
+  controller: App\Controller\AdminView\PostsController::edit
+## api version 1:
+api.v1.posts.edit:
+  path: /api/v1/posts/edit/{id}
+  controller: App\Controller\APIv1\PostsController::edit
+
+# delete posts
+## api version 1:
+api.v1.posts.delete:
+  path: /api/v1/posts/delete/{id}
+  controller: App\Controller\APIv1\PostsController::delete
+
+# list posts
+## view:
+view.posts.list:
+  path: /admin/posts/list/{page}
+  controller: App\Controller\AdminView\PostsController::listAll
+  defaults:
+    page: 1
+  requirements:
+    page: '\d+'
+
+

@@ -1,0 +1,39 @@
+# pages routing table
+
+# Admin panel
+
+# create page
+## view:
+view.pages.create:
+  path: /admin/pages/create
+  controller: App\Controller\AdminView\PagesController::create
+## api:
+api.v1.pages.create:
+  path: /api/v1/pages/create
+  controller: App\Controller\APIv1\PagesController::create
+
+# edit page
+## view:
+view.pages.edit:
+  path: /admin/pages/edit/{id}
+  controller: App\Controller\AdminView\PagesController::edit
+## api:
+api.v1.pages.edit:
+  path: /api/v1/pages/edit/{id}
+  controller: App\Controller\APIv1\PagesController::edit
+
+# delete page
+## api:
+api.v1.pages.delete:
+  path: /api/v1/pages/delete
+  controller: App\Controller\APIv1\PagesController::delete
+
+# list page
+## view:
+view.pages.list:
+  path: /admin/pages/list/{page}
+  controller: App\Controller\AdminView\PagesController:listAll
+  defaults:
+    page: 1
+  requirements:
+    page: '\d+'
