@@ -4,35 +4,27 @@
 
 # create posts
 ## view:
-view.posts.create:
+admin.posts.create:
   path: /admin/posts/create
-  controller: App\Controller\AdminView\PostsController::create
-## api version 1:
-api.v1.posts.create:
-  path: /api/v1/posts/create
-  controller: App\Controller\APIv1\PostsController::create
+  controller: App\Controller\PostsController::create
 
 # edit posts
 ## view:
-view.posts.edit:
+admin.posts.edit:
   path: /admin/posts/edit/{id}
-  controller: App\Controller\AdminView\PostsController::edit
-## api version 1:
-api.v1.posts.edit:
-  path: /api/v1/posts/edit/{id}
-  controller: App\Controller\APIv1\PostsController::edit
+  controller: App\Controller\PostsController::edit
 
 # delete posts
 ## api version 1:
-api.v1.posts.delete:
-  path: /api/v1/posts/delete/{id}
-  controller: App\Controller\APIv1\PostsController::delete
+admin.posts.delete:
+  path: /admin/posts/delete/{id}
+  controller: App\Controller\PostsController::delete
 
 # list posts
 ## view:
-view.posts.list:
+admin.posts.list:
   path: /admin/posts/list/{page}
-  controller: App\Controller\AdminView\PostsController::listAll
+  controller: App\Controller\PostsController::listAll
   defaults:
     page: 1
   requirements:

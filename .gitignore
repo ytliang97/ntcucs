@@ -20,3 +20,6 @@
 .web-server-pid
 ###< symfony/web-server-bundle ###
 .idea/*
+
+src/Migrations/*
+!src/Migrations/.gitignore

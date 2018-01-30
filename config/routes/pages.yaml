@@ -4,35 +4,26 @@
 
 # create page
 ## view:
-view.pages.create:
+admin.pages.create:
   path: /admin/pages/create
-  controller: App\Controller\AdminView\PagesController::create
-## api:
-api.v1.pages.create:
-  path: /api/v1/pages/create
-  controller: App\Controller\APIv1\PagesController::create
+  controller: App\Controller\PagesController::create
 
 # edit page
 ## view:
-view.pages.edit:
+admin.pages.edit:
   path: /admin/pages/edit/{id}
-  controller: App\Controller\AdminView\PagesController::edit
-## api:
-api.v1.pages.edit:
-  path: /api/v1/pages/edit/{id}
-  controller: App\Controller\APIv1\PagesController::edit
+  controller: App\Controller\PagesController::edit
 
 # delete page
-## api:
-api.v1.pages.delete:
-  path: /api/v1/pages/delete
-  controller: App\Controller\APIv1\PagesController::delete
+admin.pages.delete:
+  path: /admin/pages/delete/{id}
+  controller: App\Controller\PageController::delete
 
 # list page
 ## view:
-view.pages.list:
+admin.pages.list:
   path: /admin/pages/list/{page}
-  controller: App\Controller\AdminView\PagesController:listAll
+  controller: App\Controller\PagesController:listAll
   defaults:
     page: 1
   requirements:

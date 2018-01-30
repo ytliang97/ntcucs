@@ -3,34 +3,25 @@
 # Admin panel
 
 # create category
-## view:
-view.categories.create:
+admin.categories.create:
   path: /admin/categories/create
   controller: App\Controller\AdminView\CategoriesController::create
-## api:
-api.v1.categories.create:
-  path: /api/v1/categories/create
-  controller: App\Controller\APIv1/CategoriesController::create
 
 # edit category
 ## view:
-view.categories.edit:
+admin.categories.edit:
   path: /admin/categories/edit/{id}
   controller: App\Controller\AdminView\CategoriesController::edit
-## api:
-api.v1.categories.edit:
-  path: /api/v1/categories/edit/{id}
-  controller: App\Controller\APIv1/CategoriesController::edit
 
 # delete category
 ## api
-api.v1.categories.delete:
-  path: /api/v1/categories/delete
-  controller: App\Controller\APIv1/CategoriesController::delete
+admin.categories.delete:
+  path: /admin/categories/delete
+  controller: App\Controller\CategoriesController::delete
 
 # list categories
 ## view:
-view.categories.list:
+admin.categories.list:
   path: /admin/categories/list/{page}
   controller: App\Controller\AdminView\CategoriesController::listAll
   defaults:
