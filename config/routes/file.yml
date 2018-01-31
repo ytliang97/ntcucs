@@ -1,0 +1,11 @@
+admin.file.get:
+  path: /file/{id}
+  controller: App\Controller\FileController::getFile
+
+admin.file.upload:
+  path: /admin/file/upload
+  controller: App\Controller\FileController::post
+
+admin.file.delete:
+  path: /admin/file/delete/{id}
+  controller: App\Controller\FileController::delete

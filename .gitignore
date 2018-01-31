@@ -23,3 +23,6 @@
 
 src/Migrations/*
 !src/Migrations/.gitignore
+
+storage/*
+!storage/.gitignore
