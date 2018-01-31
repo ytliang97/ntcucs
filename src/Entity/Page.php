@@ -52,4 +52,19 @@ class Page
     private $updateTime;
     public function getUpdateTime() { return $this->updateTime; }
     public function setUpdateTime($updateTime) { $this->updateTime = $updateTime; }
+
+    /**
+     * @ORM\ManyToMany(targetEntity="File")
+     * @ORM\JoinTable(name="pages_attachments",
+     *     joinColumns={@ORM\JoinColumn(name="page_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="attachment_id", referencedColumnName="id")}
+     * )
+     */
+    private $attachments;
+    public function addAttachments(File $file) {
+        $this->attachments[] = $file;
+    }
+    public function getAttachments() {
+        return $this->attachments;
+    }
 }

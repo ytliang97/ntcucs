@@ -43,7 +43,7 @@ class CategoryController extends Controller
             return $this->redirectToRoute("admin.category.list");
         }
 
-        return $this->render("category-editor.html.twig", array(
+        return $this->render("admin/category-editor.html.twig", array(
             "form" => $form->createView()
         ));
 
@@ -75,7 +75,7 @@ class CategoryController extends Controller
             return $this->redirectToRoute("admin.category.list");
         }
 
-        return $this->render("category-editor.html.twig", array(
+        return $this->render("admin/category-editor.html.twig", array(
             "form" => $form->createView()
         ));
 
@@ -95,6 +95,6 @@ class CategoryController extends Controller
     }
 
     public function listAll(Request $request, $page) {
-        return $this->render("categories-list.html.twig");
+        return $this->render("admin/categories-list.html.twig");
     }
 }

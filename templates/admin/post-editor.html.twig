@@ -1,0 +1,43 @@
+{% extends "admin/base.html.twig" %}
+
+{% block body %}
+<div class="row">
+    <div class="col-12">
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name, {"attr": {
+                "placeholder": "在此輸入文章標題",
+                "class": "form-control" }}
+            ) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.content) }}
+            {{ form_widget(form.content, {"attr": {
+                "class": "form-control" }}
+            ) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.categories) }}
+            {{ form_widget(form.categories, {"attr": {"style":"float:left; width:100%;"}}
+            ) }}
+        </div>
+        {{ form_widget(form.submit, {"attr": {
+            "class": "btn btn-primary" }}
+        ) }}
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="//cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script>
+        CKEDITOR.replace("form_content");
+        $(document).ready(function(){
+            $('#form_categories').select2();
+        })
+    </script>
+{% endblock %}

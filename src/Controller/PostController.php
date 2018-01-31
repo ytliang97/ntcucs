@@ -9,8 +9,12 @@
 namespace App\Controller;
 
 
+use App\Entity\Category;
 use App\Entity\Post;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -20,32 +24,40 @@ class PostController extends Controller
 {
     public function create(Request $request) {
 
+        $em = $this->getDoctrine()->getManager();
+
         $post = new Post();
 
         $form = $this->createFormBuilder($post)
             ->add("name", TextType::class, array("label"=>"文章標題"))
             ->add("content", TextareaType::class, array("label"=>"文章內容"))
+            ->add("categories",
+                EntityType::class,
+                array(
+                    "class" => Category::class,
+                    "choice_label" => "name",
+                    "multiple" => true,
+                    "label" => "文章分類",
+                    "required" => false
+                )
+            )
             ->add("submit", SubmitType::class, array("label"=>"新增文章"))
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $post = $form->getData();
-
             $currentTime = new \DateTime('now', new \DateTimeZone("Asia/Taipei"));
             $post->setCreateTime($currentTime);
             $post->setUpdateTime($currentTime);
 
-            $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
 
             return $this->redirectToRoute("admin.post.list");
         }
 
-        return $this->render("post-editor.html.twig", array(
+        return $this->render("admin/post-editor.html.twig", array(
             "form" => $form->createView()
         ));
 
@@ -60,6 +72,16 @@ class PostController extends Controller
         $form = $this->createFormBuilder($post)
             ->add("name", TextType::class, array("label"=>"文章標題"))
             ->add("content", TextareaType::class, array("label"=>"文章內容"))
+            ->add("categories",
+                EntityType::class,
+                array(
+                    "class" => Category::class,
+                    "choice_label" => "name",
+                    "multiple" => true,
+                    "label" => "文章分類",
+                    "required" => false
+                )
+            )
             ->add("submit", SubmitType::class, array("label"=>"更新文章"))
             ->getForm();
 
@@ -78,7 +100,7 @@ class PostController extends Controller
             return $this->redirectToRoute("admin.post.list");
         }
 
-        return $this->render("post-editor.html.twig", array(
+        return $this->render("admin/post-editor.html.twig", array(
             "form" => $form->createView()
         ));
 
@@ -95,6 +117,6 @@ class PostController extends Controller
     }
 
     public function listAll(Request $request, $page) {
-        return $this->render("posts-list.html.twig");
+        return $this->render("admin/posts-list.html.twig");
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,6 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Post
 {
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -52,10 +58,30 @@ class Post
      */
     private $categories;
     public function addCategories(Category $category) {
-        $category->addPost($this);
+        $category->addPosts($this);
         $this->categories[] = $category;
     }
     public function getCategories() {
         return $this->categories;
     }
+    public function removeCategories(Category $category) {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * @ORM\ManyToMany(targetEntity="File")
+     * @ORM\JoinTable(name="posts_attachments",
+     *     joinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="attachment_id", referencedColumnName="id")}
+     * )
+     */
+    private $attachments;
+    public function addAttachments(File $file) {
+        $this->attachments[] = $file;
+    }
+    public function getAttachments() {
+        return $this->attachments;
+    }
+
+
 }

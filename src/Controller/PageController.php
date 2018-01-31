@@ -46,7 +46,7 @@ class PageController extends Controller
             return $this->redirectToRoute("admin.page.list");
         }
 
-        return $this->render("page-editor.html.twig", array(
+        return $this->render("admin/page-editor.html.twig", array(
             "form" => $form->createView()
         ));
 
@@ -81,7 +81,7 @@ class PageController extends Controller
 
         }
 
-        return $this->render("page-editor.html.twig", array(
+        return $this->render("admin/page-editor.html.twig", array(
             "form" => $form->createView()
         ));
 
@@ -99,6 +99,6 @@ class PageController extends Controller
     }
 
     public function listAll(Request $request, $page) {
-        return $this->render("pages-list.html.twig");
+        return $this->render("admin/pages-list.html.twig");
     }
 }
