@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PostsRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PageRepository")
  */
-class Posts
+class Page
 {
     /**
      * @ORM\Id
@@ -16,12 +16,21 @@ class Posts
      */
     private $id;
 
+    // add your own fields
+
     /**
      * @ORM\Column(type="string")
      */
     private $name;
     public function getName() { return $this->name; }
     public function setName($name) { $this->name = $name; }
+
+    /**
+     * @ORM\Column(type="string", unique=true)
+     */
+    private $alias;
+    public function getAlias() { return $this->alias; }
+    public function setAlias($alias) { $this->alias = $alias; }
 
     /**
      * @ORM\Column(type="string", nullable=true)

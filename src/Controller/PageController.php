@@ -2,45 +2,48 @@
 /**
  * Created by PhpStorm.
  * User: FloatFlower.Huang
- * Date: 2018/1/29
- * Time: 下午 09:23
+ * Date: 2018/1/31
+ * Time: 上午 09:19
  */
 
 namespace App\Controller;
 
-use App\Entity\Pages;
+
+use App\Entity\Page;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
-class PagesController extends Controller
+class PageController extends Controller
 {
     public function create(Request $request) {
 
-        $pages = new Pages();
+        $page = new Page();
 
-        $form = $this->createFormBuilder($pages)
+        $form = $this->createFormBuilder($page)
             ->add("name", TextType::class, array("label"=>"頁面名稱"))
             ->add("alias", TextType::class, array("label"=>"頁面代稱"))
             ->add("content", TextareaType::class, array("label"=>"頁面內容"))
+            ->add("submit", SubmitType::class, array("label"=>"新增頁面"))
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $pages = $form->getData();
+            $page = $form->getData();
 
             $currentTime = new \DateTime('now', new \DateTimeZone("Asia/Taipei"));
-            $pages->setCreateTime($currentTime);
-            $pages->setUpdateTime($currentTime);
+            $page->setCreateTime($currentTime);
+            $page->setUpdateTime($currentTime);
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($pages);
+            $em->persist($page);
             $em->flush();
 
+            return $this->redirectToRoute("admin.page.list");
         }
 
         return $this->render("page-editor.html.twig", array(
@@ -52,24 +55,29 @@ class PagesController extends Controller
     public function edit(Request $request, $id) {
 
         $em = $this->getDoctrine()->getManager();
-        $pageRepository = $em->getRepository(Pages::class);
-        $pages = $pageRepository->find($id);
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->find($id);
 
-        $form = $this->createFormBuilder($pages)
+        $form = $this->createFormBuilder($page)
             ->add("name", TextType::class, array("label"=>"頁面名稱"))
             ->add("alias", TextType::class, array("label"=>"頁面代稱"))
             ->add("content", TextareaType::class, array("label"=>"頁面內容"))
+            ->add("submit", SubmitType::class, array("label"=>"更新頁面"))
             ->getForm();
+
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $pages = $form->getData();
+            $page = $form->getData();
 
             $currentTime = new \DateTime("now", new \DateTimeZone("Asia/Taipei"));
-            $pages->setUpdateTime($currentTime);
+            $page->setUpdateTime($currentTime);
 
-            $em->persist($pages);
+            $em->persist($page);
             $em->flush();
+
+            return $this->redirectToRoute("admin.page.list");
 
         }
 
@@ -82,15 +90,15 @@ class PagesController extends Controller
     public function delete(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
-        $pagesRepository = $em->getRepository(Pages::class);
-        $pages = $pagesRepository->find($id);
+        $pagesRepository = $em->getRepository(Page::class);
+        $page = $pagesRepository->find($id);
 
-        $em->remove($pages);
+        $em->remove($page);
         $em->flush();
-        return $this->redirectToRoute("admin.pages.list");
+        return $this->redirectToRoute("admin.page.list");
     }
 
     public function listAll(Request $request, $page) {
-
+        return $this->render("pages-list.html.twig");
     }
 }

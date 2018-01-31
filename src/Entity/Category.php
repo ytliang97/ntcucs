@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CategoriesRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  */
-class Categories
+class Category
 {
     /**
      * @ORM\Id
@@ -15,6 +15,8 @@ class Categories
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    // add your own fields
 
     /**
      * @ORM\Column(type="string")
@@ -38,4 +40,15 @@ class Categories
     private $createTime;
     public function getCreateTime() { return $this->createTime; }
     public function setCreateTime($createTime) { $this->createTime = $createTime; }
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Post", mappedBy="categories")
+     */
+    private $posts;
+    public function addPost(Post $posts) {
+        $this->posts[] = $posts;
+    }
+    public function getPosts() {
+        return $this->posts;
+    }
 }

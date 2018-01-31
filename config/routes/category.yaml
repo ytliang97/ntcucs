@@ -1,0 +1,31 @@
+# categories routing table
+
+# Admin panel
+
+# create category
+admin.category.create:
+  path: /admin/category/create
+  controller: App\Controller\CategoryController::create
+
+# edit category
+## view:
+admin.category.edit:
+  path: /admin/category/edit/{id}
+  controller: App\Controller\CategoryController::edit
+
+# delete category
+## api
+admin.category.delete:
+  path: /admin/category/delete/{id}
+  controller: App\Controller\CategoryController::delete
+
+# list categories
+## view:
+admin.category.list:
+  path: /admin/category/list/{page}
+  controller: App\Controller\CategoryController::listAll
+  defaults:
+    page: 1
+  requirements:
+    page: '\d+'
+

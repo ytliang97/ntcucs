@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PagesRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
  */
-class Pages
+class Post
 {
     /**
      * @ORM\Id
@@ -16,19 +16,14 @@ class Pages
      */
     private $id;
 
+    // add your own fields
+
     /**
      * @ORM\Column(type="string")
      */
     private $name;
     public function getName() { return $this->name; }
     public function setName($name) { $this->name = $name; }
-
-    /**
-     * @ORM\Column(type="string", unique=true)
-     */
-    private $alias;
-    public function getAlias() { return $this->alias; }
-    public function setAlias($alias) { $this->alias = $alias; }
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -51,5 +46,16 @@ class Pages
     public function getUpdateTime() { return $this->updateTime; }
     public function setUpdateTime($updateTime) { $this->updateTime = $updateTime; }
 
-    // add your own fields
+    /**
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="posts")
+     * @ORM\JoinTable(name="posts_categories")
+     */
+    private $categories;
+    public function addCategories(Category $category) {
+        $category->addPost($this);
+        $this->categories[] = $category;
+    }
+    public function getCategories() {
+        return $this->categories;
+    }
 }

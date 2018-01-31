@@ -2,45 +2,47 @@
 /**
  * Created by PhpStorm.
  * User: FloatFlower.Huang
- * Date: 2018/1/29
- * Time: 下午 09:17
+ * Date: 2018/1/31
+ * Time: 上午 09:19
  */
 
 namespace App\Controller;
 
-use App\Entity\Posts;
+
+use App\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
-class PostsController extends Controller
+class PostController extends Controller
 {
     public function create(Request $request) {
 
-        $posts = new Posts();
+        $post = new Post();
 
-        $form = $this->createFormBuilder($posts)
+        $form = $this->createFormBuilder($post)
             ->add("name", TextType::class, array("label"=>"文章標題"))
             ->add("content", TextareaType::class, array("label"=>"文章內容"))
-            ->add("create", SubmitType::class, array("label"=>"新增文章"))
+            ->add("submit", SubmitType::class, array("label"=>"新增文章"))
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $posts = $form->getData();
+            $post = $form->getData();
 
             $currentTime = new \DateTime('now', new \DateTimeZone("Asia/Taipei"));
-            $posts->setCreateTime($currentTime);
-            $posts->setUpdateTime($currentTime);
+            $post->setCreateTime($currentTime);
+            $post->setUpdateTime($currentTime);
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($posts);
+            $em->persist($post);
             $em->flush();
+
+            return $this->redirectToRoute("admin.post.list");
         }
 
         return $this->render("post-editor.html.twig", array(
@@ -52,26 +54,28 @@ class PostsController extends Controller
     public function edit(Request $request, $id) {
 
         $em = $this->getDoctrine()->getManager();
-        $postsRepository = $em->getRepository(Posts::class);
-        $posts = $postsRepository->find($id);
+        $postsRepository = $em->getRepository(Post::class);
+        $post = $postsRepository->find($id);
 
-        $form = $this->createFormBuilder($posts)
+        $form = $this->createFormBuilder($post)
             ->add("name", TextType::class, array("label"=>"文章標題"))
             ->add("content", TextareaType::class, array("label"=>"文章內容"))
-            ->add("create", SubmitType::class, array("label"=>"新增文章"))
+            ->add("submit", SubmitType::class, array("label"=>"更新文章"))
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $posts = $form->getData();
+            $post = $form->getData();
 
             $currentTime = new \DateTime('now', new \DateTimeZone("Asia/Taipei"));
-            $posts->setUpdateTime($currentTime);
+            $post->setUpdateTime($currentTime);
 
-            $em->persist($posts);
+            $em->persist($post);
             $em->flush();
+
+            return $this->redirectToRoute("admin.post.list");
         }
 
         return $this->render("post-editor.html.twig", array(
@@ -82,15 +86,15 @@ class PostsController extends Controller
 
     public function delete(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
-        $postsRepository = $em->getRepository(Posts::class);
-        $posts = $postsRepository->find($id);
+        $postsRepository = $em->getRepository(Post::class);
+        $post = $postsRepository->find($id);
 
-        $em->remove($posts);
+        $em->remove($post);
         $em->flush();
-        return $this->redirectToRoute("admin.posts.list");
+        return $this->redirectToRoute("admin.post.list");
     }
 
     public function listAll(Request $request, $page) {
-
+        return $this->render("posts-list.html.twig");
     }
 }
