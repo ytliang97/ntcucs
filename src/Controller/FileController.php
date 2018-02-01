@@ -38,7 +38,7 @@ class FileController extends Controller
 
     }
 
-    public function post(Request $request) {
+    public function upload(Request $request) {
 
         $uploaded = $request->files->get("upload");
         if (!$uploaded) return $this->json(array("errString"=>"Request Invalid"), 400);

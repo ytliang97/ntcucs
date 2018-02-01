@@ -28,3 +28,6 @@ admin.page.list:
     page: 1
   requirements:
     page: '\d+'
+
+front.page.show:
+  path: /page/{alias}

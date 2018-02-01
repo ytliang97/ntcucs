@@ -4,7 +4,7 @@ admin.file.get:
 
 admin.file.upload:
   path: /admin/file/upload
-  controller: App\Controller\FileController::post
+  controller: App\Controller\FileController::upload
 
 admin.file.delete:
   path: /admin/file/delete/{id}

@@ -1,6 +1,20 @@
 {% extends "admin/base.html.twig" %}
 
 {% block body %}
-{{ form_start(form) }}
-{{ form_end(form) }}
+    <div class="row">
+        <div class="col-12">
+            {{ form_start(form) }}
+            <div class="form-group">
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name, {"attr": {
+                    "placeholder": "在此輸入分類標題",
+                    "class": "form-control" }}
+                ) }}
+            </div>
+            {{ form_widget(form.submit, {"attr": {
+                "class": "btn btn-primary" }}
+            ) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}

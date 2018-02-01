@@ -29,3 +29,5 @@ admin.category.list:
   requirements:
     page: '\d+'
 
+front.category.show:
+  path: /cateogry/{id}

@@ -84,8 +84,8 @@ class CategoryController extends Controller
     public function delete(Request $request, $id) {
 
         $em = $this->getDoctrine()->getManager();
-        $CategoriesRepository = $em->getRepository(Category::class);
-        $category = $CategoriesRepository->find($id);
+        $categoriesRepository = $em->getRepository(Category::class);
+        $category = $categoriesRepository->find($id);
 
         $em->remove($category);
         $em->flush();
@@ -95,6 +95,12 @@ class CategoryController extends Controller
     }
 
     public function listAll(Request $request, $page) {
-        return $this->render("admin/categories-list.html.twig");
+
+        $em = $this->getDoctrine()->getManager();
+
+        $categoriesRepository = $em->getRepository(Category::class);
+        $categories = $categoriesRepository->findBy(array(), array("createTime"=>"DESC"));
+
+        return $this->render("admin/categories-list.html.twig", array("categories"=>$categories));
     }
 }

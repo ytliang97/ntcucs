@@ -99,6 +99,12 @@ class PageController extends Controller
     }
 
     public function listAll(Request $request, $page) {
-        return $this->render("admin/pages-list.html.twig");
+
+        $em = $this->getDoctrine()->getManager();
+
+        $pagesRepository = $em->getRepository(Page::class);
+        $page = $pagesRepository->findBy(array(), array("createTime"=>"DESC"));
+
+        return $this->render("admin/pages-list.html.twig", array("pages"=>$page));
     }
 }

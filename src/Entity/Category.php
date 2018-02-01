@@ -12,7 +12,6 @@ class Category
 {
     public function __construct()
     {
-        //$this->posts = new ArrayCollection();
     }
 
     /**
