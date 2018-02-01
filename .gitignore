@@ -26,3 +26,10 @@ src/Migrations/*
 
 storage/*
 !storage/.gitignore
+
+public/uploaded/images/*
+!public/uploaded/images/.gitignore
+public/uploaded/videos/*
+!public/uploaded/videos/.gitignore
+public/uploaded/others/*
+!public/uploaded/others/.gitignore

@@ -33,4 +33,17 @@ class Album
     public function getCover() { return $this->cover; }
     public function setCover($cover) { $this->cover = $cover; }
 
+    /**
+     * @ORM\ManyToMany(targetEntity="PublicUploaded")
+     * @ORM\JoinTable(name="albums_assets",
+     *     joinColumns={@ORM\JoinColumn(name="album_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="asset_id", referencedColumnName="id")}
+     * )
+     */
+    private $content;
+    public function getContent() { return $this->content; }
+    public function addContent(PublicUploaded $asset) {
+        $this->content[] = $asset;
+    }
+
 }
