@@ -117,6 +117,12 @@ class PostController extends Controller
     }
 
     public function listAll(Request $request, $page) {
-        return $this->render("admin/posts-list.html.twig");
+
+        $em = $this->getDoctrine()->getManager();
+        $postsRepository = $em->getRepository(Post::class);
+        $postsList = $postsRepository->findBy(array(), array("createTime"=>"DESC"));
+
+        return $this->render("admin/posts-list.html.twig",
+                             array("posts"=>$postsList));
     }
 }

@@ -31,3 +31,5 @@ admin.post.list:
     page: '\d+'
 
 
+front.post.show:
+  path: /post/{id}
