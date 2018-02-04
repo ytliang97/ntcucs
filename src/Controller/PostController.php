@@ -10,11 +10,13 @@ namespace App\Controller;
 
 
 use App\Entity\Category;
+use App\Entity\File;
 use App\Entity\Post;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -41,6 +43,7 @@ class PostController extends Controller
                     "required" => false
                 )
             )
+            ->add("attachments", TextType::class, array("required"=>false))
             ->add("submit", SubmitType::class, array("label"=>"新增文章"))
             ->getForm();
 

@@ -64,7 +64,7 @@ class FileController extends Controller
 
         $fileId = $file->getId();
 
-        return $this->json(array("id"=>$fileId, "filename"=>$fileOriginName), 200);
+        return $this->json(array("id"=>$fileId, "filename"=>$fileOriginName, "hashName"=>$fileHashName), 200);
     }
 
     public function delete(Request $request, $id) {
