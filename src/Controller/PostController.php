@@ -34,25 +34,6 @@ class PostController extends Controller
         $post = new Post();
 
         $form = $this->createForm(PostType::class, $post);
-        /*$form = $this->createFormBuilder($post)
-            ->add("name", TextType::class, array("label"=>"文章標題"))
-            ->add("content", TextareaType::class, array("label"=>"文章內容"))
-            ->add("categories",
-                EntityType::class,
-                array(
-                    "class" => Category::class,
-                    "choice_label" => "name",
-                    "multiple" => true,
-                    "label" => "文章分類",
-                    "required" => false
-                )
-            )
-            ->add("attachments", TextType::class, array(
-                "required"=>false,
-                "mapped"=>false
-            ))
-            ->add("submit", SubmitType::class, array("label"=>"新增文章"));*/
-
 
         $form->handleRequest($request);
 
@@ -69,7 +50,8 @@ class PostController extends Controller
         }
 
         return $this->render("admin/post-editor.html.twig", array(
-            "form" => $form->createView()
+            "form" => $form->createView(),
+            "post" => $post
         ));
 
     }
@@ -80,21 +62,7 @@ class PostController extends Controller
         $postsRepository = $em->getRepository(Post::class);
         $post = $postsRepository->find($id);
 
-        $form = $this->createFormBuilder($post)
-            ->add("name", TextType::class, array("label"=>"文章標題"))
-            ->add("content", TextareaType::class, array("label"=>"文章內容"))
-            ->add("categories",
-                EntityType::class,
-                array(
-                    "class" => Category::class,
-                    "choice_label" => "name",
-                    "multiple" => true,
-                    "label" => "文章分類",
-                    "required" => false
-                )
-            )
-            ->add("submit", SubmitType::class, array("label"=>"更新文章"))
-            ->getForm();
+        $form = $this->createForm(PostType::class, $post);
 
         $form->handleRequest($request);
 
@@ -112,7 +80,8 @@ class PostController extends Controller
         }
 
         return $this->render("admin/post-editor.html.twig", array(
-            "form" => $form->createView()
+            "form" => $form->createView(),
+            "post" => $post
         ));
 
     }

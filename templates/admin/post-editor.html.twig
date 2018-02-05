@@ -32,7 +32,7 @@
                     {"attr":
                         {
                             ":value":"uploadedString",
-                            "style": "visibility:hidden; width: 100%;height: 0;",
+                            "style": "visibility: hidden; height: 0;width: 100%;"
                         }
                     }) }}
                 {{ form_widget(form.submit, {"attr": {
@@ -48,6 +48,7 @@
                 <h5 class="card-title">附加檔案</h5>
             </div>
             <ul class="list-group list-group-flush">
+                <uploaded-file v-for="u in existed" v-bind:file="u" v-on:cancel="onExistedCanceled"></uploaded-file>
                 <uploaded-file v-for="u in uploaded" v-bind:file="u" v-on:cancel="onFileCanceled"></uploaded-file>
             </ul>
             <div class="card-body">
@@ -89,14 +90,21 @@
             data: function () {
                 return {
                     uploaded: [],
-                    uploadedString: ""
+                    uploadedString: "",
+                    existed: [
+                        {% for attachment in post.getAttachments() %}{
+                            "name": "{{ attachment.getOriginName() }}",
+                            "id": {{ attachment.getId() }},
+                            "hashName": "{{ attachment.getHashName() }}"
+                        },{% endfor %}]
                 }
             },
             mounted: function() {
                 CKEDITOR.replace("post_content");
                 $(document).ready(function(){
                     $('#post_categories').select2();
-                })
+                });
+                this.uploadedString = JSON.stringify(this.existed);
             },
             methods: {
                 onSelectFile: function() {
@@ -106,7 +114,6 @@
                     let file = this.$refs.uploader.files[0];
 
                     let fileName = file.name;
-                    let fileSize = file.size;
 
                     let newFile = new FormData();
                     newFile.append("upload", this.$refs.uploader.files[0]);
@@ -118,12 +125,11 @@
                         let responseBody = eval(response.body);
                         let uploadedFile = {};
                         uploadedFile.name = fileName;
-                        uploadedFile.size = fileSize;
                         uploadedFile.id = responseBody.id;
                         uploadedFile.hashName = responseBody.hashName;
 
                         this.uploaded.push(uploadedFile);
-                        this.uploadedString = JSON.stringify(this.uploaded);
+                        this.uploadedString = JSON.stringify(this.existed.concat(this.uploaded));
                     }, function(response){
 
                     })
@@ -134,9 +140,16 @@
                         .then(function(response){
                             let index = this.uploaded.indexOf(file);
                             this.uploaded.splice(index, 1);
-                            this.uploadedString = JSON.stringify(this.uploaded);
+                            this.uploadedString = JSON.stringify(this.existed.concat(this.uploaded));
                         }, function(response){
                         });
+                },
+                onExistedCanceled: function(file) {
+                    let fileId = file.id;
+                    let index = this.existed.indexOf(file);
+                    this.existed.splice(index, 1);
+
+                    this.uploadedString = JSON.stringify(this.existed.concat(this.uploaded));
                 }
             },
         });
