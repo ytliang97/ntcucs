@@ -83,6 +83,7 @@ class Post
     public function getAttachments() {
         return $this->attachments;
     }
-
-
+    public function setAttachments($attachments) {
+        $this->attachments = $attachments;
+    }
 }

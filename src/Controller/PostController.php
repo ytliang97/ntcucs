@@ -12,9 +12,12 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\File;
 use App\Entity\Post;
+use App\Form\Datatransformer\JsonToAttachmentTransformer;
+use App\Form\Type\PostType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -30,7 +33,8 @@ class PostController extends Controller
 
         $post = new Post();
 
-        $form = $this->createFormBuilder($post)
+        $form = $this->createForm(PostType::class, $post);
+        /*$form = $this->createFormBuilder($post)
             ->add("name", TextType::class, array("label"=>"文章標題"))
             ->add("content", TextareaType::class, array("label"=>"文章內容"))
             ->add("categories",
@@ -43,13 +47,17 @@ class PostController extends Controller
                     "required" => false
                 )
             )
-            ->add("attachments", TextType::class, array("required"=>false))
-            ->add("submit", SubmitType::class, array("label"=>"新增文章"))
-            ->getForm();
+            ->add("attachments", TextType::class, array(
+                "required"=>false,
+                "mapped"=>false
+            ))
+            ->add("submit", SubmitType::class, array("label"=>"新增文章"));*/
+
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $currentTime = new \DateTime('now', new \DateTimeZone("Asia/Taipei"));
             $post->setCreateTime($currentTime);
             $post->setUpdateTime($currentTime);
