@@ -1,0 +1,15 @@
+admin.album.create:
+    path: /admin/album/create
+    controller: App\Controller\AlbumController::create
+
+admin.album.edit:
+    path: /admin/album/edit/{id}
+    controller: App\Controller\AlbumController::edit
+
+admin.album.list:
+    path: /admin/album/list/{page}
+    controller: App\Controller\AlbumController::listAll
+    defaults:
+        page: 1
+    requirements:
+        page: '\d+'

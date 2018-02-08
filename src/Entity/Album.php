@@ -27,7 +27,29 @@ class Album
     public function setName($name) { $this->name = $name; }
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+    public function getDescription() { return $this->description; }
+    public function setDescription($description) { $this->description = $description; }
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createTime;
+    public function getCreateTime() { return $this->createTime; }
+    public function setCreateTime($createTime) { $this->createTime = $createTime; }
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updateTime;
+    public function getUpdateTime() { return $this->updateTime; }
+    public function setUpdateTime($updateTime) { $this->updateTime = $updateTime; }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PublicUploaded")
+     * @ORM\JoinColumn(name="cover_id", referencedColumnName="id")
      */
     private $cover;
     public function getCover() { return $this->cover; }
