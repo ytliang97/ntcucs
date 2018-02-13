@@ -62,6 +62,10 @@ class Page
      * )
      */
     private $attachments;
+    public function setAttachments($attachments)
+    {
+        $this->attachments = $attachments;
+    }
     public function addAttachments(File $file) {
         $this->attachments[] = $file;
     }

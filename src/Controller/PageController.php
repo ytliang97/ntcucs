@@ -10,6 +10,7 @@ namespace App\Controller;
 
 
 use App\Entity\Page;
+use App\Form\Type\PageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -22,12 +23,7 @@ class PageController extends Controller
 
         $page = new Page();
 
-        $form = $this->createFormBuilder($page)
-            ->add("name", TextType::class, array("label"=>"頁面名稱"))
-            ->add("alias", TextType::class, array("label"=>"頁面代稱"))
-            ->add("content", TextareaType::class, array("label"=>"頁面內容"))
-            ->add("submit", SubmitType::class, array("label"=>"新增頁面"))
-            ->getForm();
+        $form = $this->createForm(PageType::class, $page);
 
         $form->handleRequest($request);
 
@@ -47,7 +43,8 @@ class PageController extends Controller
         }
 
         return $this->render("admin/page-editor.html.twig", array(
-            "form" => $form->createView()
+            "form" => $form->createView(),
+            "page" => $page
         ));
 
     }
@@ -58,12 +55,7 @@ class PageController extends Controller
         $pageRepository = $em->getRepository(Page::class);
         $page = $pageRepository->find($id);
 
-        $form = $this->createFormBuilder($page)
-            ->add("name", TextType::class, array("label"=>"頁面名稱"))
-            ->add("alias", TextType::class, array("label"=>"頁面代稱"))
-            ->add("content", TextareaType::class, array("label"=>"頁面內容"))
-            ->add("submit", SubmitType::class, array("label"=>"更新頁面"))
-            ->getForm();
+        $form = $this->createForm(PageType::class, $page);
 
         $form->handleRequest($request);
 
@@ -82,7 +74,8 @@ class PageController extends Controller
         }
 
         return $this->render("admin/page-editor.html.twig", array(
-            "form" => $form->createView()
+            "form" => $form->createView(),
+            "page" => $page
         ));
 
     }
