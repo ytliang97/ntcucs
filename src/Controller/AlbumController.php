@@ -10,6 +10,7 @@ namespace App\Controller;
 
 
 use App\Entity\Album;
+use App\Entity\PublicUploaded;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -55,7 +56,56 @@ class AlbumController extends Controller
     }
 
     public function edit(Request $request, $id) {
-        return $this->render("admin/album-editor.html.twig");
+
+        $em = $this->getDoctrine()->getManager();
+        $albumRepository = $em->getRepository(Album::class);
+        $album = $albumRepository->find($id);
+
+        $form = $this->createFormBuilder($album)
+            ->add("name", TextType::class, array("label" => "相簿名稱"))
+            ->add("description", TextareaType::class, array("label" => "相簿敘述"))
+            ->add("existed",
+                  TextType::class,
+                  array(
+                      "mapped" => false,
+                  ))
+            ->add("submit", SubmitType::class, array("label" => "更新相簿"))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $album = $form->getData();
+
+            $existed = json_decode($form["existed"]->getData());
+
+            $publicUploadedRepository = $em->getRepository(PublicUploaded::class);
+            $result = array();
+
+            foreach ($existed as $file) {
+
+                $photo = $publicUploadedRepository->find($file->id);
+                if ($photo) {
+                    array_push($result, $photo);
+                }
+
+            }
+
+            $currentTime = new \DateTime("now", new \DateTimeZone("Asia/Taipei"));
+            $album->setUpdateTime($currentTime);
+            $album->setContent($result);
+
+            $em->persist($album);
+            $em->flush();
+
+            return $this->redirectToRoute("admin.album.list");
+
+        }
+
+        return $this->render("admin/album-editor.html.twig",
+                             array("form" => $form->createView(),
+                                   "album"=>$album));
     }
 
     public function listAll(Request $request, $page) {

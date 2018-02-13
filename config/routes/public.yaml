@@ -1,5 +1,5 @@
 public.uploaded.upload:
-    path: /public/upload
+    path: /admin/public/upload
     controller: App\Controller\PublicUploadController::upload
 public.uploaded.delete:
     path: /public/delete/{id}

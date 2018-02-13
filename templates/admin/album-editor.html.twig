@@ -1,4 +1,171 @@
 {% extends "admin/base.html.twig" %}
 
+{% block stylesheet %}
+    <style>
+        .image-present > button.cancel {
+            position: absolute;
+            top:-5px;
+            border-radius: 99em;
+            right: 5px;
+            text-align: center;
+            padding: 0 1px 0 0;
+            font-size: 10px;
+            height: 22px;
+            width: 22px;
+            background-color: #efefef;
+            box-sizing: border-box;
+            box-shadow: 0 0 2px #898989;
+            border: none;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
+    <div class="row" id="editor">
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">相簿基本資訊</h4>
+                    {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_label(form.name) }}
+                        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.description) }}
+                        {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': '8'}}) }}
+                    </div>
+                    {{ form_widget(form.existed, {'attr': {'v-model:value': 'uploadedString', 'style': 'visibility: hidden; height:0; width: 0'}}) }}
+                    {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="margin-bottom: 20px;">
+                        相簿裡的相片
+                        <input type="file" style="visibility: hidden; width: 0; height: 0;" ref="selector" @change="onFileSelected" multiple>
+                        <button class="btn btn-primary" v-on:click="onSelectFile">
+                            <i class="fas fa-upload"></i>
+                            上傳新的照片
+                        </button>
+                    </h4>
+                    <h5 style="text-align: center" v-if="medias.length === 0">相簿裡還沒有相片</h5>
+                    <div class="row" style="margin-bottom: 10px;">
+                            <image-present :file="item" v-for="item in medias" @cancel="onFileCanceled"></image-present>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.3.4/vue-resource.min.js"></script>
+    <script>
+    Vue.component('image-present', {
+        props: ["file"],
+        data: function() {
+            return {
+                path: this.file.path,
+                previewStyle: {
+                    'background-image': 'url(' + this.file.path + ')'
+                }
+            }
+        },
+        watched: {
+        },
+        template: '<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="margin: 0 0 10px 0"> \
+                        <div class="card" :id="file.id"> \
+                            <div class="card-body"> \
+                                <div class="row"> \
+                                    <div class="col-lg-6">\
+                                        <img :src="file.path" width="100%;">\
+                                    </div>\
+                                    <div class="col-lg-6">\
+                                        <button class="btn btn-danger" @click="onFileCanceled">\
+                                            從相簿中移除\
+                                        </button>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                        </div>\
+                    </div>',
+        methods: {
+            onFileCanceled: function() {
+                this.$emit("cancel", this.file);
+            }
+        }
+    });
+
+    let editor = new Vue({
+        el: "#editor",
+        data: function() {
+            return {
+                medias: [
+                    {% for content in album.getContent() %}
+                        {
+                            id: "{{ content.getId() }}",
+                            path: "/uploaded"+"{{ content.getFullPath() }}"
+                        },
+                    {% endfor %}
+                ],
+                uploadedString: ""
+            }
+        },
+        mounted: function() {
+            this.uploadedString = JSON.stringify(this.medias);
+        },
+        methods: {
+            onSelectFile: function() {
+                this.$refs["selector"].click();
+            },
+            onFileSelected: function() {
+                let selector = this.$refs.selector;
+                let files = selector.files;
+
+                Array.prototype.forEach.call(files, function (file) {
+
+                    let formData = new FormData();
+                    formData.append("upload", file);
+
+                    editor.$http.post("{{ path('public.uploaded.upload') }}", formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }).then(function(response) {
+
+                        let result = eval(response.body);
+
+                        let uploadedFile = {};
+                        uploadedFile.id = result.id;
+                        uploadedFile.path = "/uploaded"+result.filename;
+                        editor.medias.push(uploadedFile);
+
+                        return true;
+
+                    }, function(response){
+
+                        return false;
+
+                    }).then(function(result) {
+
+                        if (result) {
+                            this.uploadedString = JSON.stringify(this.medias);
+                        }
+
+                    });
+                });
+                selector.value = '';
+            },
+            onFileCanceled: function(file) {
+                let index = editor.medias.indexOf(file);
+                editor.medias.splice(index, 1);
+                this.uploadedString = JSON.stringify(this.medias);
+            }
+        }
+    })
+    </script>
 {% endblock %}

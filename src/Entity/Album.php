@@ -67,5 +67,8 @@ class Album
     public function addContent(PublicUploaded $asset) {
         $this->content[] = $asset;
     }
+    public function setContent($content) {
+        $this->content = $content;
+    }
 
 }
