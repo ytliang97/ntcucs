@@ -5,7 +5,12 @@ security:
             algorithm: bcrypt
             cost: 12
     providers:
-        in_memory: { memory: ~ }
+        in_memory:
+            memory:
+                users:
+                    admin:
+                        password: $2y$12$KM745vNS6U5TebLOwxeVOuCy/olEwOQNwhWQLmwLTLEB72f97fuHC
+                        roles: 'ROLE_ADMIN'
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -18,5 +23,14 @@ security:
             # http_basic: ~
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
-            # form_login: ~
+            form_login:
+                login_path: login
+                check_path: login
+
+            logout:
+                path: logout
+                target: /
             # https://symfony.com/doc/current/security/form_login_setup.html
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }

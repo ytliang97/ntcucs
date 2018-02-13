@@ -10,3 +10,10 @@ front.index:
 
 front.sitemap:
     path: /sitemap.xml
+
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+logout:
+    path: /logout
