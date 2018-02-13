@@ -109,10 +109,24 @@ class AlbumController extends Controller
     }
 
     public function listAll(Request $request, $page) {
-        return $this->render("admin/album-list.html.twig");
+
+        $em = $this->getDoctrine()->getManager();
+        $albumRepository = $em->getRepository(Album::class);
+        $albums = $albumRepository->findBy(array(), array("createTime" => "DESC"));
+
+        return $this->render("admin/album-list.html.twig", array("albums" => $albums));
     }
 
     public function delete(Request $request, $id) {
+
+        $em = $this->getDoctrine()->getManager();
+        $albumRepository = $em->getRepository(Album::class);
+        $album = $albumRepository->find($id);
+
+        $em->remove($album);
+        $em->flush();
+
+        return $this->redirectToRoute("admin.album.list");
 
     }
 

@@ -1,4 +1,54 @@
 {% extends "admin/base.html.twig" %}
 
 {% block body %}
+    <table class="table" id="albumsList">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">相簿名稱</th>
+            <th scope="col">相簿敘述</th>
+            <th scope="col">相片數量</th>
+            <th scope="col">創建時間</th>
+            <th scope="col">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for album in albums %}
+            <tr>
+                <td>{{ album.getName() }}</td>
+                <td>
+                    {{ album.getDescription() | length > 10 ? album.getDescription() | slice(0, 10) : album.getDescription() }}
+                </td>
+                <td>{{ album.getContent() | length }}</td>
+                <td>{{ album.getCreateTime().format("Y-m-d H:i:s") }}</td>
+                <td>
+                    <a href="{{ path("front.album.show", {'id': album.getId()}) }}">
+                        <button class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button>
+                    </a>
+                    <a href="{{ path("admin.album.edit", {'id': album.getId()}) }}">
+                        <button class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></button>
+                    </a>
+                    <a href="{{ path("admin.album.delete", {'id': album.getId()}) }}">
+                        <button class="btn btn-danger btn-sm" v-on:click="onDelete"><i class="fa fa-trash"></i></button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        let albumsList = new Vue({
+            el: "#albumsList",
+            methods: {
+                onDelete: function(event) {
+                    let result = confirm("確定要刪除這個相簿嗎?");
+                    if (!result) {
+                        event.preventDefault();
+                    }
+                }
+            }
+        });
+    </script>
 {% endblock %}
