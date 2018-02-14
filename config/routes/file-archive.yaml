@@ -1,0 +1,27 @@
+admin.file.archive.create:
+    path: /admin/file-archive/create
+    controller: App\Controller\FileArchiveController::create
+
+admin.file.archive.list.file:
+    path: /admin/file-archive/{id}/list
+    controller: App\Controller\FileArchiveController::listFiles
+
+admin.file.archive.listAll:
+    path: /admin/file-archive/list
+    controller: App\Controller\FileArchiveController::listAll
+
+admin.file.archive.edit:
+    path: /admin/file-archive/{id}/edit
+    controller: App\Controller\FileArchiveController::edit
+
+admin.file.archive.delete:
+    path: /admin/file-archive/{id}/delete
+    controller: App\Controller\FileArchiveController::delete
+
+admin.file.archive.delete.file:
+    path: /admin/file-archive/{id}/delete/{fileId}
+    controller: App\Controller\FileArchiveController::deleteFile
+
+admin.file.archive.add.file:
+    path: /admin/file-archive/{id}/add-file
+    controller: App\Controller\FileArchiveController::addFile

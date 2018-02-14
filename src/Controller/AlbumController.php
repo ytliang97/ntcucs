@@ -25,7 +25,7 @@ class AlbumController extends Controller
 
         $form = $this->createFormBuilder($album)
             ->add("name", TextType::class, array("label" => "相簿名稱"))
-            ->add("description", TextareaType::class, array("label" => "相簿敘述"))
+            ->add("description", TextareaType::class, array("label" => "相簿敘述", "required" => false))
             ->add("submit", SubmitType::class, array("label" => "新增相簿"))
             ->getForm();
 

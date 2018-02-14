@@ -1,0 +1,56 @@
+{% extends "admin/base.html.twig" %}
+
+{% block body %}
+    <div class="row" style="margin: 0 0 10px 0;">
+        <div class="ml-auto">
+            <a href="{{ path("admin.file.archive.add.file", {"id": archive.getId()}) }}">
+                <button class="btn btn-primary"><i class="fas fa-plus"></i> 新增文件</button>
+            </a>
+        </div>
+    </div>
+    <div class="row" id="archivesList">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">文件標題</th>
+                <th scope="col">文件名稱</th>
+                <th scope="col">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for file in archive.getFiles() %}
+            <tr>
+                <th>{{ file.getTitle() }}</th>
+                <td>{{ file.getOriginName() }}</td>
+                <td>
+                    <a target="_blank" href="{{ path("admin.file.get", {'id': file.getId(), 'action': "view"}) }}">
+                        <button class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button>
+                    </a>
+                    <a href="{{ path("admin.file.archive.delete.file", {'id': archive.getId(), 'fileId': file.getId()}) }}">
+                        <button class="btn btn-danger btn-sm" v-on:click="onDelete">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        let archivesList = new Vue({
+            el: "#archivesList",
+            methods: {
+                onDelete: function(event) {
+                    let result = confirm("請問確定要刪除這個文件嗎?");
+                    if (!result) {
+                        event.preventDefault();
+                    }
+                }
+            }
+        });
+    </script>
+{% endblock %}

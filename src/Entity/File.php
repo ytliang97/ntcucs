@@ -35,6 +35,13 @@ class File
     public function setHashName($hashName) { $this->hashName = $hashName; }
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $title;
+    public function getTitle() { return $this->title; }
+    public function setTitle($title) { $this->title = $title; }
+
+    /**
      * @ORM\Column(type="string")
      */
     private $fileType;
