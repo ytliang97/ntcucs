@@ -1,0 +1,15 @@
+admin.team.create:
+    path: /admin/team/create
+    controller: App\Controller\TeamController::create
+
+admin.team.edit:
+    path: /admin/team/{id}/edit
+    controller: App\Controller\TeamController::edit
+
+admin.team.delete:
+    path: /admin/team/{id}/delete
+    controller: App\Controller\TeamController::delete
+
+admin.team.list:
+    path: /admin/team/list
+    controller: App\Controller\TeamController::listAll

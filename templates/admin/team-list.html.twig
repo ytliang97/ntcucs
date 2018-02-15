@@ -1,0 +1,49 @@
+{% extends "admin/base.html.twig" %}
+
+{% block body %}
+    <div class="row" id="teamsList">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">團隊名稱</th>
+                <th scope="col">團隊成員數量</th>
+                <th scope="col">團隊敘述</th>
+                <th scope="col">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for team in teams %}
+                <tr>
+                    <th>{{ team.getName() }}</th>
+                    <td>{{ team.getMembers() | length }}</td>
+                    <td>{{ team.getDescription() }}</td>
+                    <td>
+                        <a href="{{ path("admin.team.edit", {'id': team.getId()}) }}">
+                            <button class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></button>
+                        </a>
+                        <a href="{{ path("admin.team.delete", {'id': team.getId()}) }}">
+                            <button class="btn btn-danger btn-sm" v-on:click="onDelete"><i class="fa fa-trash"></i></button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        var teamsList = new Vue({
+            el: "#teamsList",
+            methods: {
+                onDelete: function(event) {
+                    let result = confirm("請問確定要刪除這篇文章嗎?");
+                    if (!result) {
+                        event.preventDefault();
+                    }
+                }
+            }
+        });
+    </script>
+{% endblock %}

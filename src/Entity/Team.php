@@ -28,6 +28,14 @@ class Team
 
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+    public function getDescription() { return $this->description; }
+    public function setDescription($description) { $this->description = $description; }
+
+
+    /**
      * @ORM\OneToMany(targetEntity="Member", mappedBy="team")
      */
     private $members;
