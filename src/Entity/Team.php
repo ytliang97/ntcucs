@@ -22,9 +22,10 @@ class Team
     /**
      * @ORM\Column(type="string")
      */
-    public $name;
+    private $name;
     public function getName() { return $this->name; }
     public function setName($name) { $this->name = $name; }
+
 
     /**
      * @ORM\OneToMany(targetEntity="Member", mappedBy="team")

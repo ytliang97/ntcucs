@@ -55,6 +55,13 @@ class Member
     public function setEmail($email) { $this->email = $email; }
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $website;
+    public function getWebsite() { return $this->website; }
+    public function setWebsite($website) { $this->website = $website; }
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $createTime;

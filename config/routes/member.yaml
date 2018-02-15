@@ -1,0 +1,12 @@
+admin.member.add:
+    path: /admin/member/add
+    controller: App\Controller\MemberController::create
+admin.member.edit:
+    path: /admin/member/{id}/edit
+    controller: App\Controller\MemberController::edit
+admin.member.delete:
+    path: /admin/member/{id}/delete
+    controller: App\Controller\MemberController::delete
+admin.member.list:
+    path: /admin/member/list
+    controller: App\Controller\MemberController::listAll
