@@ -141,10 +141,15 @@
                         });
                 },
                 onExistedCanceled: function(file) {
-                    let index = this.existed.indexOf(file);
-                    this.existed.splice(index, 1);
 
-                    this.uploadedString = JSON.stringify(this.existed.concat(this.uploaded));
+                    let fileId = file.id;
+                    this.$http.get("/admin/file/delete/"+fileId)
+                        .then(function(response){
+                            let index = this.existed.indexOf(file);
+                            this.existed.splice(index, 1);
+                            this.uploadedString = JSON.stringify(this.existed.concat(this.uploaded));
+                        }, function(response){
+                        });
                 }
             },
         });

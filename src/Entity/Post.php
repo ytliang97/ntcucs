@@ -72,8 +72,8 @@ class Post
     /**
      * @ORM\ManyToMany(targetEntity="File")
      * @ORM\JoinTable(name="posts_attachments",
-     *     joinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="attachment_id", referencedColumnName="id")}
+     *     joinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id", onDelete="CASCADE")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="attachment_id", referencedColumnName="id", onDelete="CASCADE")}
      * )
      */
     private $attachments;

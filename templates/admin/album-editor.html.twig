@@ -161,9 +161,19 @@
                 selector.value = '';
             },
             onFileCanceled: function(file) {
-                let index = editor.medias.indexOf(file);
-                editor.medias.splice(index, 1);
-                this.uploadedString = JSON.stringify(this.medias);
+                let fileId = file.id;
+
+                this.$http.get("/public/delete/"+fileId).then(
+                    function(response) {
+                        let index = editor.medias.indexOf(file);
+                        editor.medias.splice(index, 1);
+                        this.uploadedString = JSON.stringify(this.medias);
+                    },
+                    function(response) {
+
+                    }
+                );
+
             }
         }
     })

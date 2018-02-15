@@ -57,8 +57,8 @@ class Page
     /**
      * @ORM\ManyToMany(targetEntity="File")
      * @ORM\JoinTable(name="pages_attachments",
-     *     joinColumns={@ORM\JoinColumn(name="page_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="attachment_id", referencedColumnName="id")}
+     *     joinColumns={@ORM\JoinColumn(name="page_id", referencedColumnName="id", onDelete="CASCADE")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="attachment_id", referencedColumnName="id", onDelete="CASCADE")}
      * )
      */
     private $attachments;

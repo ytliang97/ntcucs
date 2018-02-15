@@ -58,8 +58,8 @@ class Album
     /**
      * @ORM\ManyToMany(targetEntity="PublicUploaded")
      * @ORM\JoinTable(name="albums_assets",
-     *     joinColumns={@ORM\JoinColumn(name="album_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="asset_id", referencedColumnName="id")}
+     *     joinColumns={@ORM\JoinColumn(name="album_id", referencedColumnName="id", onDelete="CASCADE")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="asset_id", referencedColumnName="id", onDelete="CASCADE")}
      * )
      */
     private $content;
