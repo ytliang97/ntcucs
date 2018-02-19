@@ -1,0 +1,12 @@
+admin.banner.add:
+    path: /admin/banner/add
+    controller: App\Controller\BannerController::add
+admin.banner.edit:
+    path: /admin/banner/{id}/edit
+    controller: App\Controller\BannerController::edit
+admin.banner.delete:
+    path: /admin/banner/{id}/delete
+    controller: App\Controller\BannerController::delete
+admin.banner.list:
+    path: /admin/banner/list
+    controller: App\Controller\BannerController::listAll

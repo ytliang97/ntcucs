@@ -1,0 +1,8 @@
+admin.paper.create:
+    path: /admin/papaer/add
+admin.papaer.edit:
+    path: /admin/paper/{id}/edit
+admin.paper.delete:
+    path: /admin/paper/{id}/delete
+front.show.paper:
+    path: /paper/{id}
