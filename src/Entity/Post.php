@@ -54,6 +54,13 @@ class Post
     public function setUpdateTime($updateTime) { $this->updateTime = $updateTime; }
 
     /**
+     * @ORM\Column(type="integer", options={"default" : 0})
+     */
+    private $clickAmount;
+    public function getClickAmount() { return $this->clickAmount; }
+    public function incrementClickAmount() { $this->clickAmount += 1; }
+
+    /**
      * @ORM\ManyToMany(targetEntity="Category", inversedBy="posts")
      * @ORM\JoinTable(name="posts_categories")
      */

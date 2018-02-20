@@ -32,8 +32,10 @@ front.course:
     controller: App\Controller\SiteController::course
 
 front.enrollment:
-    path: /enrollment
+    path: /enrollment/{type}
     controller: App\Controller\SiteController::enrollment
+    defaults:
+        type: bachelor
 
 front.download:
     path: /download

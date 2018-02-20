@@ -30,5 +30,5 @@ admin.category.list:
     page: '\d+'
 
 front.category.show:
-  path: /cateogry/{alias}
+  path: /news/category/{alias}
   controller: App\Controller\CategoryController::show

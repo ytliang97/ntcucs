@@ -32,4 +32,14 @@ class CategoryRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    public function getEnrollmentType($type) {
+        /**
+         type: bachelor, master, china, international, faq
+         */
+        return $this->createQueryBuilder('c')
+            ->where('c.alias = :alias')->setParameter('alias', $type)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }
