@@ -1,0 +1,67 @@
+<!-- Footer -->
+<div class="row" style="margin-top: 20px">
+    <div class="col-12">
+        <!-- Footer -->
+        <footer id="foo" class="navbar-light bg-light">
+
+            <!-- Temporary Padding -->
+            <div class="row">
+                <div class="col-12">&nbsp</div>
+            </div>
+            <!-- /.Temporary Padding -->
+
+            <!--Footer link-->
+            <div class="row">
+                <!--First solumn-->
+                <div class="col-md-6" align="center">
+                    <h5>聯絡我們</h5>
+                    <ul class="list-unstyled">
+                        <li display="none"><i class="fa fa-map-marker" aria-hidden="true"></i>{{ "{{ ADDRESS }}" }}</li>
+                        <li><i class="fa fa-volume-control-phone" aria-hidden="true"></i>{{ "{{ PHONE }}" }}</li>
+                        <li><i class="fa fa-fax" aria-hidden="true"></i>{{ "{{ FAX }}" }}</li>
+                        <li><i class="fa fa-envelope" aria-hidden="true"></i>{{ "{{ MAIL }}" }}</li>
+                    </ul>
+                </div>
+                <!--/.First column-->
+
+                <!--Second column-->
+                <div class="col-md-6" align="center">
+                    <h5>追蹤消息</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#"><i class="fa fa-facebook-square" aria-hidden="true">{{ "{{ COMMUNITY }}" }}</i></a></li>
+                        <li><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i>{{ "{{ FANPAGE }}" }}</a></li>
+                    </ul>
+                </div>
+                <!--/Second column-->
+            </div>
+            <!--/.Footer link-->
+
+            <hr>
+
+            <!--Copyright-->
+            <div class="row">
+                <div class="col text-center">
+                    © 2017 Copyright: <a href="#"> NTCU CSIE</a>
+                </div>
+            </div>
+            <!--/.Copyright-->
+
+
+            <script>
+                new Vue({
+                    el: '#foo',
+                    data: {
+                        ADDRESS: ' 臺中市西區民生路140號',
+                        PHONE: ' 04-2218-3582',
+                        FAX: ' 04-2218-3582',
+                        MAIL: ' ntcucs@gm.ntcu.edu.tw',
+                        COMMUNITY: ' 中教資工All in one',
+                        FANPAGE: ' 中教資工系學會'
+                    }
+                })
+            </script>
+        </footer>
+        <!-- /.Footer -->
+    </div>
+</div>
+<!-- /.Footer -->

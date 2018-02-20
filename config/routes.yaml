@@ -7,6 +7,7 @@ admin.index:
 
 front.index:
     path: /
+    controller: App\Controller\SiteController::index
 
 front.sitemap:
     path: /sitemap.xml
@@ -17,3 +18,31 @@ login:
 
 logout:
     path: /logout
+
+front.news:
+    path: /news
+    controller: App\Controller\SiteController::news
+
+front.introduce:
+    path: /introduce
+    controller: App\Controller\SiteController::introduce
+
+front.course:
+    path: /course
+    controller: App\Controller\SiteController::course
+
+front.enrollment:
+    path: /enrollment
+    controller: App\Controller\SiteController::enrollment
+
+front.download:
+    path: /download
+    controller: App\Controller\SiteController::download
+
+front.student.info:
+    path: /student-info
+    controller: App\Controller\SiteController::studentInfo
+
+front.network.resource:
+    path: /network-resource
+    controller: App\Controller\SiteController::networkResource

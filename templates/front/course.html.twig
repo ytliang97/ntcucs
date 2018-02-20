@@ -1,0 +1,727 @@
+{% extends "front/base.html.twig" %}
+
+{% block body %}
+    <!-- Course -->
+    <div class="row">
+
+        <div class="col-3">
+
+            <!-- Course Submenu -->
+            <ul class="list-group shadow">
+                <li class="list-group-item list-group-item-calm">subPage Name</li>
+                <!-- A Link -->
+                <li class="list-group-item nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#course-1" role="tab">學士班</a>
+                </li>
+                <!-- /.A Link -->
+                <!-- A Link -->
+                <li class="list-group-item nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#course-2" role="tab">碩士班</a>
+                </li>
+                <!-- A Link -->
+            </ul>
+            <!-- Course Submenu -->
+
+        </div>
+        <div class="col-9" id="forVue2">
+
+            <!-- Page Title -->
+            <h5>課程資訊</h5>
+            <!-- /.Page Title -->
+
+
+            <!-- Switch Content -->
+            <div class="tab-content">
+                <!-- A Content -->
+                <div class="tab-pane active" id="course-1" role="tabpanel">
+                    <!-- Article -->
+                    <!-- subTitle -->
+                    <div class="alert alert-dark" role="alert">
+                        學士班
+                    </div>
+                    <!-- /.subTitle -->
+                    <!-- Course Link Nav -->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#course-content-1">選課注意事項</a></li>
+                            <li class="breadcrumb-item"><a href="#course-content-2">課程架構</a></li>
+                            <li class="breadcrumb-item"><a href="#course-content-3">畢業條件</a></li>
+                            <li class="breadcrumb-item"><a href="#course-content-4">年度課程內容</a></li>
+                            <li class="breadcrumb-item"><a href="#course-content-5">課程內容概述</a></li>
+                        </ol>
+                    </nav>
+                    <!-- /.Course Link Nav -->
+                    <div alt="article-area">
+                        <p>
+                            <!-- Content of Bachelor -->
+                        <ul>
+                            <li>
+                                <h5 id="course-content-1">選課注意事項</h5>
+                                <ul>
+                                    <todo-item2 v-for="item in precautionList" v-bind:todo="item" v-bine:key="item.id"></todo-item2>
+                                </ul>
+                            </li>
+                            <li>
+                                <h5 id="course-content-2">課程架構(以入學年度為準)</h5>
+                                <ul>
+                                    <todo-item v-for="item in bYearList" v-bind:todo="item" v-bine:key="item.id"></todo-item>
+                                </ul>
+                            </li>
+                            <li>
+                                <h5 id="course-content-3">畢業條件</h5>
+                                <ul>
+                                    <li>程式能力檢定</li>
+                                    <li>累計學分達</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h5 id="course-content-4">年度課程內容(系上保有變動權力)</h5>
+                                <!-- Course Architecture of Bachelor -->
+                                <div class="col-12">
+                                    <table class="table table-striped">
+                                        <thead class="thead-gray">
+                                        <tr>
+                                            <th class="w-25" scope="col">學期</th>
+                                            <th class="w-25" scope="col">必/選修</th>
+                                            <th class="w-50" scope="col">課程名稱</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <th scope="row" rowspan="2">理學院共同課程</th>
+                                            <td>必修</td>
+                                            <td>[一上]：微積分(I)、普通物理學、計算機概論</td>
+                                        </tr>
+                                        <tr>
+                                            <td>選修</td>
+                                            <td>[一下]：微積分(II)；[二上]：數位學習概論
+                                                [三上]：跨領域專題製作；[三下]：專業服務學習</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <th scope="row" rowspan="2">大一上</th>
+                                            <td>必修</td>
+                                            <td>微積分(I)、普通物理學、計算機概論、程式設計</td>
+                                        </tr>
+                                        <tr>
+                                            <td>選修</td>
+                                            <td>UNIX系統實務</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <th scope="row" rowspan="2">大一下</th>
+                                            <td>必修</td>
+                                            <td>離散數學、數位邏輯設計、數位邏輯設計實驗、進階程式設計、計算機網路</td>
+                                        </tr>
+                                        <tr>
+                                            <td>選修</td>
+                                            <td>網頁程式設計</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <th scope="row" rowspan="2">大二上</th>
+                                            <td>必修</td>
+                                            <td>線性代數、資料結構、系統程式</td>
+                                        </tr>
+                                        <tr>
+                                            <td>選修</td>
+                                            <td>物件導向程式設計、網際網路原理概論、資料庫系統、電子電路學、系統分析與設計</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <th scope="row" rowspan="2">大二下</th>
+                                            <td>必修</td>
+                                            <td>演算法、 軟體工程、程式能力檢定</td>
+                                        </tr>
+                                        <tr>
+                                            <td>選修</td>
+                                            <td>資料庫程式設計、機率、視窗程式設計、程式語言、多媒體網路、微處理機系統、數位訊號處理與應用</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <th scope="row" rowspan="2">大三上</th>
+                                            <td>必修</td>
+                                            <td>計算機組織、作業系統</td>
+                                        </tr>
+                                        <tr>
+                                            <td>選修</td>
+                                            <td>專題研究(I)、資訊專業實習、人工智慧與軟式計算、編譯程式、高效能計算
+                                                [三四合開]：密碼學導論、網路管理與分析、嵌入式系統、行動通訊</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <th scope="row" rowspan="2">大三下</th>
+                                            <td>必修</td>
+                                            <td>資訊專題(I)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>選修</td>
+                                            <td>專題研究 (II)、軟體工程實務、
+                                                [三四合開]：網路安全、網路程式設計、計算機網路實驗、無線網路、計算機結構、雲端運算概論、物聯網概論</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <th scope="row" rowspan="2">大四上</th>
+                                            <td>必修</td>
+                                            <td>資訊專題(II)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>選修</td>
+                                            <td>專題研究(III) 、雲端程式設計
+                                                [三四合開]：密碼學導論、網路管理與分析、嵌入式系統、行動通訊</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <th scope="row" rowspan="2">大四下</th>
+                                            <td>必修</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>選修</td>
+                                            <td>專題研究(IV)
+                                                [三四合開]：網路安全、網路程式設計、計算機網路實驗、無線網路、計算機結構、雲端運算概論、物聯網概論</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.Course Architecture of Bachelor -->
+                            </li>
+                            <li>
+                                <h5 id="course-content-5">課程內容概述</h5>
+                                <!-- Description of Bachelor Course -->
+                                <div class="col-12">
+                                    <table class="table table-striped">
+                                        <thead class="thead-gray">
+                                        <tr>
+                                            <th scope="col" class="w-25">學期</th>
+                                            <th scope="col" class="w-25">課程名稱</th>
+                                            <th scope="col" class="w-50">課程內容</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <!-- Freshmen -->
+                                        <!-- A Row -->
+                                        <tr>
+                                            <th scope="row" rowspan="4">大一上</th>
+                                            <td>微積分(I)
+                                                Calculus(I)</td>
+                                            <td>基礎數學課程可區分為代數與幾何兩大主架構，微積分課程內容也涵蓋這兩大架構，於此兩大架構下就微分與積分兩主軸討論之，因微積分屬一學年課程，上學期主要授予微分部份，下學期則授予積分部份。
+                                                上學期課程內容共分為十六單元，第一單元主要介紹微積分課程授課方式及應俱備之數學概念，第二、三、四單元乃討論函數之極限及連續性概念，第五至九單元討論微分之基本理論及其公式之由來，第十、十一單元為微分在特殊函數之理論與應用，第十二單元討論微分在幾何圖型上理論之證明，第十三、十四、十五單元為微分在幾何圖型之實例應用、第十六單元為微分與極限之應用。
+                                                下學期課程乃延續上學期，內容共分為四大單元，第一單元主要介紹積分概念，積分就定積分與不定積分兩方面討論，第二單元乃介紹積分之技巧，其中變數變換、分部積分及部份積分為主要討論主題，第三單元討論極座標之基本理論，就極座標與卡笛耳座標比較之，第四單元介紹數列與級數之理論與應用，就數列之應用及級數收斂與發散問題討論之。
+                                            </td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>計算機概論(I)
+                                                Introduction to Computer Science(I)</td>
+                                            <td>本課程介紹計算機軟體及硬體之基礎知識及運作原理，內容包含電腦發展史、數字系統、資料表示法、數位邏輯、計算機結構、系統軟體、作業系統、電腦網路及網際網路等。以便對於資訊學門中重要相關領域有通盤性瞭解，掌握計算機發展趨勢，奠定日後修習各類專門課程之基礎。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>程式設計
+                                                Programming</td>
+                                            <td>本課程之目的在教導學生學習基本程式語言(C或C++)之語法撰寫與應用，建立學生程式設計之基本觀念，並熟習程式設計之方法、要領，作為修習其他資訊專業課程之基礎。課程內容包含程式語言中之基本語法、程式控制結構、格式化輸出/輸入、檔案處理等。</td>
+                                        </tr>
+                                        <!-- A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>線性代數
+                                                Linear Algebra</td>
+                                            <td>線性代數課程基本的目的在表現線性的代數原理，並以嚴謹的方式處理線性方面的問題，我們將透過各種應用的問題來闡述這門課程的重要性。
+                                                課程內容主要分成五大部分：<br><br>
+
+                                                1、『向量空間』：<br>
+                                                介紹有限維度向量空間的基礎理論一一子空間、線性組合、線性相依及線性獨立、基底，以及維度。<br>
+
+                                                2、『線性轉換及矩陣』：<br>
+                                                討論線性變換的零核空間和值域，線性變換、同構變換以及坐標變換的矩陣表示式。<br>
+
+                                                3、『基本矩陣的運算與線性系統』：<br>
+                                                引入三種基本矩陣及其運算，而後介紹矩陣的秩(rank)並將其應用到線性系統的解法上面。<br>
+
+                                                4、『行列式(determinants)』：<br>
+                                                介紹二階及三階行列式，並進而介紹n階行列式的一般公式，而後介紹其幾何上的意義。<br>
+
+                                                5、『對角線化』：<br>
+                                                介紹線性轉換或矩陣的特徵值及其所對應的特徵向量，再介紹一個線性轉換或矩陣滿足可對角線化的一般定義與判斷的定理。</td>
+                                        </tr>
+                                        <!-- A Row -->
+
+                                        <tr>
+                                            <th scope="row" rowspan="2">大一下</th>
+                                            <td>資料結構
+                                                Data Structure</td>
+                                            <td>資料結構是資訊相關科系的基礎科目，資料結構包含資料的表示方式及其演算法，是設計程式與軟體系統的基本知識。本課程的教學目標在使學生熟悉資料結構的基本概念，電腦演算法分析的基本技巧，以及解決問題的能力。</td>
+                                        </tr>
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>離散數學
+                                                Discrete Mathematic</td>
+                                            <td>離散數學是資訊科學領域中最重要的一門數學課程，其範圍相當廣泛，涵蓋了資訊科學中常用的數學概念。舉凡資料結構、演算法、作業研究、編碼解碼、編譯器理論等，都需要有離散數學的背景知識。
+
+                                                　　　 本教學課程共分九個單元：第一單元「基本數論」介紹集合論、數學歸納法以及數論，此為往後各單元的基礎；第二單元「關係與函數」探討各種不同關係與函數性質，此外也討論鴿籠原理與計數問題；第三單元「排列組合與排容原理」介紹排列組合、排容原理以及離散機率；第四單元「生成函數」介紹一個解排列組合或遞迴關係很有用的工具 — 生成函數；第五單元「遞迴關係」討論如何求解不同的遞迴關係式；第六單元「圖論」介紹圖論的一些基本觀念及一些重要的圖論問題，如路徑問題、平面圖以及著色理論；第七單元「樹」介紹一個特別的圖 — 樹狀結構，探討樹的各種性質及應用；第八單元「演算法」主要討論常見圖論上的演算法及計算複雜度的分析；第九單元「編碼與解碼」介紹如何獲得最有效率的編碼方式以及相對應的解碼方式。</td>
+                                        </tr>
+                                        <!-- A Row -->
+
+                                        <!-- /.Freshmen -->
+
+                                        <!-- Sophomore -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <th scope="row" rowspan="6">大二上</th>
+                                            <td>數位邏輯設計
+                                                Digital Logic Design</td>
+                                            <td>本課程為資訊相關科系之基礎課程，介紹數位電路設計之基礎原理與觀念，包含布林代數邏輯、卡諾圖、組合電路(含解碼器、編碼器、多工器、解多工器、比較器、算術運算電路)、序向電路之分析及設計(含同步/非同步序向邏輯電路、計數器、暫存器、移位暫存器、時序產生電路)。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>數位邏輯設計實驗
+                                                Digital Logic Design Experiment</td>
+                                            <td>本課程配合數位邏輯設計課程所授內容，對於基本組合/序向邏輯電路及基礎應用電路，透過FPGA實驗設備進行操作練習。利用硬體描述語言設計電路，將邏輯設計導向系統層級和高階電路合成，加快硬體開發速度。內容包含LED控制電路、DIP控制電路、七段顯示器控制電路、鍵盤控制電路及LCD顯示電路。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>計算機網路
+                                                Computer network</td>
+                                            <td>本課程介紹計算機網路基本架構及通訊協定(protocols)，使學生了解一些網路運作原理以及網路常用的技術及其應用，使初學者對於通訊網路各元件以及如何將它們連接起來運作有一基本概念。並以OSI與TCP/IP架構為主，內容包括實體層(訊號處理)、資料連結層、網路層、傳輸層以及應用層等各項網路技術。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>物件導向程式設計
+                                                Object-oriented Programming</td>
+                                            <td>本課程目的為介紹學生認識物件導向的觀念與原理，並且培養學生具備使用物件導向程式語言(Java或C++/C#)設計程式的能力。透過本課程的學習，學生可以學習物件導向技術在程式設計上的應用，以及學習物件導向程式設計的方法。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>機率
+                                                Probability</td>
+                                            <td>本課程介紹基礎的機率理論及其應用，內容包括條件機率、離散型機率模式(含二項式分佈與Poisson分佈)、連續型機率模式(含均勻分佈與常態分佈)，以及中央極限定理等機率理論，同時也將介紹機率在工程與科學上的應用，使學生瞭解如何將機率與實際應用相結合。
+                                            </td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>網際網路
+                                                Internet</td>
+                                            <td>網際網路早已成為生活上不可或缺的一部分，因此也是資訊與通訊領域最重要的課題，本課程旨在介紹網際網路基本架構及協定，特別是TCP/IP，路由器的原理與應用，RIP與OSPF等路由協定，以及網路除錯(Troubleshooting)等網際網路相關技術。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <tr>
+                                            <th scope="row" rowspan="6">大二下</th>
+                                            <td>系統程式
+                                                System Programming and assembler</td>
+                                            <td>本課程之目的在介紹計算機系統中各種重要的系統程式之目的、功能以及設計的法則。包含組譯程式(assembler)、聯結與載入程式(linker and loader)、巨集程式(macro processor)、以及編譯程式(compiler)等。透過本課程的學習，可以增進學生對於系統程式的了解，培養設計系統程式的基本能力，並將設計發展系統程式的技巧應用於一般的軟體設計。</td>
+                                        </tr>
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>軟體工程
+                                                Software engineering</td>
+                                            <td>軟體工程的理論與方法為發展大型軟體的重要基礎。本課程的目的在介紹軟體發展的生命週期，包含需求分析、系統設計、軟體實作、程式驗證與測試、以及軟體專案管理的原理與實務等。透過本課程的學習，可以培養學生基本的軟體專案管理與系統分析設計與測試能力，進而培養發展大型軟體的基礎技能。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>網路管理與分析
+                                                Network Management and Analysis</td>
+                                            <td>本課程將介紹如何設計、規劃與管理電腦網路，特別是區域網路(LAN)與廣域網路(WAN)的規劃與管理，內容包括網路管理的基本概念與相關議題，網路元件的設定與管理，SNMP與RMON網路管理協定， MIB網路管理資料結構，以及網路流量分析等重要議題。
+                                            </td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>視窗程式設計
+                                                Window Programming</td>
+                                            <td>本課程以循序漸進的方式介紹視窗系統運作原理(Java Swing/SWT或MFC)與視窗程式設計技巧，並以剖析舉例的方法作簡單而完整的說明，其內容為視窗基礎與視窗進階應用，包含各種GUI控制項之介紹，視窗程式與資料庫結合之應用等。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>程式語言
+                                                Programming Language</td>
+                                            <td>本課程主要介紹程式語言的理論基礎，包含程式語言之演進過程、語法及語意分析、功能與運算式、結構化與物件導向程式語言、資料型態與變數屬性、控制結構、副程式以及副程式實作以及現今各種程式語言的特性等。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>嵌入式系統
+                                                Introduction to embedded system</td>
+                                            <td>嵌入式系統結合微處理機與其專屬軟體環境，以達到最佳整體系統運作效率。本課程介紹嵌入式系統基礎知識、應用範圍、設計流程、相關背景知識以及軟體與硬體的設計方式。包含嵌入式系統介紹、系統設計、微處理器、記憶體與週邊、軟硬體介面、嵌入式作業系統、即時作業系統、模擬與除錯、效能評量及嵌入式JAVA 技術。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- /.Sophomore -->
+
+                                        <!-- Junior -->
+
+                                        <tr>
+                                            <th scope="row" rowspan="6">大三上</th>
+                                            <td>計算機組織
+                                                Computer Organization</td>
+                                            <td>本課程介紹計算機組織之基本概念，瞭解高效能電腦結構。內容涵蓋現代電腦系統，包含精簡指令集、管級式技術、超純量機器、超長指令集、快取及記憶體系統、向量超級電腦、多處理器系統、計算機連結網路、平行計算機結構、高效能計算機結構及系統效能評估。</td>
+                                        </tr>
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>演算法
+                                                Algorithm</td>
+                                            <td>本課程之目的在於協助學生了解各種計算機演算法的設計與分析，包含時間複雜度的計算、排序演算法、搜尋演算法、動態規劃、貪婪演算法、NP的問題等等，並具備以程式語言的方式，撰寫上述演算法的能力，以應用於未來的軟體設計。
+                                            </td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>軟體品質保證與測試
+                                                Software quality assurance and testing</td>
+                                            <td>本課程之目的主要在探討全面軟體品質管理 (Total Software Quality Management) 的觀念與技術，訓練學生如何進行軟體品質一系列的規劃、執行與控制的活動；其主要目的是在提升軟體品質水準以滿足最終用戶的期望需求，並將軟體的缺點與軟體專案失敗的風險減至最低程度。同時介紹學生各種軟體測試的理論與方法，並且透過實作的方式讓學生熟悉軟體測試的技術。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>物件導向軟體工程
+                                                Object-oriented software engineering</td>
+                                            <td>本課程之目的在於幫助學生培養物件導向系統分析設計能力，並且透過課程專題製作，學生可以學習如何利用UML來塑模軟體分析與設計之結果, 並使用一個物件導向語言(如Java或C++)實作。課程內容包含物件導向模型 -- UML介紹、物件導向軟體發展週期、物件導向分析 - 需求分析，使用個案，觀念模型，有限狀態模型、物件導向設計 - 實際使用個案，合作圖，類別圖，設計模板以及設計樣式等。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>嵌入式系統程式設計
+                                                Embedded system programming</td>
+                                            <td>本課程介紹嵌入式系統程式設計之基礎知識，學習如何完成一個嵌入式應用系統。內容包含嵌入式微處理器介紹、嵌入式Linux介紹、嵌入式C語言程式設計、即時系統限制、記憶體與輸出入系統介面設計、中斷處理機制、Standalone程式開發及應用。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>專題研究(I)
+                                                Special topic of information technology（I）</td>
+                                            <td>本課程將介紹最新的資訊技術以及目前資訊技術的發展情形，介紹資訊軟體與硬體最新的發展情形，除了講解學術研發成果，也配合資訊產業之發展，透過此課程期使學生能學習最新的資訊技術，滿足產業界之需求。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <tr>
+                                            <th scope="row" rowspan="6">大三下</th>
+                                            <td>資料庫系統
+                                                Database System</td>
+                                            <td>資料庫是設計現代資訊系統不可或缺的基本項目，要設計出一個良好而有效率的資料庫，必須了解資料的模型、資料間的相互關係、及使用者對資料的查詢模式。本課程的目的即在於讓學生透過了解資料及資料庫的各種模型及觀念，進而學習到設計資料庫的技巧及其應用。</td>
+                                        </tr>
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>資訊專題（I）
+                                                Information Project（I）</td>
+                                            <td>依照個人興趣及專長，針對特定主題，請老師指導，加以深入研究並實作成品，以便展現大學生涯的學習成果。
+                                            </td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>網路程式設計
+                                                Network Programming</td>
+                                            <td>本課程將介紹網路程式設計的基本原則，我們採用主從式(client-server)程式設計來撰寫網路程式，內容包含網際網路應用程式如何使用TCP/IP協定進行連網，主從式程式設計典範與socket API，如何撰寫伺服器網路程式以及實際範例之應用等。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>人工智慧與軟式計算
+                                                Artificial intelligence and soft computing</td>
+                                            <td>本課程之目的在於介紹學生了解人工智慧的基礎理論與應用，課程內容包含經驗式搜尋解題法、一階邏輯知識表示與推理、規則式知識表示與推理、模糊理論與模糊推理、知識本體工程、以及智慧型代理人技術簡介等。透過本課程的學習，可以培養學生具備智慧型軟體設計的基礎技術，以奠定進一步人工智慧理論與應用學習的基礎。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>編譯程式
+                                                Compiler</td>
+                                            <td>本課程介紹與機器無關的高階語言編譯成機械語言的基礎知識。內容包含編譯程式簡介、One-Pass編譯程式、語彙分析、語法分析、轉譯技巧、型別檢查、執行環境、中間碼表示方式、目的碼，及指令最佳化。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>計算機結構
+                                                Computer architecture</td>
+                                            <td>本課程介紹計算機硬體基本概念與技術，瞭解電腦內部組織及結構如何運作。內容包含指令集結構、定址法、暫存器轉移語言、CPU架構、微循序機控制單元、算術單元、快取記憶體、記憶體組織、輸入／輸出組織、精簡指令集、超長指令集、超純量機器、及平行處理。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- /.Junior -->
+
+                                        <!-- Senior -->
+
+                                        <tr>
+                                            <th scope="row" rowspan="5">大四上</th>
+                                            <td>資訊專題（II）
+                                                Information Project（II）</td>
+                                            <td>延續資訊專題（I）研究主題，請老師指導，加以深入研究並實作成品，以便展現大學生涯的學習成果。</td>
+                                        </tr>
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>軟體流程管理與改善
+                                                Software process management and improvement</td>
+                                            <td>本課程之目的在於介紹學生了解軟體流程的目的以及重要性。本課程將以目前世界潮流的CMMI為基礎，讓學生了解CMMI的精神以及其所制定的流程領域以及改善方法。並且透過小組討論與專題製作的方式，讓學生具備實際的軟體流程制定與改善能力，並引導學生未來在軟體流程管理與改善相關領域之學習興趣。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>網路安全
+                                                Network Security</td>
+                                            <td>網路安全與密碼學技術為現代電子商務之基礎。本課程將介紹網路安全與密碼學的基本觀念。課程將涵蓋現有網路上常用之DES、RSA等密碼學演算法及其應用。另外我們也會介紹網路安全與認證協定、電子簽章技術以及其他資訊安全技術。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>無線網路
+                                                Introduction to wireless network</td>
+                                            <td>本課程將介紹無線網路基本架構及協定，使初學者對於無線通訊網路各元件以及如何將它們連接起來運作有一基本概念。並使學生了解在此架構下網路上，行動計算常用的技術、法則及應用。內容將介紹無線區域網路(Wireless LAN)、行動網際網路協定(Mobile IP)、以及無線網路應用等重要議題。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>嵌入式作業系統與實作
+                                                Embedded operating system and implementation</td>
+                                            <td>本課程介紹嵌入式作業系統之理論與觀念，內容包含嵌入式軟體技術導論、嵌入式即時系統、ELF格式說明、System Calls、系統設計、系統最小化策略、Embedded Linux系統實作基礎、驅動程式、Embedded Linux解決方案與相關跨平臺工具。</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <tr>
+                                            <th scope="row" rowspan="2">大四下</th>
+                                            <td>行動通訊
+                                                Mobile communication</td>
+                                            <td>本課程介紹行動通訊系統的基本架構及通訊協定，內容將介紹行動通訊網路運作原理及其與電腦網路之異同，無線網路常用的技術與管理(如行動管理與無線資源管理等)等相關技術，另外我們也會介紹時下最重要的行動通訊系統如GSM以及第三代行動通訊系統(3G)。</td>
+                                        </tr>
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <td>平行處理
+                                                Parallel processing</td>
+                                            <td>平行處理泛指電腦系統中可以同時處理或執行一個以上的運算，以加速系統運算能力。
+                                                本課程介紹平行處理相關技術，內容包含平行演算法、平行程式設計、平行編譯器、多處理機系統、電腦連結網路、容錯系統、叢集運算、網格運算。
+
+                                            </td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- /.Senior -->
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.Description of Bachelor Course -->
+                            </li>
+                        </ul>
+                        <!-- /.Content of Bachelor -->
+                        </p>
+                    </div>
+                    <!-- /.Article -->
+                </div>
+                <!-- /.A Content -->
+                <!-- A Content -->
+                <div class="tab-pane" id="course-2" role="tabpanel">
+                    <!-- Article -->
+                    <!-- subTitle -->
+                    <div class="alert alert-dark" role="alert">
+                        碩士班
+                    </div>
+                    <!-- /.subTitle -->
+                    <div alt="article-area">
+                        <P>
+                            <!-- Content of Master -->
+                        <ul>
+                            <li>
+                                課程架構(以入學年度為準)
+                                <ul>
+                                    <todo-item v-for="item in mYearList" v-bind:todo="item" v-bine:key="item.id"></todo-item>
+                                </ul>
+                            </li>
+                            <li>
+                                年度課程內容(系上保有變動權力)
+                                <!-- Course Architecture of Master -->
+                                <div class="col-12">
+                                    <table class="table table-striped">
+                                        <thead class="thead-gray">
+                                        <tr>
+                                            <th class="w-25" scope="col">學期</th>
+                                            <th class="w-25" scope="col">必/選修</th>
+                                            <th class="w-50" scope="col">課程名稱</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <th scope="row" rowspan="2">碩一上</th>
+                                            <td>必修</td>
+                                            <td>書報討論 I</td>
+                                        </tr>
+                                        <tr>
+                                            <td>選修</td>
+                                            <td>嵌入式微處理機系統、平行處理、行動計算、無線網際網路、密碼學、高等軟體工程、物件導向軟體元件技術、軟體工程專題 I、網路通訊專題 I、計算機系統專題 I
+                                                [一二合開] ：訊號處理應用、雲端運算、資訊科技專題 I</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <th scope="row" rowspan="2">碩一下</th>
+                                            <td>必修</td>
+                                            <td>書報討論II</td>
+                                        </tr>
+                                        <tr>
+                                            <td>選修</td>
+                                            <td>高等計算機結構、高等作業系統、多媒體網路通訊、計算機與網路安全、無線通訊網路、次世代網際網路、軟體工程專題II、網路通訊專題II、計算機系統專題 II、嵌入式系統程式設計、分散式計算、軟體品質保證與測試、軟體架構、雲端運算實務
+                                                [一二合開] ：資訊科技專題II、科技英文寫作</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <th scope="row" rowspan="2">碩二上</th>
+                                            <td>必修</td>
+                                            <td>獨立研究</td>
+                                        </tr>
+                                        <tr>
+                                            <td>選修</td>
+                                            <td>書報討論III、
+                                                [一二合開] ：訊號處理應用、雲端運算、資訊科技專題 I</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        <!-- A Row -->
+                                        <tr>
+                                            <th scope="row" rowspan="2">碩二下</th>
+                                            <td>必修</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>選修</td>
+                                            <td>書報討論 IV
+                                                [一二合開] ：資訊科技專題II、科技英文寫作</td>
+                                        </tr>
+                                        <!-- /.A Row -->
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.Course Architecture of Master -->
+                            </li>
+                        </ul>
+                        <!-- Content of Master -->
+                        </p>
+                    </div>
+                </div>
+                <!-- /.A Content -->
+            </div>
+            <!-- /.Switch Content -->
+
+
+
+
+            <script>
+                Vue.component('todo-item', {
+                    props: ['todo'],
+                    template: '<a href="#" style="margin-right: 5px">{{ "{{ todo.number }}" }}</a>'
+                })
+                Vue.component('todo-item2', {
+                    props: ['todo'],
+                    template: '<li><a href="#">{{ "{{ todo.precaution }}" }}</a></li>'
+                })
+                new Vue({
+                    el: '#forVue2',
+                    data: {
+                        mYearList: [
+                            { id: 0, number: '96'},
+                            { id: 0, number: '97'},
+                            { id: 0, number: '98'},
+                            { id: 0, number: '99'},
+                            { id: 0, number: '100'},
+                            { id: 0, number: '101'},
+                            { id: 0, number: '102'},
+                            { id: 0, number: '103'},
+                            { id: 0, number: '104'},
+                            { id: 0, number: '105'},
+                            { id: 0, number: '106'}
+                        ],
+                        bYearList: [
+                            { id: 0, number: '93'},
+                            { id: 0, number: '94'},
+                            { id: 0, number: '95'},
+                            { id: 0, number: '96'},
+                            { id: 0, number: '97'},
+                            { id: 0, number: '98'},
+                            { id: 0, number: '99'},
+                            { id: 0, number: '100'},
+                            { id: 0, number: '101'},
+                            { id: 0, number: '102'},
+                            { id: 0, number: '103'},
+                            { id: 0, number: '104'},
+                            { id: 0, number: '105'},
+                            { id: 0, number: '106'}
+                        ],
+                        precautionList: [
+                            { id: 0, precaution: '職涯進路地圖'},
+                            { id: 0, precaution: '選課前須知-重要'},
+                            { id: 0, precaution: '選課FAQ'}
+                        ]
+                    }
+                })
+            </script>
+            <!-- /.Article -->
+
+        </div>
+
+    </div>
+    <!-- /.Course -->
+{% endblock %}

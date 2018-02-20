@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name='language' content='zh_TW'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="copyright" content="Fresco Studio">
+    <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://use.fontawesome.com/a77d0c9dac.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    {% block head %}
+    {% endblock %}
+    {% block stylesheet %}
+    {% endblock %}
+</head>
+<body>
+<div>
+    {% include "front/navbar.html.twig" %}
+    <div class="container">
+        {% block body %}
+        {% endblock %}
+    </div>
+    {% include "front/footer.html.twig" %}
+</div>
+</body>
+
+<script src="{{ asset('build/js/app.js') }}"></script>
+{% block javascript %}
+{% endblock %}
+</html>

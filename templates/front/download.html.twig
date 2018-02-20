@@ -1,0 +1,222 @@
+{% extends "front/base.html.twig" %}
+
+{% block body %}
+    <!-- Download -->
+    <div class="row">
+
+        <div class="col-3">
+
+            <!-- Submenu -->
+            <ul class="list-group shadow">
+                <li class="list-group-item list-group-item-calm">::subPage Name::</li>
+                <!-- A Link -->
+                <li class="list-group-item nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#stud" role="tab">學生</a>
+                </li>
+                <!-- /.A Link -->
+                <!-- A Link -->
+                <li class="list-group-item nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#teac" role="tab">教師</a>
+                </li>
+                <!-- A Link -->
+            </ul>
+            <!-- /.Submenu -->
+
+        </div>
+
+        <div class="col-9" id="forVue">
+
+            <!-- Page Title -->
+            <h5>法令/表單</h5>
+            <!-- /.Page Title -->
+
+            <!-- Switch Content -->
+            <div class="tab-content">
+                <!-- A Content -->
+                <div class="tab-pane active" id="stud" role="tabpanel">
+
+                    <!-- Student -->
+
+                    <!-- Download Link Nav -->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#1">獎學金</a></li>
+                            <li class="breadcrumb-item"><a href="#2">課程架構</a></li>
+                            <li class="breadcrumb-item"><a href="#3">{{ "{{ changeMajor }}" }}</a></li>
+                            <li class="breadcrumb-item"><a href="#4">{{ "{{ bachelorProject }}" }}</a></li>
+                            <li class="breadcrumb-item"><a href="#5">{{ "{{ bachelorProject }}" }}</a></li>
+                        </ol>
+                    </nav>
+                    <!-- /.Download Link Nav -->
+
+                    <!-- Link Group -->
+                    <ul class="list-group list-margin">
+                        <li class="list-group-item list-group-item-dark" id="1">獎學金</li>
+                        <li class="list-group-item">
+                            <ul>
+                                <li><a href="#" download>資工系特殊優良表現獎學金申請表格</a></li>
+                                <li><a href="#" download>資訊工程系獎助學金要點 Adobe PDF</a></li>
+                                <li><a href="#" download>資工系碩士班研究生助學金設置審查要點(105.3.10) Adobe PDF</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- /.Link Group -->
+
+                    <!-- Link Group -->
+                    <ul class="list-group list-margin">
+                        <li class="list-group-item list-group-item-dark" id="2">課程架構</li>
+                        <li class="list-group-item">
+
+                            <!-- Download Link Nav-Pill -->
+
+                            <!-- Link Name -->
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+                                <!-- First Link -->
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="label-bac" data-toggle="pill" href="#bac" aria-controls="bac" aria-selected="true">學士</a>
+                                </li>
+                                <!-- /.First Link -->
+                                <!-- Second Link -->
+                                <li class="nav-item">
+                                    <a class="nav-link" id="label-mas" data-toggle="pill" href="#mas" aria-controls="mas" aria-selected="false">碩士</a>
+                                </li>
+                                <!-- /.Second Link -->
+
+                            </ul>
+                            <!-- /.Link Name -->
+
+                            <!-- Switch Content -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="bac" aria-labelledby="label-bac">
+
+                                    <!-- Bachelor Download Link -->
+                                    <ul>
+                                        <li><a href="#" download>106學年度課程認列表 Adobe PDF</a></li>
+                                        <li><a href="#" download>106學年度課程架構表(106年入學適用) Adobe PDF</a></li>
+                                        <li><a href="#" download>105學年度課程認列表 Adobe PDF</a></li>
+                                        <li><a href="#" download>105學年度課程架構表(105年入學適用) Adobe PDF</a></li>
+                                        <li><a href="#" download>104學年度課程認列表 Adobe PDF</a></li>
+                                        <li><a href="#" download>104學年度課程架構表(104年入學適用) Adobe PDF</a></li>
+                                        <li><a href="#" download>103學年度課程認列表 Adobe PDF</a></li>
+                                        <li><a href="#" download>103學年度課程架構表(103年入學適用) Adobe PDF</a></li>
+                                        <li><a href="#" download>102學年度課程認列表 Adobe PDF</a></li>
+                                        <li><a href="#" download>102學年度課程架構表(102年入學適用) Adobe PDF</a></li>
+                                        <li><a href="#" download>101學年度課程認列表 Adobe PDF</a></li>
+                                        <li><a href="#" download>101學年度課程架構表(101年入學適用) Adobe PDF</a></li>
+                                    </ul>
+                                    <!-- /.Bachelor Download Link -->
+
+                                </div>
+                                <div class="tab-pane fade" id="mas" aria-labelledby="label-mas">
+
+                                    <!-- Master Download Link -->
+                                    <ul>
+                                        <li><a href="#" download>106學年度課程架構表(106年入學適用) Adobe PDF</a></li>
+                                        <li><a href="#" download>105學年度課程架構表(105年入學適用) Adobe PDF</a></li>
+                                        <li><a href="#" download>104學年度課程架構表(104年入學適用) Adobe PDF</a></li>
+                                        <li><a href="#" download>103學年度課程架構表(103年入學適用) Adobe PDF</a></li>
+                                        <li><a href="#" download>102學年度課程架構表(102年入學適用) Adobe PDF</a></li>
+                                        <li><a href="#" download>101學年度課程架構表(101年入學適用) Adobe PDF</a></li>
+                                    </ul>
+                                    <!-- /.Master Download Link -->
+
+                                </div>
+                            </div>
+                            <!-- /.Switch Content -->
+
+                            <!-- /.Download Link Nav-Pill -->
+
+                        </li>
+                    </ul>
+                    <!-- /.Link Group -->
+
+                    <!-- Link Group -->
+                    <ul class="list-group list-margin">
+                        <li class="list-group-item list-group-item-dark" id="3">{{ "{{ changeMajor }}" }}</li>
+                        <li class="list-group-item">
+                            <ul>
+                                <todo-item v-for="item in cMajorList" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- /.Link Group -->
+
+                    <!-- Link Group -->
+                    <ul class="list-group list-margin">
+                        <li class="list-group-item list-group-item-dark" id="4">{{ "{{ bachelorProject }}" }}</li>
+                        <li class="list-group-item">
+                            <ul>
+                                <todo-item v-for="item in bProjectList" v-bind:todo="item" v-bine:key="item.id"></todo-item>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- /.Link Group -->
+
+                    <!-- Link Group -->
+                    <ul class="list-group list-margin">
+                        <li class="list-group-item list-group-item-dark" id="5">{{ "{{ masterPaper }}" }}</li>
+                        <li class="list-group-item">
+                            <ul>
+                                <todo-item v-for="item in mPaperList" v-bind:todo="item" v-bine:key="item.id"></todo-item>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- /.Link Group -->
+                    <!-- /.Student -->
+
+                </div>
+                <!-- /.A Content -->
+
+                <!-- A Content -->
+                <div class="tab-pane" id="teac" role="tabpanel">
+
+
+
+                </div>
+                <!-- /.A Content -->
+            </div>
+            <!-- /.Switch Content -->
+            <script>
+                Vue.component('todo-item', {
+                    props: ['todo'],
+                    template: '<li><a href="#" download>{{ "{{ todo.text }}" }}</a></li>'
+                })
+                new Vue({
+                    el: '#forVue',
+                    data: {
+                        changeMajor: '轉系',
+                        cMajorList: [
+                            { id: 0, text: '輔系申請書 Word' },
+                            { id: 1, text: '資訊工程學系轉系生審核要點(102.3.28修訂通過) Adobe PDF' }
+                        ],
+                        bachelorProject: '學士專題',
+                        bProjectList: [
+                            { id: 0, text: '畢業專題指導教授同意書 Word' },
+                            { id: 1, text: '資訊專題補助經費預算規劃書 Word' },
+                            { id: 2, text: '資訊專題補助經費預算規劃書-範例 Word' },
+                            { id: 3, text: '資訊專題補助經費執行成效報告書 Word' },
+                            { id: 4, text: '畢業專題報告撰寫參考格式 Word' },
+                        ],
+                        masterPaper: '碩士論文',
+                        mPaperList: [
+                            { id: 0, text: '論文考試申請表暨口試委員推薦書(106.09) Word' },
+                            { id: 1, text: '碩士論文評分單' },
+                            { id: 2, text: '碩士論文評分單(總平均用)' },
+                            { id: 3, text: '資工系碩士學位論文考試口試委員建議名單 Word' },
+                            { id: 4, text: '碩士學位論文考試委員會審定書 Word' },
+                            { id: 5, text: '研究生論文指導教授同意書 Adobe PDF' },
+                            { id: 6, text: '研究成果評審要點 Adobe PDF' },
+                            { id: 7, text: '論文摘要格式說明 Word' },
+                            { id: 8, text: '研究論文撰寫參考格式 Word' }
+                        ]
+                    }
+                })
+            </script>
+
+
+        </div>
+
+    </div>
+    <!-- /.Download -->
+{% endblock %}

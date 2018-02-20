@@ -1,0 +1,322 @@
+{% extends "front/base.html.twig" %}
+
+{% block body %}
+    <!-- Student -->
+    <div class="row">
+
+        <div class="col-3">
+            <!-- Student Business Submenu -->
+            <ul class="list-group shadow">
+                <li class="list-group-item list-group-item-calm">::subPage Name::</li>
+                <!-- A Link -->
+                <li class="list-group-item nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#student-1" role="tab">學生論文</a>
+                </li>
+                <!-- /.A Link -->
+                <li class="list-group-item nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#student-2" role="tab">系學會</a>
+                </li>
+                <li class="list-group-item nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#student-3" role="tab">獎助學金</a>
+                </li>
+                <li class="list-group-item nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#student-4" role="tab">證照成果</a>
+                </li>
+                <li class="list-group-item nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#student-5" role="tab">系友專區</a>
+                </li>
+
+            </ul>
+            <!-- Student Business Submenu -->
+        </div>
+
+        <div class="col-9">
+
+            <!-- Page Title -->
+            <h5>學生資訊</h5>
+            <!-- /.Page Title -->
+
+            <!-- Switch Content -->
+            <div class="tab-content">
+                <!-- A Content -->
+                <div class="tab-pane active" id="student-1" role="tabpanel">
+                    <!-- SubTitle -->
+                    <div class="alert alert-dark" role="alert">
+                        學生論文
+                    </div>
+                    <!-- /.SubTitle -->
+                    <div class="row">
+
+                        <!-- Thesis Table -->
+                        <div class="col-12">
+
+                            <table class="table table-striped">
+                                <thead class="thead-gray">
+                                <tr>
+                                    <th scope="col">論文分類</th>
+                                    <th scope="col">畢業年次</th>
+                                    <th scope="col">論文標題</th>
+                                    <th scope="col">作者</th>
+                                    <th scope="col">指導教授</th>
+                                    <th scope="col">附加</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <!-- A Thesis -->
+                                <tr>
+                                    <td scope="row">碩士</td>
+                                    <td>99</td>
+                                    <th><a href="#">車載無線網路環境下最小延遲多點轉送機制</a></th>
+                                    <td>呂豐旭</td>
+                                    <td>王讚彬</td>
+                                    <td></td>
+                                </tr>
+                                <!-- A Thesis -->
+
+                                <!-- A Thesis -->
+                                <tr>
+                                    <td scope="row">學士</td>
+                                    <td>99</td>
+                                    <th><a href="#">車載無線網路環境下最小延遲多點轉送機制</a></th>
+                                    <td>呂豐旭 呂豐旭 呂豐旭</td>
+                                    <td>王讚彬</td>
+                                    <td></td>
+                                </tr>
+                                <!-- A Thesis -->
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="col-12">
+
+                            <!-- Page Number -->
+                            <nav aria-label="News Table navigation">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <!-- /.Page Number -->
+
+                        </div>
+                        <!-- /.Thesis Table -->
+
+                    </div>
+
+                </div>
+                <!-- /.A Content -->
+                <div class="tab-pane" id="student-2" role="tabpanel">
+                    <!-- Article -->
+                    <!-- subTitle -->
+                    <div class="alert alert-dark" role="alert">
+                        系學會
+                    </div>
+                    <!-- /.subTitle -->
+                    <div alt="article-area">
+                        <p>
+                            Text TextText TextText TextText TextText TextText TextText TextText Text
+                            Text TextText TextText TextText TextText TextText TextText TextText Text
+                            Text TextText TextText TextText TextText TextText TextText TextText Text
+                            <br>
+                            <br>
+                            Text TextText TextText TextText TextText TextText TextText TextText Text
+                            Text TextText TextText TextText TextText TextText TextText TextText Text
+                            Text TextText TextText TextText TextText TextText TextText TextText Text
+                            Text TextText TextText TextText TextText TextText TextText TextText Text
+                            Text TextText TextText TextText TextText TextText TextText TextText Text
+                            Text TextText TextText TextText TextText TextText
+                            <br>
+                            <br>
+                            Text TextText TextText TextText TextText TextText Text
+                            Text TextText TextText TextText TextText TextText Text
+                        </p>
+                    </div>
+                    <!-- /.Article -->
+                </div>
+                <div class="tab-pane" id="student-3" role="tabpanel">
+                    <!-- SubTitle -->
+                    <div class="alert alert-dark" role="alert">
+                        獎助學金
+                    </div>
+                    <!-- /.SubTitle -->
+
+                    <div class="row">
+
+                        <!-- News-Scholarship Table -->
+                        <div class="col-12">
+                            <table class="table table-striped">
+                                <thead class="thead-gray">
+                                <tr>
+                                    <th scope="col">公告日期</th>
+                                    <th scope="col">標題</th>
+                                    <th scope="col">瀏覽人次</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <!-- Row List -->
+
+                                <!-- A Row -->
+                                <tr>
+                                    <td scope="row">date</td>
+                                    <th><a href="#">106學年度第1學期資訊工程學系優良獎學金申請</a></th>
+                                    <td>number</td>
+                                </tr>
+                                <!-- /.A Row -->
+
+                                <!-- A Row -->
+                                <tr>
+                                    <td scope="row">date</td>
+                                    <th><a href="#">99學年度碩士班獎助金工讀即日起申請</a></th>
+                                    <td>number</td>
+                                </tr>
+                                <!-- /.A Row -->
+
+                                <!-- /.Row List -->
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-12">
+
+                            <!-- Page Number -->
+                            <nav aria-label="News Table navigation">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <!-- /.Page Number -->
+
+                        </div>
+                        <!-- /.News-Scholarship Table -->
+
+                    </div>
+                </div>
+                <div class="tab-pane" id="student-4" role="tabpanel">
+                    <!-- SubTitle -->
+                    <div class="alert alert-dark" role="alert">
+                        證照成果
+                    </div>
+                    <!-- /.SubTitle -->
+                    <div class="row">
+
+                        <!-- License Table -->
+                        <div class="col-12">
+                            <table class="table table-striped">
+                                <thead class="thead-gray">
+                                <tr>
+                                    <th scope="col">證照名稱</th>
+                                    <th scope="col">姓名</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <!-- A Row -->
+                                <tr>
+                                    <td scope="row">License Name</td>
+                                    <td>Student Name</td>
+                                </tr>
+                                <!-- /.A Row -->
+
+                                <!-- A Row -->
+                                <tr>
+                                    <td scope="row">License Name</td>
+                                    <td>Student Name</td>
+                                </tr>
+                                <!-- /.A Row -->
+
+                                <!-- A Row -->
+                                <tr>
+                                    <td scope="row">License Name</td>
+                                    <td>Student Name</td>
+                                </tr>
+                                <!-- /.A Row -->
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.License Table -->
+
+                    </div>
+                </div>
+                <div class="tab-pane" id="student-5" role="tabpanel">
+                    <!-- Article -->
+                    <!-- SubTitle -->
+                    <div class="alert alert-dark" role="alert">
+                        系友專區
+                    </div>
+                    <!-- /.SubTitle -->
+                    <div alt="article-area">
+
+                        <!-- Alumnus Article -->
+                        <div class="col-12">
+
+                            <ul class="list-unstyled">
+                                <li class="media">
+                                    <img class="mr-3" src="https://assets.burberry.com/is/image/Burberryltd/5ccadf824b117105b0fdc6436eeee73be375fb22.jpg" width="200px" alt="Generic placeholder image">
+                                    <div class="media-body">
+                                        <h5 class="mt-0 mb-1">系友會溫暖你的心</h5>
+                                        早生排象會在近叫春大光情怎都識動看經技中把無色行時健灣裡時汽色一這中平場無的廠望，體好安件到一，性列坐係比洲口了條此。主濟小人爭供制分市隨地極他者中一！個才有北根眾字便因要識過氣交的證家不；
+
+                                        關來雖個深起是念用還，算刻結可消是看色！突體的論……突低開夜事樣保時防只法面說界去英時：一候西而名國史本講大可？
+                                    </div>
+                                </li>
+                                <li class="media my-4">
+                                    <img class="mr-3" src="https://assets.burberry.com/is/image/Burberryltd/5ccadf824b117105b0fdc6436eeee73be375fb22.jpg" width="200px" alt="Generic placeholder image">
+                                    <div class="media-body">
+                                        <h5 class="mt-0 mb-1">「系友回娘家」舊情重溫</h5>
+                                        接走有，於策歡蘭就主條：陸從部人心見沒？林施排你外些和面正中認與士增雜雨！向小洋，斷原長配多東結？燈有是包？車自香日而種止資約；般氣望，以立拉都受那著土怕是入後部維初開這市著立個合朋會利。在的發情灣府人稱益理的現傷小喜自，上家種證部畫，隊氣的一夫雖客方戲爭約可臺何廣軍？當推且沒我親！在取以發用運，解做連負懷得來王年好，願許考懷史獲。黨關爾去了工百指談再好道。
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <img class="mr-3" src="https://assets.burberry.com/is/image/Burberryltd/5ccadf824b117105b0fdc6436eeee73be375fb22.jpg" width="200px" alt="Generic placeholder image">
+                                    <div class="media-body">
+                                        <h5 class="mt-0 mb-1">「世界咖啡館」系友分享職涯經驗</h5>
+                                        歌童非……管長護，士臺上，後你精理，生年表點會，情不中縣臺完在的小率能體願，原減該應夜那那位畫，用過狀金的……案給證不、南接為念來決！司的謝活玩登在我安們工查獲構理笑治說，表人品女散，元獨流有活，的用親注今看公我問山中……過只歌用眾告從更皮。房有人樣的德母的站人筆地委身，未員筆器是了他真海光成上來山臉學服員成所們又感南。
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <!-- /.Alumnus Article -->
+
+                    </div>
+                    <!-- /.Article -->
+                </div>
+            </div>
+            <!-- /.Switch Content -->
+
+        </div>
+
+    </div>
+    <!-- /.Student -->
+{% endblock %}
