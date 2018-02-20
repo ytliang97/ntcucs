@@ -21,7 +21,7 @@
                             <td>{{ category.getCreateTime().format("Y-m-d H:i:s") }}</td>
                             <td>{{ category.getUpdateTime().format("Y-m-d H:i:s") }}</td>
                             <td>
-                                <a href="{{ path("front.category.show", {'id': category.getId()}) }}">
+                                <a href="{{ path("front.category.show", {'alias': category.getAlias()}) }}">
                                     <button class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button>
                                 </a>
                                 <button class="btn btn-primary btn-sm"><i class="fa fa-list-ul"></i></button>

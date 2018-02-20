@@ -10,6 +10,7 @@ namespace App\Controller;
 
 
 use App\Entity\Category;
+use App\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -23,6 +24,7 @@ class CategoryController extends Controller
 
         $form = $this->createFormBuilder($category)
             ->add("name", TextType::class, array("label"=>"類別名稱"))
+            ->add("alias", TextType::class, array("label" => "類別代稱"))
             ->add("submit", SubmitType::class, array("label"=>"新增分類"))
             ->getForm();
 
@@ -57,6 +59,7 @@ class CategoryController extends Controller
 
         $form = $this->createFormBuilder($category)
             ->add("name", TextType::class, array("label"=>"類別名稱"))
+            ->add("alias", TextType::class, array("label" => "類別代稱"))
             ->add("submit", SubmitType::class, array("label"=>"更新分類"))
             ->getForm();
 
@@ -102,5 +105,17 @@ class CategoryController extends Controller
         $categories = $categoriesRepository->findBy(array(), array("createTime"=>"DESC"));
 
         return $this->render("admin/categories-list.html.twig", array("categories"=>$categories));
+    }
+
+    public function show(Request $request, $alias) {
+
+        $em = $this->getDoctrine()->getManager();
+        $categoryRepository = $em->getRepository(Category::class);
+        $category = $categoryRepository->getCategory($alias);
+        if (!$category) {
+            $category = $categoryRepository->getCategory("activities");
+        }
+
+        return $this->render("front/news.html.twig", array("category" => $category));
     }
 }

@@ -25,4 +25,13 @@ class PostRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getNewestPost($amount) {
+        return $this->createQueryBuilder('p')
+            ->where('p.id >= :id')->setParameter("id", 0)
+            ->orderBy("p.createTime", "DESC")
+            ->setMaxResults($amount)
+            ->getQuery()
+            ->getResult();
+    }
 }

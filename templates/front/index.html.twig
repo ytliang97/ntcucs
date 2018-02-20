@@ -62,25 +62,22 @@
             <div class="row">
 
                 <div class="col-12">
-
-                    <!-- Marquee -->
-                    <div class="alert alert-calm" role="alert">
-                        賀!!本系張林煌老師榮獲106年度教學優良教師!
-                    </div>
-                    <!-- /.Marquee -->
-
                     <!-- latest News Board -->
                     <h5 class="list-title">最新消息</h5>
                     <div>
                         <ul class="list-group list-group-date">
-                            <li class="list-group-item"><p><a href="#">Cras justo odio odio odio odio odio odio odio odio odio odio odio</a></p></li>
-                            <li class="list-group-item"><p><a href="#">Dapibus ac facilisis in</a></p></li>
-                            <li class="list-group-item"><p><a href="#">Morbi leo risus</a></p></li>
-                            <li class="list-group-item"><p><a href="#">Porta ac consectetur ac</a></p></li>
-                            <li class="list-group-item"><p><a href="#">Vestibulum at eros</a></p></li>
+                            {% for post in posts %}
+                                <li class="list-group-item">
+                                    <p>
+                                        <a href="#">
+                                            {{ post.getName() }}
+                                        </a>
+                                    </p>
+                                </li>
+                            {% endfor %}
                         </ul>
                         <div class="linkMore">
-                            <a href="#">查看更多</a>
+                            <a href="{{ path("front.news") }}">查看更多</a>
                         </div>
                     </div>
                     <!-- /.latest News Board -->

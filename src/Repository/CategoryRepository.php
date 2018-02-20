@@ -25,4 +25,11 @@ class CategoryRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getCategory($alias) {
+        return $this->createQueryBuilder('c')
+            ->where('c.alias = :alias')->setParameter('alias', $alias)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

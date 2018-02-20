@@ -31,6 +31,13 @@ class Category
     public function getName() { return $this->name; }
     public function setName($name) { $this->name = $name; }
 
+    /**
+     * @ORM\Column(type="string", unique=true)
+     */
+    private $alias;
+    public function getAlias() { return $this->alias; }
+    public function setAlias($alias) { $this->alias = $alias; }
+
     // add your own fields
 
     /**

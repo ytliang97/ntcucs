@@ -8,7 +8,12 @@
         <a href="{{ path("front.index") }}">回首頁 </a>|
         <a href="#">交通資訊 </a>|
         <a href="#">本系位置圖 </a>|
-        <a href="#">聯絡我們 </a>
+        <a href="#">聯絡我們 </a>|
+        {% if is_granted("ROLE_ADMIN") %}
+            <a href="{{ path("admin.index") }}">管理介面</a>
+        {% else %}
+            <a href="{{ path("login") }}">登入</a>
+        {% endif %}
     </div>
     <!-- /. top nav -->
 

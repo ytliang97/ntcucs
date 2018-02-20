@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -16,7 +17,13 @@ class SiteController extends Controller
 {
     public function index(Request $request)
     {
-        return $this->render("front/index.html.twig");
+
+        $em = $this->getDoctrine()->getManager();
+        $postsRepository = $em->getRepository(Post::class);
+
+        return $this->render("front/index.html.twig", array(
+            "posts" => $postsRepository->getNewestPost(5)
+        ));
     }
     public function news(Request $request) {
         return $this->render("front/news.html.twig");

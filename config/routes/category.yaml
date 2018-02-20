@@ -30,4 +30,5 @@ admin.category.list:
     page: '\d+'
 
 front.category.show:
-  path: /cateogry/{id}
+  path: /cateogry/{alias}
+  controller: App\Controller\CategoryController::show
