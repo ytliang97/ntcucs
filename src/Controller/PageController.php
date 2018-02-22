@@ -100,4 +100,64 @@ class PageController extends Controller
 
         return $this->render("admin/pages-list.html.twig", array("pages"=>$page));
     }
+
+    public function showHistory(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"history"));
+
+        return $this->render("front/introduce.html.twig", array("page"=>$page));
+
+    }
+
+    public function showMember(Request $request) {
+
+        return $this->render("front/introduce-member.html.twig");
+
+    }
+
+    public function showHonor(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"honor"));
+
+        return $this->render("front/introduce.html.twig", array("page"=>$page));
+    }
+
+    public function showLab(Request $request, $labname) {
+
+        return $this->render("front/introduce-lab.html.twig");
+
+    }
+
+    public function showFuture(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"future"));
+
+        return $this->render("front/introduce.html.twig", array("page"=>$page));
+    }
+
+    public function showLocation(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"location"));
+
+        return $this->render("front/introduce.html.twig", array("page"=>$page));
+    }
+
+    public function showNetworkResource(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"network-resource"));
+
+        return $this->render("front/network-resource.html.twig", array("page"=>$page));
+    }
 }

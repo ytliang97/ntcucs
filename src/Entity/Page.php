@@ -34,7 +34,7 @@ class Page
     public function setAlias($alias) { $this->alias = $alias; }
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $content;
     public function getContent() { return $this->content; }

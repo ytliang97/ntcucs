@@ -42,6 +42,7 @@ class PostController extends Controller
             $currentTime = new \DateTime('now', new \DateTimeZone("Asia/Taipei"));
             $post->setCreateTime($currentTime);
             $post->setUpdateTime($currentTime);
+            $post->initClickAmount();
 
             $em->persist($post);
             $em->flush();

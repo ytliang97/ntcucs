@@ -11,20 +11,20 @@
                 <li class="list-group-item list-group-item-calm">招生訊息分類</li>
                 <!-- A Link -->
                 <li class="list-group-item nav-item">
-                    <a class="nav-link" data-toggle="tab" href="{{ path("front.enrollment", {"type": "bachelor"}) }}" role="tab">學士班</a>
+                    <a class="nav-link" href="{{ path("front.enrollment.bachelor") }}">學士班</a>
                 </li>
                 <!-- /.A Link -->
                 <li class="list-group-item nav-item">
-                    <a class="nav-link" data-toggle="tab" href="{{ path("front.enrollment", {"type": "master"}) }}" role="tab">碩士班</a>
+                    <a class="nav-link" href="{{ path("front.enrollment.master") }}">碩士班</a>
                 </li>
                 <li class="list-group-item nav-item">
-                    <a class="nav-link" data-toggle="tab" href="{{ path("front.enrollment", {"type": "china"}) }}" role="tab">中國學生</a>
+                    <a class="nav-link" href="{{ path("front.enrollment.china") }}">中國學生</a>
                 </li>
                 <li class="list-group-item nav-item">
-                    <a class="nav-link" data-toggle="tab" href="{{ path("front.enrollment", {"type": "international"}) }}" role="tab">國際交換生</a>
+                    <a class="nav-link" href="{{ path("front.enrollment.international") }}">國際交換生</a>
                 </li>
                 <li class="list-group-item nav-item">
-                    <a class="nav-link" data-toggle="tab" href="{{ path("front.enrollment", {"type": "faq"}) }}" role="tab">常見問題</a>
+                    <a class="nav-link" href="{{ path("front.enrollment.faq") }}">常見問題</a>
                 </li>
 
             </ul>
@@ -38,13 +38,14 @@
             <!-- /.Page Title -->
 
             <!-- Switch Content -->
+            {% if category is not null %}
             <div class="tab-content">
                 <!-- A Content -->
                 <div class="tab-pane active" id="enrollment-1" role="tabpanel">
                     <!-- Article -->
                     <!-- subTitle -->
                     <div class="alert alert-dark" role="alert">
-                        學士班
+                        {{ category.getName() }}
                     </div>
                     <!-- /.subTitle -->
                     <div alt="article-area">
@@ -56,70 +57,32 @@
                                 <tr>
                                     <th scope="col">公告日期</th>
                                     <th scope="col">標題</th>
-                                    <th scope="col">瀏覽人次</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
                                 <!-- Row List -->
-
-                                <tr>
-                                    <td scope="row">date</td>
-                                    <th><a href="#">Article title Article title Article title Article title Article title Article title Article title</a></th>
-                                    <td>number</td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">date</td>
-                                    <th><a href="#">Article title Article title Article title Article title Article title Article title Article title</a></th>
-                                    <td>number</td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">date</td>
-                                    <th><a href="#">Article title Article title Article title Article title Article title Article title Article title</a></th>
-                                    <td>number</td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">date</td>
-                                    <th><a href="#">Article title Article title Article title Article title Article title Article title Article title</a></th>
-                                    <td>number</td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">date</td>
-                                    <th><a href="#">Article title Article title Article title Article title Article title Article title Article title</a></th>
-                                    <td>number</td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">date</td>
-                                    <th><a href="#">Article title Article title Article title Article title Article title Article title Article title</a></th>
-                                    <td>number</td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">date</td>
-                                    <th><a href="#">Article title Article title Article title Article title Article title Article title Article title</a></th>
-                                    <td>number</td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">date</td>
-                                    <th><a href="#">Article title Article title Article title Article title Article title Article title Article title</a></th>
-                                    <td>number</td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">date</td>
-                                    <th><a href="#">Article title Article title Article title Article title Article title Article title Article title</a></th>
-                                    <td>number</td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">date</td>
-                                    <th><a href="#">Article title Article title Article title Article title Article title Article title Article title</a></th>
-                                    <td>number</td>
-                                </tr>
-
+                                {% for post in category.getPosts() %}
+                                    <tr>
+                                        <td scope="row">{{ post.getCreateTime().format("Y-m-d") }}</td>
+                                        <th>
+                                            <a href="#">
+                                                {{ post.getName() }}
+                                            </a>
+                                        </th>
+                                    </tr>
+                                {% endfor %}
+                                {% if category.getPosts() | length == 0 %}
+                                    <tr>
+                                        <td colspan="2">還沒有任何公告</td>
+                                    </tr>
+                                {% endif %}
                                 <!-- /.Row List -->
 
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-12">
+                        <!--<div class="col-12">
                             <nav aria-label="News Table navigation">
                                 <ul class="pagination justify-content-center">
                                     <li class="page-item">
@@ -139,13 +102,14 @@
                                     </li>
                                 </ul>
                             </nav>
-                        </div>
+                        </div>-->
                         <!-- /.News Table -->
                         </p>
                     </div>
                     <!-- /.Article -->
                 </div>
             </div>
+            {% endif %}
             <!-- /.Switch Content -->
 
 

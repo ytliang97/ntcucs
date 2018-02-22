@@ -32,3 +32,33 @@ admin.category.list:
 front.category.show:
   path: /news/category/{alias}
   controller: App\Controller\CategoryController::show
+front.news.category.activities:
+    path: /news/category/activities
+    controller: App\Controller\CategoryController::showActivities
+front.news.category.hiring:
+    path: /news/category/hiring
+    controller: App\Controller\CategoryController::showHiring
+front.news.category.enrollment:
+    path: /news/category/enrollment
+    controller: App\Controller\CategoryController::showEnrollment
+front.news.category.scholarship:
+    path: /news/category/scholarship
+    controller: App\Controller\CategoryController::showScholarship
+front.news.category.other:
+    path: /news/category/other
+    controller: App\Controller\CategoryController::showOther
+front.enrollment.bachelor:
+    path: /enrollment/bachelor
+    controller: App\Controller\CategoryController::showEnrollmentBachelor
+front.enrollment.master:
+    path: /enrollment/master
+    controller: App\Controller\CategoryController::showEnrollmentMaster
+front.enrollment.china:
+    path: /enrollment/china
+    controller: App\Controller\CategoryController::showEnrollmentChina
+front.enrollment.international:
+    path: /enrollment/international
+    controller: App\Controller\CategoryController::showEnrollmentInternational
+front.enrollment.faq:
+    path: /enrollment/faq
+    controller: App\Controller\CategoryController::showEnrollmentFaq

@@ -118,4 +118,84 @@ class CategoryController extends Controller
 
         return $this->render("front/news.html.twig", array("category" => $category));
     }
+
+    public function showActivities(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $categoryRepository = $em->getRepository(Category::class);
+        $category = $categoryRepository->findOneBy(array("alias" => "activities"));
+
+        return $this->render("front/news.html.twig", array("category" => $category));
+    }
+
+    public function showHiring(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $categoryRepository = $em->getRepository(Category::class);
+        $category = $categoryRepository->findOneBy(array("alias" => "hiring"));
+
+        return $this->render("front/news.html.twig", array("category" => $category));
+    }
+
+    public function showEnrollment(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $categoryRepository = $em->getRepository(Category::class);
+        $category = $categoryRepository->findOneBy(array("alias" => "enrollment"));
+
+        return $this->render("front/news.html.twig", array("category" => $category));
+    }
+
+    public function showScholarship(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $categoryRepository = $em->getRepository(Category::class);
+        $category = $categoryRepository->findOneBy(array("alias" => "scholarship"));
+
+        return $this->render("front/news.html.twig", array("category" => $category));
+    }
+
+    public function showOther(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $categoryRepository = $em->getRepository(Category::class);
+        $category = $categoryRepository->findOneBy(array("alias" => "other"));
+
+        return $this->render("front/news.html.twig", array("category" => $category));
+    }
+
+    public function showEnrollmentBachelor(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $categoryRepository = $em->getRepository(Category::class);
+        $category = $categoryRepository->findOneBy(array("alias" => "enrollment-bachelor"));
+
+        return $this->render("front/enrollment.html.twig", array("category" => $category));
+    }
+
+    public function showEnrollmentMaster(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $categoryRepository = $em->getRepository(Category::class);
+        $category = $categoryRepository->findOneBy(array("alias" => "enrollment-master"));
+
+        return $this->render("front/enrollment.html.twig", array("category" => $category));
+    }
+
+    public function showEnrollmentChina(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $categoryRepository = $em->getRepository(Category::class);
+        $category = $categoryRepository->findOneBy(array("alias" => "enrollment-china"));
+
+        return $this->render("front/enrollment.html.twig", array("category" => $category));
+    }
+
+    public function showEnrollmentInternational(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $categoryRepository = $em->getRepository(Category::class);
+        $category = $categoryRepository->findOneBy(array("alias" => "enrollment-international"));
+
+        return $this->render("front/enrollment.html.twig", array("category" => $category));
+    }
+
+    public function showEnrollmentFaq(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $categoryRepository = $em->getRepository(Category::class);
+        $category = $categoryRepository->findOneBy(array("alias" => "enrollment-faq"));
+
+        return $this->render("front/enrollment.html.twig", array("category" => $category));
+    }
 }

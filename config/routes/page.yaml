@@ -31,3 +31,26 @@ admin.page.list:
 
 front.page.show:
   path: /page/{alias}
+
+front.introduce.history:
+    path: /introduce/history
+    controller: App\Controller\PageController::showHistory
+front.introduce.member:
+    path: /introduce/member
+    controller: App\Controller\PageController::showMember
+front.introduce.honor:
+    path: /introduce/honor
+    controller: App\Controller\PageController::showHonor
+front.introduce.lab:
+    path: /introduce/lab/{labname}
+    controller: App\Controller\PageController::showLab
+front.introduce.future:
+    path: /introduce/future
+    controller: App\Controller\PageController::showFuture
+front.introduce.location:
+    path: /introduce/location
+    controller: App\Controller\PageController::showLocation
+
+front.network.resource:
+    path: /network-resource
+    controller: App\Controller\PageController::showNetworkResource

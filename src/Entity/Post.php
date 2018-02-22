@@ -59,6 +59,7 @@ class Post
     private $clickAmount;
     public function getClickAmount() { return $this->clickAmount; }
     public function incrementClickAmount() { $this->clickAmount += 1; }
+    public function initClickAmount() { $this->clickAmount = 0; }
 
     /**
      * @ORM\ManyToMany(targetEntity="Category", inversedBy="posts")

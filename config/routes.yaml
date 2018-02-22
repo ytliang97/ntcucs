@@ -31,12 +31,6 @@ front.course:
     path: /course
     controller: App\Controller\SiteController::course
 
-front.enrollment:
-    path: /enrollment/{type}
-    controller: App\Controller\SiteController::enrollment
-    defaults:
-        type: bachelor
-
 front.download:
     path: /download
     controller: App\Controller\SiteController::download
@@ -44,7 +38,3 @@ front.download:
 front.student.info:
     path: /student-info
     controller: App\Controller\SiteController::studentInfo
-
-front.network.resource:
-    path: /network-resource
-    controller: App\Controller\SiteController::networkResource

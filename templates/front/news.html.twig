@@ -12,20 +12,20 @@
                 <li class="list-group-item list-group-item-calm">公告分類</li>
                 <!-- A Link -->
                 <li class="list-group-item nav-item">
-                    <a href="{{ path("front.category.show", {"alias": "activities"}) }}" class="nav-link active">活動與演講</a>
+                    <a href="{{ path("front.news.category.activities") }}" class="nav-link active">活動與演講</a>
                 </li>
                 <!-- /.A Link -->
                 <li class="list-group-item nav-item">
-                    <a href="{{ path("front.category.show", {"alias": "hiring"}) }}" class="nav-link">徵才訊息</a>
+                    <a href="{{ path("front.news.category.hiring") }}" class="nav-link">徵才訊息</a>
                 </li>
                 <li class="list-group-item nav-item">
-                    <a href="{{ path("front.category.show", {"alias": "enrollment"}) }}" class="nav-link">招生訊息</a>
+                    <a href="{{ path("front.news.category.enrollment") }}" class="nav-link">招生訊息</a>
                 </li>
                 <li class="list-group-item nav-item">
-                    <a href="{{ path("front.category.show", {"alias": "scholarship"}) }}" class="nav-link">獎學金訊息</a>
+                    <a href="{{ path("front.news.category.scholarship") }}" class="nav-link">獎學金訊息</a>
                 </li>
                 <li class="list-group-item nav-item">
-                    <a href="{{ path("front.category.show", {"alias": "other"}) }}" class="nav-link">其他訊息</a>
+                    <a href="{{ path("front.news.category.other") }}" class="nav-link">其他訊息</a>
                 </li>
 
             </ul>
@@ -41,6 +41,7 @@
             <h5>系所公告</h5>
             <!-- /.Page Title -->
             <!-- Switch Content -->
+            {% if category is not null %}
             <div class="tab-content">
                 <!-- A Content -->
                 <div class="tab-pane active" id="news-1" role="tabpanel">
@@ -73,6 +74,11 @@
                                         <!--<td></td>-->
                                     </tr>
                                 {% endfor %}
+                                {% if category.getPosts() | length == 0 %}
+                                    <tr>
+                                        <td colspan="2">還沒有任何公告</td>
+                                    </tr>
+                                {% endif %}
                                 <!-- /.Row List -->
 
                                 </tbody>
@@ -105,6 +111,7 @@
                     <!-- /.Article -->
                 </div>
             </div>
+            {% endif %}
             <!-- /.Switch Content -->
 
 

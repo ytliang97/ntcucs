@@ -48,7 +48,5 @@ class SiteController extends Controller
         return $this->render("front/student.html.twig");
     }
 
-    public function networkResource(Request $request) {
-        return $this->render("front/network-resource.html.twig");
-    }
+
 }
