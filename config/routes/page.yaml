@@ -44,6 +44,8 @@ front.introduce.honor:
 front.introduce.lab:
     path: /introduce/lab/{labname}
     controller: App\Controller\PageController::showLab
+    defaults:
+        labname: "software-engineering"
 front.introduce.future:
     path: /introduce/future
     controller: App\Controller\PageController::showFuture
