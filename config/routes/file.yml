@@ -1,4 +1,4 @@
-admin.file.get:
+file.get:
   path: /file/{id}
   controller: App\Controller\FileController::getFile
 

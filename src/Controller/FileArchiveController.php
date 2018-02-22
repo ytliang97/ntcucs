@@ -28,7 +28,8 @@ class FileArchiveController extends Controller
 
         $form = $this->createFormBuilder($fileArchive)
             ->add("name", TextType::class, array("label" => "檔案庫名稱"))
-            ->add("description", TextareaType::class, array("label" => "檔案庫敘述"))
+            ->add("alias", TextType::class, array("label" => "檔案庫代稱"))
+            ->add("description", TextareaType::class, array("label" => "檔案庫敘述", "required" => false))
             ->add("submit", SubmitType::class, array("label" => "新增檔案庫"))
             ->getForm();
 
@@ -131,7 +132,8 @@ class FileArchiveController extends Controller
 
         $form = $this->createFormBuilder($fileArchive)
             ->add("name", TextType::class, array("label" => "檔案庫名稱"))
-            ->add("description", TextareaType::class, array("label" => "檔案庫敘述"))
+            ->add("alias", TextType::class, array("label" => "檔案庫代稱"))
+            ->add("description", TextareaType::class, array("label" => "檔案庫敘述", "required" => false))
             ->add("submit", SubmitType::class, array("label" => "新增檔案庫"))
             ->getForm();
 

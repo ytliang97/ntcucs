@@ -23,7 +23,7 @@
                 <th>{{ file.getTitle() }}</th>
                 <td>{{ file.getOriginName() }}</td>
                 <td>
-                    <a target="_blank" href="{{ path("admin.file.get", {'id': file.getId(), 'action': "view"}) }}">
+                    <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
                         <button class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button>
                     </a>
                     <a href="{{ path("admin.file.archive.delete.file", {'id': archive.getId(), 'fileId': file.getId()}) }}">

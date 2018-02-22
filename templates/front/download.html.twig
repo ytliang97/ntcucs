@@ -8,7 +8,7 @@
 
             <!-- Submenu -->
             <ul class="list-group shadow">
-                <li class="list-group-item list-group-item-calm">::subPage Name::</li>
+                <li class="list-group-item list-group-item-calm">表單使用者</li>
                 <!-- A Link -->
                 <li class="list-group-item nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#stud" role="tab">學生</a>
@@ -42,9 +42,9 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#1">獎學金</a></li>
                             <li class="breadcrumb-item"><a href="#2">課程架構</a></li>
-                            <li class="breadcrumb-item"><a href="#3">{{ "{{ changeMajor }}" }}</a></li>
-                            <li class="breadcrumb-item"><a href="#4">{{ "{{ bachelorProject }}" }}</a></li>
-                            <li class="breadcrumb-item"><a href="#5">{{ "{{ bachelorProject }}" }}</a></li>
+                            <li class="breadcrumb-item"><a href="#3">轉系</a></li>
+                            <li class="breadcrumb-item"><a href="#4">學士專題</a></li>
+                            <li class="breadcrumb-item"><a href="#5">碩士論文</a></li>
                         </ol>
                     </nav>
                     <!-- /.Download Link Nav -->
@@ -54,9 +54,18 @@
                         <li class="list-group-item list-group-item-dark" id="1">獎學金</li>
                         <li class="list-group-item">
                             <ul>
-                                <li><a href="#" download>資工系特殊優良表現獎學金申請表格</a></li>
-                                <li><a href="#" download>資訊工程系獎助學金要點 Adobe PDF</a></li>
-                                <li><a href="#" download>資工系碩士班研究生助學金設置審查要點(105.3.10) Adobe PDF</a></li>
+                                {% if fileArchives["student-scholarship"] is not null %}
+                                    {% for file in fileArchives["student-scholarship"].getFiles() %}
+                                        <li>
+                                            <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
+                                            (
+                                            <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
+                                            預覽
+                                            </a>
+                                            )
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
                             </ul>
                         </li>
                     </ul>
@@ -92,18 +101,18 @@
 
                                     <!-- Bachelor Download Link -->
                                     <ul>
-                                        <li><a href="#" download>106學年度課程認列表 Adobe PDF</a></li>
-                                        <li><a href="#" download>106學年度課程架構表(106年入學適用) Adobe PDF</a></li>
-                                        <li><a href="#" download>105學年度課程認列表 Adobe PDF</a></li>
-                                        <li><a href="#" download>105學年度課程架構表(105年入學適用) Adobe PDF</a></li>
-                                        <li><a href="#" download>104學年度課程認列表 Adobe PDF</a></li>
-                                        <li><a href="#" download>104學年度課程架構表(104年入學適用) Adobe PDF</a></li>
-                                        <li><a href="#" download>103學年度課程認列表 Adobe PDF</a></li>
-                                        <li><a href="#" download>103學年度課程架構表(103年入學適用) Adobe PDF</a></li>
-                                        <li><a href="#" download>102學年度課程認列表 Adobe PDF</a></li>
-                                        <li><a href="#" download>102學年度課程架構表(102年入學適用) Adobe PDF</a></li>
-                                        <li><a href="#" download>101學年度課程認列表 Adobe PDF</a></li>
-                                        <li><a href="#" download>101學年度課程架構表(101年入學適用) Adobe PDF</a></li>
+                                        {% if fileArchives["student-bachelor-course-architecture"] is not null %}
+                                            {% for file in fileArchives["student-bachelor-course-architecture"].getFiles() %}
+                                                <li>
+                                                    <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
+                                                    (
+                                                    <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
+                                                        預覽
+                                                    </a>
+                                                    )
+                                                </li>
+                                            {% endfor %}
+                                        {% endif %}
                                     </ul>
                                     <!-- /.Bachelor Download Link -->
 
@@ -112,12 +121,18 @@
 
                                     <!-- Master Download Link -->
                                     <ul>
-                                        <li><a href="#" download>106學年度課程架構表(106年入學適用) Adobe PDF</a></li>
-                                        <li><a href="#" download>105學年度課程架構表(105年入學適用) Adobe PDF</a></li>
-                                        <li><a href="#" download>104學年度課程架構表(104年入學適用) Adobe PDF</a></li>
-                                        <li><a href="#" download>103學年度課程架構表(103年入學適用) Adobe PDF</a></li>
-                                        <li><a href="#" download>102學年度課程架構表(102年入學適用) Adobe PDF</a></li>
-                                        <li><a href="#" download>101學年度課程架構表(101年入學適用) Adobe PDF</a></li>
+                                        {% if fileArchives["student-master-course-architecture"] is not null %}
+                                            {% for file in fileArchives["student-master-course-architecture"].getFiles() %}
+                                                <li>
+                                                    <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
+                                                    (
+                                                    <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
+                                                        預覽
+                                                    </a>
+                                                    )
+                                                </li>
+                                            {% endfor %}
+                                        {% endif %}
                                     </ul>
                                     <!-- /.Master Download Link -->
 
@@ -133,10 +148,21 @@
 
                     <!-- Link Group -->
                     <ul class="list-group list-margin">
-                        <li class="list-group-item list-group-item-dark" id="3">{{ "{{ changeMajor }}" }}</li>
+                        <li class="list-group-item list-group-item-dark" id="3">轉系</li>
                         <li class="list-group-item">
                             <ul>
-                                <todo-item v-for="item in cMajorList" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+                                {% if fileArchives["student-migration"] is not null %}
+                                    {% for file in fileArchives["student-migration"].getFiles() %}
+                                        <li>
+                                            <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
+                                            (
+                                            <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
+                                                預覽
+                                            </a>
+                                            )
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
                             </ul>
                         </li>
                     </ul>
@@ -144,10 +170,21 @@
 
                     <!-- Link Group -->
                     <ul class="list-group list-margin">
-                        <li class="list-group-item list-group-item-dark" id="4">{{ "{{ bachelorProject }}" }}</li>
+                        <li class="list-group-item list-group-item-dark" id="4">學士專題</li>
                         <li class="list-group-item">
                             <ul>
-                                <todo-item v-for="item in bProjectList" v-bind:todo="item" v-bine:key="item.id"></todo-item>
+                                {% if fileArchives["student-bachelor-project"] is not null %}
+                                    {% for file in fileArchives["student-bachelor-project"].getFiles() %}
+                                        <li>
+                                            <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
+                                            (
+                                            <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
+                                                預覽
+                                            </a>
+                                            )
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
                             </ul>
                         </li>
                     </ul>
@@ -155,10 +192,21 @@
 
                     <!-- Link Group -->
                     <ul class="list-group list-margin">
-                        <li class="list-group-item list-group-item-dark" id="5">{{ "{{ masterPaper }}" }}</li>
+                        <li class="list-group-item list-group-item-dark" id="5">碩士論文</li>
                         <li class="list-group-item">
                             <ul>
-                                <todo-item v-for="item in mPaperList" v-bind:todo="item" v-bine:key="item.id"></todo-item>
+                                {% if fileArchives["student-master-project"] is not null %}
+                                    {% for file in fileArchives["student-master-project"].getFiles() %}
+                                        <li>
+                                            <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
+                                            (
+                                            <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
+                                                預覽
+                                            </a>
+                                            )
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
                             </ul>
                         </li>
                     </ul>
@@ -177,42 +225,6 @@
                 <!-- /.A Content -->
             </div>
             <!-- /.Switch Content -->
-            <script>
-                Vue.component('todo-item', {
-                    props: ['todo'],
-                    template: '<li><a href="#" download>{{ "{{ todo.text }}" }}</a></li>'
-                })
-                new Vue({
-                    el: '#forVue',
-                    data: {
-                        changeMajor: '轉系',
-                        cMajorList: [
-                            { id: 0, text: '輔系申請書 Word' },
-                            { id: 1, text: '資訊工程學系轉系生審核要點(102.3.28修訂通過) Adobe PDF' }
-                        ],
-                        bachelorProject: '學士專題',
-                        bProjectList: [
-                            { id: 0, text: '畢業專題指導教授同意書 Word' },
-                            { id: 1, text: '資訊專題補助經費預算規劃書 Word' },
-                            { id: 2, text: '資訊專題補助經費預算規劃書-範例 Word' },
-                            { id: 3, text: '資訊專題補助經費執行成效報告書 Word' },
-                            { id: 4, text: '畢業專題報告撰寫參考格式 Word' },
-                        ],
-                        masterPaper: '碩士論文',
-                        mPaperList: [
-                            { id: 0, text: '論文考試申請表暨口試委員推薦書(106.09) Word' },
-                            { id: 1, text: '碩士論文評分單' },
-                            { id: 2, text: '碩士論文評分單(總平均用)' },
-                            { id: 3, text: '資工系碩士學位論文考試口試委員建議名單 Word' },
-                            { id: 4, text: '碩士學位論文考試委員會審定書 Word' },
-                            { id: 5, text: '研究生論文指導教授同意書 Adobe PDF' },
-                            { id: 6, text: '研究成果評審要點 Adobe PDF' },
-                            { id: 7, text: '論文摘要格式說明 Word' },
-                            { id: 8, text: '研究論文撰寫參考格式 Word' }
-                        ]
-                    }
-                })
-            </script>
 
 
         </div>

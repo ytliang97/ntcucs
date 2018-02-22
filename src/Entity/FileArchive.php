@@ -25,6 +25,13 @@ class FileArchive
     public function setName($name) { $this->name = $name; }
 
     /**
+     * @ORM\Column(type="string", unique=true)
+     */
+    private $alias;
+    public function getAlias() { return $this->alias; }
+    public function setAlias($alias) { $this->alias = $alias; }
+
+    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;

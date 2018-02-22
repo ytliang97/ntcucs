@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 
+use App\Entity\FileArchive;
 use App\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,23 +26,29 @@ class SiteController extends Controller
             "posts" => $postsRepository->getNewestPost(5)
         ));
     }
-    public function news(Request $request) {
-        return $this->render("front/news.html.twig");
-    }
-    public function introduce(Request $request) {
-        return $this->render("front/introduce.html.twig");
-    }
 
     public function course(Request $request) {
         return $this->render("front/course.html.twig");
     }
 
-    public function enrollment(Request $request) {
-        return $this->render("front/enrollment.html.twig");
-    }
-
     public function download(Request $request) {
-        return $this->render("front/download.html.twig");
+
+        $em = $this->getDoctrine()->getManager();
+        $fileArchiveRepository = $em->getRepository(FileArchive::class);
+
+        $fileArchives = array();
+
+        $fileArchives["student-master-project"] = $fileArchiveRepository->findOneBy(array("alias"=>"student-master-project"));
+        $fileArchives["student-bachelor-project"] = $fileArchiveRepository->findOneBy(array("alias"=>"student-bachelor-project"));
+        $fileArchives["student-migration"] = $fileArchiveRepository->findOneBy(array("alias"=>"student-migration"));
+        $fileArchives["student-master-course-architecture"] =
+            $fileArchiveRepository->findOneBy(array("alias" => "student-master-course-architecture"));
+        $fileArchives["student-bachelor-course-architecture"] =
+            $fileArchiveRepository->findOneBy(array("alias" => "student-bachelor-course-architecture"));
+        $fileArchives["student-scholarship"] =
+            $fileArchiveRepository->findOneBy(array("alias" => "student-scholarship"));
+
+        return $this->render("front/download.html.twig", array("fileArchives" => $fileArchives));
     }
 
     public function studentInfo(Request $request) {
