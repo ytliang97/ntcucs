@@ -25,8 +25,8 @@ class BannerController extends Controller
 
         $form = $this->createFormBuilder($banner)
             ->add("title", TextType::class, array("label" => "Banner 標題"))
-            ->add("subtitle", TextType::class, array("label" => "Banner 副標題"))
-            ->add("linkto", TextType::class, array("label" => "Banner 連結"))
+            ->add("subtitle", TextType::class, array("label" => "Banner 副標題", "required"=>false))
+            ->add("linkto", TextType::class, array("label" => "Banner 連結", "required"=>false))
             ->add("image", FileType::class,
                 array(
                     "label" => "Banner 圖片",
@@ -68,6 +68,8 @@ class BannerController extends Controller
             $targetDirectory .= $subdir;
             $fullPath = $subdir."/".$fileHashName;
 
+            $banner->setCreateTime($currentTime);
+
             $image->move($targetDirectory, $fileHashName);
 
             $publicUploaded = new PublicUploaded();
@@ -98,8 +100,8 @@ class BannerController extends Controller
 
         $form = $this->createFormBuilder($banner)
             ->add("title", TextType::class, array("label" => "Banner 標題"))
-            ->add("subtitle", TextType::class, array("label" => "Banner 副標題"))
-            ->add("linkto", TextType::class, array("label" => "Banner 連結"))
+            ->add("subtitle", TextType::class, array("label" => "Banner 副標題", "required"=>false))
+            ->add("linkto", TextType::class, array("label" => "Banner 連結", "required"=>false))
             ->add("image", FileType::class,
                 array(
                     "label" => "Banner 圖片",

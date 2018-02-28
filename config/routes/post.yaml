@@ -33,3 +33,4 @@ admin.post.list:
 
 front.post.show:
   path: /post/{id}
+  controller: App\Controller\PostController::show

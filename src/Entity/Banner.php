@@ -47,4 +47,11 @@ class Banner
     private $image;
     public function getImage() { return $this->image; }
     public function setImage($image) { $this->image = $image; }
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createTime;
+    public function getCreateTime() { return $this->createTime; }
+    public function setCreateTime($createTime) { $this->createTime = $createTime; }
 }

@@ -60,7 +60,7 @@
                                 <thead class="thead-gray">
                                 <tr>
                                     <th scope="col">公告日期</th>
-                                    <th scope="col">標題</th>
+                                     <th scope="col">標題</th>
                                     <!--<th scope="col">瀏覽人次</th>-->
                                 </tr>
                                 </thead>
@@ -70,7 +70,7 @@
                                 {% for post in category.getPosts() %}
                                     <tr>
                                         <td scope="row">{{ post.getCreateTime().format("Y-m-d") }}</td>
-                                        <th><a href="#">{{ post.getName() }}</a></th>
+                                        <th><a href="{{ path("front.post.show", {"id": post.getId()}) }}">{{ post.getName() }}</a></th>
                                         <!--<td></td>-->
                                     </tr>
                                 {% endfor %}

@@ -1,0 +1,55 @@
+{% extends "front/base.html.twig" %}
+{% block body %}
+<div class="row">
+    <div class="col-12">
+        {% if post is not null %}
+            <!-- Article -->
+            <div alt="article-area">
+                <!-- Article Title -->
+                <!-- Article Info -->
+                <div>
+                    <h2 class="text-calm">{{ post.getName() | default("無標題") }}</h2>
+                    <p>公告日期：{{ post.getCreateTime().format("Y-m-d H:i:s") }}</p>
+                    <hr>
+                </div>
+                <!-- /.Article Info -->
+
+                <p>
+                    {{ post.getContent() | raw }}
+                </p>
+
+                <!-- Attached Files -->
+                <p>
+                <hr>
+                <h5>附加檔案：</h5>
+                <ul>
+                    {% for attachment in post.getAttachments() %}
+                        <li>
+                            <a href="{{ path("file.get", {"id": attachment.getId()}) }}">
+                                <i class="far fa-file-word"></i>
+                                {{ attachment.getOriginName() }}
+                                (<a href="{{ path("file.get", {"id": attachment.getId(), "action": "view"}) }}" target="_blank">
+                                    預覽
+                                </a>)
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                </p>
+                <!-- /.Attached Files -->
+
+                <!-- Article Info-2 -->
+                <p class="float-right">上次修改日期：{{ post.getUpdateTime().format("Y-m-d H:i:s") }}</p>
+                <!-- /.Article Info-2 -->
+                <!-- /.Article Info-2 -->
+                <a href="javascript:window.history.back();">
+                    <button type="button" class="btn btn-outline-calm">回上一頁</button>
+                </a>
+            </div>
+            <!-- /.Article -->
+        {% endif %}
+
+
+    </div>
+</div>
+{% endblock %}

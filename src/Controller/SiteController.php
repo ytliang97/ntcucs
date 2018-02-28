@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Banner;
 use App\Entity\FileArchive;
 use App\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -21,9 +22,11 @@ class SiteController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $postsRepository = $em->getRepository(Post::class);
+        $bannerRepository = $em->getRepository(Banner::class);
 
         return $this->render("front/index.html.twig", array(
-            "posts" => $postsRepository->getNewestPost(5)
+            "posts" => $postsRepository->getNewestPost(5),
+            "banner" => $bannerRepository->findBy(array(), array("createTime"=>"DESC"))
         ));
     }
 

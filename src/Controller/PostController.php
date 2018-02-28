@@ -106,4 +106,14 @@ class PostController extends Controller
         return $this->render("admin/posts-list.html.twig",
                              array("posts"=>$postsList));
     }
+
+    public function show(Request $request, $id) {
+
+        $em = $this->getDoctrine()->getManager();
+        $postRepository = $em->getRepository(Post::class);
+        $post = $postRepository->find($id);
+
+        return $this->render("front/post-show.html.twig", array("post" => $post));
+
+    }
 }
