@@ -26,6 +26,7 @@ class TeamController extends Controller
 
         $form = $this->createFormBuilder($team)
             ->add("name", TextType::class, array("label" => "團隊名稱"))
+            ->add("alias", TextType::class, array("label" => "團隊代稱"))
             ->add("description", TextareaType::class, array("label" => "團隊敘述", "required" => false))
             ->add("submit", SubmitType::class, array("label" => "新增團隊"))
             ->getForm();
@@ -55,6 +56,7 @@ class TeamController extends Controller
 
         $form = $this->createFormBuilder($team)
             ->add("name", TextType::class, array("label" => "團隊名稱"))
+            ->add("alias", TextType::class, array("label" => "團隊代稱"))
             ->add("description", TextareaType::class, array("label" => "團隊敘述", "required" => false))
             ->add("submit", SubmitType::class, array("label" => "更新團隊"))
             ->getForm();

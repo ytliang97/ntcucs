@@ -34,25 +34,51 @@
                             "class": "form-control" }}
                         ) }}
                     </div>
-                    <div class="form-group">
-                        {{ form_label(form.email) }}
-                        {{ form_widget(form.email, {"attr": {
-                            "placeholder": "在此輸入成員電子郵件(非必填)",
-                            "class": "form-control" }}
-                        ) }}
+                    <div class="form-row">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="form-group">
+                                {{ form_label(form.avatar) }}
+                                {{ form_widget(form.avatar, {"attr": {
+                                    "class": "form-control" }}
+                                ) }}
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6">
+                            <div class="form-group">
+                                {{ form_label(form.email) }}
+                                {{ form_widget(form.email, {"attr": {
+                                    "placeholder": "在此輸入成員電子郵件(非必填)",
+                                    "class": "form-control" }}
+                                ) }}
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        {{ form_label(form.website) }}
-                        {{ form_widget(form.website, {"attr": {
-                            "placeholder": "在此輸入成員個人網站網址(非必填)",
-                            "class": "form-control" }}
-                        ) }}
-                    </div>
-                    <div class="form-group">
-                        {{ form_label(form.team) }}
-                        {{ form_widget(form.team, {"attr": {
-                            "class": "form-control" }}
-                        ) }}
+                    <div class="form-row">
+                        <div class="col-md-4 col-lg-4">
+                            <div class="form-group">
+                                {{ form_label(form.website) }}
+                                {{ form_widget(form.website, {"attr": {
+                                    "placeholder": "在此輸入成員個人網站網址(非必填)",
+                                    "class": "form-control" }}
+                                ) }}
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4">
+                            <div class="form-group">
+                                {{ form_label(form.team) }}
+                                {{ form_widget(form.team, {"attr": {
+                                    "class": "form-control" }}
+                                ) }}
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4">
+                            <div class="form-group">
+                                {{ form_label(form.memberOrder) }}
+                                {{ form_widget(form.memberOrder, {"attr": {
+                                    "class": "form-control" }}
+                                ) }}
+                            </div>
+                        </div>
                     </div>
                     {{ form_widget(form.submit, {"attr": {
                         "class": "btn btn-primary" }}

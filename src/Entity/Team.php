@@ -26,6 +26,13 @@ class Team
     public function getName() { return $this->name; }
     public function setName($name) { $this->name = $name; }
 
+    /**
+     * @ORM\Column(type="string", nullable=false, unique=true)
+     */
+    private $alias;
+    public function getAlias() { return $this->alias; }
+    public function setAlias($alias) { $this->alias = $alias; }
+
 
     /**
      * @ORM\Column(type="text", nullable=true)

@@ -31,7 +31,84 @@
             <!-- /.Introduce Submenu -->
         </div>
         <div class="col-9">
-            資料更新中
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="lab-1">
+                    <!-- /.Switch Content -->
+                    {% if page is not null %}
+                        <h6>{{ page.getName() }}</h6>
+                    {% endif %}
+                    <!-- /.subTitle Type -->
+                    <div alt="article-area">
+                        <p>
+                            {% if page is not null %}
+                                {{ page.getContent() | default("") | raw }}
+                            {% endif %}
+                        </p>
+                        <p>
+                        <h6>參與教授</h6>
+                        <!-- Group of Profile card -->
+                        <div class="row">
+                            {% for member in members %}
+                                <div class="col-md-4 col-lg-4">
+                                    <div class="card">
+                                        {% if member.getAvatar() is not null %}
+                                            <img class="card-img-top" src="/uploaded/{{ member.getAvatar().getFullPath() }}" alt="{{ member.getName() }}個人照片">
+                                        {% else %}
+                                            <div style="width: 100%; padding: 20px;border: 1px solid #888;">
+                                                <img class="card-img-top" src="{{ asset('assets/images/no-avatar.svg') }}">
+                                            </div>
+                                        {% endif %}
+                                        <div class="card-body">
+                                            <h5 class="card-title"><a href="#">{{ member.getName() }}</a></h5>
+                                            <p class="card-text font-weight-bold">{{ member.getTitle() }}</p>
+                                            {% if member.getEmail() is not null %}
+                                                Email: <a href="mailto:{{ member.getEmail() }}">
+                                                <p class="card-text">
+                                                    {{ member.getEmail() }}
+                                                </p>
+                                            </a>
+                                            {% endif %}
+                                            {% if member.getWebsite() is not null %}
+
+                                                個人網站： <a href="{{ member.getWebsite() }}" target="_blank">
+                                                <p class="card-text">
+                                                    {{ member.Website() }}
+                                                </p>
+                                            </a>
+                                            {% endif %}
+                                            {% if member.getOfficeNumber() is not null %}
+                                                辦公室電話： <a href="tel:{{ member.getOfficeNumber() }}">
+                                                <p class="card-text">
+                                                    {{ member.getOfficeNumber() }}
+                                                </p>
+                                            </a>
+                                            {% endif %}
+                                            {% if member.getCellphone() is not null %}
+                                                手機電話： <a href="tel:{{ member.getCellphone() }}">
+                                                <p class="card-text">
+                                                    {{ member.getCellphone() }}
+                                                </p>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!-- /.Group of Profile card -->
+                        </p>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="lab-2">
+
+                </div>
+                <div class="tab-pane fade" id="lab-3">
+
+                </div>
+                <div class="tab-pane fade" id="lab-4">
+
+                </div>
+            </div>
         </div>
     </div>
     <!-- /.Introduce -->

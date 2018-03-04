@@ -31,7 +31,7 @@ class SiteController extends Controller
     }
 
     public function course(Request $request) {
-        return $this->render("front/course.html.twig");
+        return $this->render("front/course-bachelor.html.twig");
     }
 
     public function download(Request $request) {

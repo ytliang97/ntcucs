@@ -77,9 +77,24 @@ class Member
 
     /**
      * @ORM\ManyToOne(targetEntity="Team", inversedBy="members")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $team;
     public function getTeam() { return $this->team; }
     public function setTeam($team) { $this->team = $team; }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PublicUploaded")
+     * @ORM\JoinColumn(name="avatar_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $avatar;
+    public function setAvatar($avatar) { $this->avatar = $avatar; }
+    public function getAvatar() { return $this->avatar; }
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $memberOrder;
+    public function setMemberOrder($order) { $this->memberOrder = $order; }
+    public function getMemberOrder() { return $this->memberOrder; }
 }

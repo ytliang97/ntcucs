@@ -56,3 +56,39 @@ front.introduce.location:
 front.network.resource:
     path: /network-resource
     controller: App\Controller\PageController::showNetworkResource
+
+front.contact:
+    path: /contact-us
+    controller: App\Controller\PageController::showContactUs
+
+front.course.bachelor.attention:
+    path: /course/bachelor/attention
+    controller: App\Controller\PageController::bachelorCourseAttention
+front.course.bachelor.architecture:
+    path: /course/bachelor/architecture
+    controller: App\Controller\PageController::bachelorCourseArchitecture
+front.course.bachelor.graduate.condition:
+    path: /course/bachelor/graduate-condition
+    controller: App\Controller\PageController::bachelorGraduateCondition
+front.course.bachelor.content:
+    path: /course/bachelor/content
+    controller: App\Controller\PageController::bachelorCourseContent
+front.course.bachelor.description:
+    path: /course/bachelor/description
+    controller: App\Controller\PageController::bachelorCourseDescription
+
+front.course.master.attention:
+    path: /course/master/attention
+    controller: App\Controller\PageController::masterCourseAttention
+front.course.master.architecture:
+    path: /course/master/architecture
+    controller: App\Controller\PageController::masterCourseArchitecture
+front.course.master.graduate.condition:
+    path: /course/master/graduate-condition
+    controller: App\Controller\PageController::masterGraduateCondition
+front.course.master.content:
+    path: /course/master/content
+    controller: App\Controller\PageController::masterCourseContent
+front.course.master.description:
+    path: /course/master/description
+    controller: App\Controller\PageController::masterCourseDescription

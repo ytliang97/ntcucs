@@ -9,7 +9,9 @@
 namespace App\Controller;
 
 
+use App\Entity\Member;
 use App\Entity\Page;
+use App\Entity\Team;
 use App\Form\Type\PageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -114,7 +116,11 @@ class PageController extends Controller
 
     public function showMember(Request $request) {
 
-        return $this->render("front/introduce-member.html.twig");
+        $em = $this->getDoctrine()->getManager();
+        $memberRepository = $em->getRepository(Member::class);
+        $members = $memberRepository->findBy(array(), array("memberOrder"=>"DESC"));
+
+        return $this->render("front/introduce-member.html.twig", array("members"=>$members));
 
     }
 
@@ -129,7 +135,15 @@ class PageController extends Controller
 
     public function showLab(Request $request, $labname) {
 
-        return $this->render("front/introduce-lab.html.twig");
+        $em = $this->getDoctrine()->getManager();
+        $teamRepository = $em->getRepository(Team::class);
+        $team = $teamRepository->findOneBy(array("alias"=>"lab-".$labname));
+        $membersRepository = $em->getRepository(Member::class);
+        $members = $membersRepository->findBy(array("team"=>$team), array("memberOrder"=>"DESC"));
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"lab-".$labname));
+
+        return $this->render("front/introduce-lab.html.twig", array("page"=>$page, "members"=>$members));
 
     }
 
@@ -159,5 +173,112 @@ class PageController extends Controller
         $page = $pageRepository->findOneBy(array("alias"=>"network-resource"));
 
         return $this->render("front/network-resource.html.twig", array("page"=>$page));
+    }
+
+    public function showContactUs(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"contact-us"));
+
+        return $this->render("front/introduce.html.twig", array("page"=>$page));
+    }
+
+    public function bachelorCourseAttention(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"bachelor-course-attention"));
+
+        return $this->render("front/course-bachelor.html.twig", array("page"=>$page));
+
+    }
+
+    public function bachelorCourseArchitecture(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"bachelor-course-architecture"));
+
+        return $this->render("front/course-bachelor.html.twig", array("page"=>$page));
+
+    }
+
+    public function bachelorGraduateCondition(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"bachelor-graduate-condition"));
+
+        return $this->render("front/course-bachelor.html.twig", array("page"=>$page));
+    }
+
+    public function bachelorCourseContent(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"bachelor-course-content"));
+
+        return $this->render("front/course-bachelor.html.twig", array("page"=>$page));
+
+    }
+
+    public function bachelorCourseDescription(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"bachelor-course-description"));
+
+        return $this->render("front/course-bachelor.html.twig", array("page"=>$page));
+
+    }
+
+    public function masterCourseAttention(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"master-course-attention"));
+
+        return $this->render("front/course-master.html.twig", array("page"=>$page));
+
+    }
+
+    public function masterCourseArchitecture(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"master-course-architecture"));
+
+        return $this->render("front/course-master.html.twig", array("page"=>$page));
+
+    }
+
+    public function masterGraduateCondition(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"master-graduate-condition"));
+
+        return $this->render("front/course-master.html.twig", array("page"=>$page));
+
+    }
+
+    public function masterCourseContent(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"master-course-content"));
+
+        return $this->render("front/course-master.html.twig", array("page"=>$page));
+    }
+
+    public function masterCourseDescription(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"master-course-description"));
+
+        return $this->render("front/course-master.html.twig", array("page"=>$page));
+
     }
 }
