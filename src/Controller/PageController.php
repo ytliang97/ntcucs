@@ -118,7 +118,7 @@ class PageController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $memberRepository = $em->getRepository(Member::class);
-        $members = $memberRepository->findBy(array(), array("memberOrder"=>"DESC"));
+        $members = $memberRepository->findBy(array(), array("memberOrder"=>"ASC"));
 
         return $this->render("front/introduce-member.html.twig", array("members"=>$members));
 
