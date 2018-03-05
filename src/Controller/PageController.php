@@ -139,7 +139,7 @@ class PageController extends Controller
         $teamRepository = $em->getRepository(Team::class);
         $team = $teamRepository->findOneBy(array("alias"=>"lab-".$labname));
         $membersRepository = $em->getRepository(Member::class);
-        $members = $membersRepository->findBy(array("team"=>$team), array("memberOrder"=>"DESC"));
+        $members = $membersRepository->findBy(array("team"=>$team), array("memberOrder"=>"ASC"));
         $pageRepository = $em->getRepository(Page::class);
         $page = $pageRepository->findOneBy(array("alias"=>"lab-".$labname));
 

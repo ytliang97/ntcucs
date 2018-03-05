@@ -31,6 +31,30 @@
             <!-- /.Introduce Submenu -->
         </div>
         <div class="col-9">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="{{ path("front.introduce.lab", {"labname": "software-engineering"}) }}">
+                            軟體工程實驗室
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ path("front.introduce.lab", {"labname": "computer-system"}) }}">
+                            計算機系統實驗室
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ path("front.introduce.lab", {"labname": "network-and-communication-and-information-security"}) }}">
+                            網路與通訊及資訊安全實驗室
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ path("front.introduce.lab", {"labname": "smart-iot"}) }}">
+                            智慧物聯網實驗室
+                        </a>
+                    </li>
+                </ol>
+            </nav>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="lab-1">
                     <!-- /.Switch Content -->
