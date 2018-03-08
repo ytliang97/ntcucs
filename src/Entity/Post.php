@@ -33,7 +33,7 @@ class Post
     public function setName($name) { $this->name = $name; }
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $content;
     public function getContent() { return $this->content; }
