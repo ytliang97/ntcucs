@@ -1,234 +1,116 @@
 {% extends "front/base.html.twig" %}
 
 {% block body %}
-    <!-- Download -->
-    <div class="row">
+    <ul class="page-breadcrumb">
+        <li><a href="{{ path("front.index") }}">首頁</a></li>
+        <li><a href="">法規表單</a></li>
+    </ul>
 
-        <div class="col-3">
-
-            <!-- Submenu -->
-            <ul class="list-group shadow">
-                <li class="list-group-item list-group-item-calm">表單使用者</li>
-                <!-- A Link -->
-                <li class="list-group-item nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#stud" role="tab">學生</a>
-                </li>
-                <!-- /.A Link -->
-                <!-- A Link -->
-                <li class="list-group-item nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#teac" role="tab">教師</a>
-                </li>
-                <!-- A Link -->
+    <div class="primary">
+        <h4 class="page-subtitle">獎學金</h4>
+        <div class="download">
+            <ul class="no-title">
+                {% if fileArchives["student-scholarship"] is not null %}
+                    {% for file in fileArchives["student-scholarship"].getFiles() %}
+                        <li>
+                            <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
+                            (
+                            <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
+                                預覽
+                            </a>
+                            )
+                        </li>
+                    {% endfor %}
+                {% endif %}
             </ul>
-            <!-- /.Submenu -->
-
         </div>
-
-        <div class="col-9" id="forVue">
-
-            <!-- Page Title -->
-            <h5>法令/表單</h5>
-            <!-- /.Page Title -->
-
-            <!-- Switch Content -->
-            <div class="tab-content">
-                <!-- A Content -->
-                <div class="tab-pane active" id="stud" role="tabpanel">
-
-                    <!-- Student -->
-
-                    <!-- Download Link Nav -->
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#1">獎學金</a></li>
-                            <li class="breadcrumb-item"><a href="#2">課程架構</a></li>
-                            <li class="breadcrumb-item"><a href="#3">轉系</a></li>
-                            <li class="breadcrumb-item"><a href="#4">學士專題</a></li>
-                            <li class="breadcrumb-item"><a href="#5">碩士論文</a></li>
-                        </ol>
-                    </nav>
-                    <!-- /.Download Link Nav -->
-
-                    <!-- Link Group -->
-                    <ul class="list-group list-margin">
-                        <li class="list-group-item list-group-item-dark" id="1">獎學金</li>
-                        <li class="list-group-item">
-                            <ul>
-                                {% if fileArchives["student-scholarship"] is not null %}
-                                    {% for file in fileArchives["student-scholarship"].getFiles() %}
-                                        <li>
-                                            <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
-                                            (
-                                            <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
-                                            預覽
-                                            </a>
-                                            )
-                                        </li>
-                                    {% endfor %}
-                                {% endif %}
-                            </ul>
-                        </li>
-                    </ul>
-                    <!-- /.Link Group -->
-
-                    <!-- Link Group -->
-                    <ul class="list-group list-margin">
-                        <li class="list-group-item list-group-item-dark" id="2">課程架構</li>
-                        <li class="list-group-item">
-
-                            <!-- Download Link Nav-Pill -->
-
-                            <!-- Link Name -->
-                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-
-                                <!-- First Link -->
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="label-bac" data-toggle="pill" href="#bac" aria-controls="bac" aria-selected="true">學士</a>
+        <h4 class="page-subtitle">課程架構表</h4>
+        <div class="download">
+            <ul class="no-title">
+                <li>學士班
+                    <ul>
+                        {% if fileArchives["student-bachelor-course-architecture"] is not null %}
+                            {% for file in fileArchives["student-bachelor-course-architecture"].getFiles() %}
+                                <li>
+                                    <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
+                                    (
+                                    <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
+                                        預覽
+                                    </a>
+                                    )
                                 </li>
-                                <!-- /.First Link -->
-                                <!-- Second Link -->
-                                <li class="nav-item">
-                                    <a class="nav-link" id="label-mas" data-toggle="pill" href="#mas" aria-controls="mas" aria-selected="false">碩士</a>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </li>
+                <li>碩士班
+                    <ul>
+                        {% if fileArchives["student-master-course-architecture"] is not null %}
+                            {% for file in fileArchives["student-master-course-architecture"].getFiles() %}
+                                <li>
+                                    <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
+                                    (
+                                    <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
+                                        預覽
+                                    </a>
+                                    )
                                 </li>
-                                <!-- /.Second Link -->
-
-                            </ul>
-                            <!-- /.Link Name -->
-
-                            <!-- Switch Content -->
-                            <div class="tab-content">
-                                <div class="tab-pane fade show active" id="bac" aria-labelledby="label-bac">
-
-                                    <!-- Bachelor Download Link -->
-                                    <ul>
-                                        {% if fileArchives["student-bachelor-course-architecture"] is not null %}
-                                            {% for file in fileArchives["student-bachelor-course-architecture"].getFiles() %}
-                                                <li>
-                                                    <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
-                                                    (
-                                                    <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
-                                                        預覽
-                                                    </a>
-                                                    )
-                                                </li>
-                                            {% endfor %}
-                                        {% endif %}
-                                    </ul>
-                                    <!-- /.Bachelor Download Link -->
-
-                                </div>
-                                <div class="tab-pane fade" id="mas" aria-labelledby="label-mas">
-
-                                    <!-- Master Download Link -->
-                                    <ul>
-                                        {% if fileArchives["student-master-course-architecture"] is not null %}
-                                            {% for file in fileArchives["student-master-course-architecture"].getFiles() %}
-                                                <li>
-                                                    <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
-                                                    (
-                                                    <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
-                                                        預覽
-                                                    </a>
-                                                    )
-                                                </li>
-                                            {% endfor %}
-                                        {% endif %}
-                                    </ul>
-                                    <!-- /.Master Download Link -->
-
-                                </div>
-                            </div>
-                            <!-- /.Switch Content -->
-
-                            <!-- /.Download Link Nav-Pill -->
-
-                        </li>
+                            {% endfor %}
+                        {% endif %}
                     </ul>
-                    <!-- /.Link Group -->
-
-                    <!-- Link Group -->
-                    <ul class="list-group list-margin">
-                        <li class="list-group-item list-group-item-dark" id="3">轉系</li>
-                        <li class="list-group-item">
-                            <ul>
-                                {% if fileArchives["student-migration"] is not null %}
-                                    {% for file in fileArchives["student-migration"].getFiles() %}
-                                        <li>
-                                            <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
-                                            (
-                                            <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
-                                                預覽
-                                            </a>
-                                            )
-                                        </li>
-                                    {% endfor %}
-                                {% endif %}
-                            </ul>
-                        </li>
-                    </ul>
-                    <!-- /.Link Group -->
-
-                    <!-- Link Group -->
-                    <ul class="list-group list-margin">
-                        <li class="list-group-item list-group-item-dark" id="4">學士專題</li>
-                        <li class="list-group-item">
-                            <ul>
-                                {% if fileArchives["student-bachelor-project"] is not null %}
-                                    {% for file in fileArchives["student-bachelor-project"].getFiles() %}
-                                        <li>
-                                            <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
-                                            (
-                                            <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
-                                                預覽
-                                            </a>
-                                            )
-                                        </li>
-                                    {% endfor %}
-                                {% endif %}
-                            </ul>
-                        </li>
-                    </ul>
-                    <!-- /.Link Group -->
-
-                    <!-- Link Group -->
-                    <ul class="list-group list-margin">
-                        <li class="list-group-item list-group-item-dark" id="5">碩士論文</li>
-                        <li class="list-group-item">
-                            <ul>
-                                {% if fileArchives["student-master-project"] is not null %}
-                                    {% for file in fileArchives["student-master-project"].getFiles() %}
-                                        <li>
-                                            <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
-                                            (
-                                            <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
-                                                預覽
-                                            </a>
-                                            )
-                                        </li>
-                                    {% endfor %}
-                                {% endif %}
-                            </ul>
-                        </li>
-                    </ul>
-                    <!-- /.Link Group -->
-                    <!-- /.Student -->
-
-                </div>
-                <!-- /.A Content -->
-
-                <!-- A Content -->
-                <div class="tab-pane" id="teac" role="tabpanel">
-
-
-
-                </div>
-                <!-- /.A Content -->
-            </div>
-            <!-- /.Switch Content -->
-
-
+                </li>
+            </ul>
         </div>
-
+        <h4 class="page-subtitle">轉系</h4>
+        <div class="download">
+            <ul class="no-title">
+                {% if fileArchives["student-migration"] is not null %}
+                    {% for file in fileArchives["student-migration"].getFiles() %}
+                        <li>
+                            <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
+                            (
+                            <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
+                                預覽
+                            </a>
+                            )
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+        <h4 class="page-subtitle">學士專題</h4>
+        <div class="download">
+            <ul class="no-title">
+                {% if fileArchives["student-bachelor-project"] is not null %}
+                    {% for file in fileArchives["student-bachelor-project"].getFiles() %}
+                        <li>
+                            <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
+                            (
+                            <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
+                                預覽
+                            </a>
+                            )
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+        <h4 class="page-subtitle">學士專題</h4>
+        <div class="download">
+            <ul class="no-title">
+                {% if fileArchives["student-master-project"] is not null %}
+                    {% for file in fileArchives["student-master-project"].getFiles() %}
+                        <li>
+                            <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
+                            (
+                            <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
+                                預覽
+                            </a>
+                            )
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
     </div>
-    <!-- /.Download -->
 {% endblock %}

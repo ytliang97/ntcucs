@@ -1,15 +1,22 @@
 {% extends "front/base.html.twig" %}
 
 {% block body %}
-    <div class="row">
-        {% if page is not null %}
-            <div class="col-lg-12">
-                <h5>{{ page.getName() }}</h5>
-            </div>
-            <div class="col-lg-12">
-                {{ page.getContent() | raw }}
-            </div>
-        {% endif %}
-    </div>
+    <ul class="page-breadcrumb">
+        <li><a href="{{ path("front.index") }}">首頁</a></li>
+        <li><a href="#">網路資源</a></li>
+    </ul>
 
+    <div class="primary">
+
+        {% if page is not null %}
+        <div class="information">
+            <h5 class="title">網路資源</h5>
+        </div>
+
+        <div class="article">
+            {{ page.getContent() | raw }}
+        </div>
+        {% endif %}
+
+    </div>
 {% endblock %}
