@@ -1,46 +1,40 @@
 {% extends "front/base.html.twig" %}
 {% block body %}
-<div class="row">
-    <div class="col-12">
-        {% if post is not null %}
-            <ul class="page-breadcrumb">
-                <li><a href="">首頁</a></li>
-                <li><a href="">最新消息</a></li>
-                <li>系所公告</li>
-            </ul>
-
-            <div class="primary">
-                <div class="information">
-                    <h5 class="title">{{ post.getName() }}</h5>
-                    <div class="detail">
-                        <p>公告日期：{{ post.getCreatetime().format("Y-m-d H:i:s") }}</p>
-                    </div>
+    <ul class="page-breadcrumb">
+        <li><a href="{{ path("front.index") }}">首頁</a></li>
+        <li><a href="">最新消息</a></li>
+        <li>系所公告</li>
+    </ul>
+    {% if post is not null %}
+        <div class="primary">
+            <div class="information">
+                <h5 class="title">{{ post.getName() }}</h5>
+                <div class="detail">
+                    <p>公告日期：{{ post.getCreatetime().format("Y-m-d H:i:s") }}</p>
                 </div>
-
-                <div class="article">
-                    {{ post.getContent() | raw }}
-                </div>
-
-                <div class="attached">
-                    <p>附加檔案</p>
-                    <ul>
-                        {% for attachment in post.getAttachments() %}
-                            <li>
-                                <a href="{{ path("file.get", {"id": attachment.getId()}) }}">
-                                    <i class="far fa-file-word"></i>
-                                    {{ attachment.getOriginName() }}
-                                    (<a href="{{ path("file.get", {"id": attachment.getId(), "action": "view"}) }}" target="_blank">
-                                        預覽
-                                    </a>)
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                    <p class="last-modify">最後修改日期：{{ post.getUpdateTime().format("Y-m-d H:i:s") }}</p>
-                </div>
-
             </div>
-        {% endif %}
-    </div>
-</div>
+
+            <div class="article">
+                {{ post.getContent() | raw }}
+            </div>
+
+            <div class="attached">
+                <p>附加檔案</p>
+                <ul>
+                    {% for attachment in post.getAttachments() %}
+                        <li>
+                            <a href="{{ path("file.get", {"id": attachment.getId()}) }}">
+                                <i class="far fa-file-word"></i>
+                                {{ attachment.getOriginName() }}
+                                (<a href="{{ path("file.get", {"id": attachment.getId(), "action": "view"}) }}" target="_blank">
+                                    預覽
+                                </a>)
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <p class="last-modify">最後修改日期：{{ post.getUpdateTime().format("Y-m-d H:i:s") }}</p>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}

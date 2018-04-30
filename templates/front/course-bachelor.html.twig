@@ -1,92 +1,40 @@
 {% extends "front/base.html.twig" %}
 
 {% block body %}
-    <!-- Course -->
-    <div class="row">
-
-        <div class="col-3">
-
-            <!-- Course Submenu -->
-            <ul class="list-group shadow">
-                <li class="list-group-item list-group-item-calm">部別</li>
-                <!-- A Link -->
-                <li class="list-group-item nav-item">
-                    <a class="nav-link active" href="{{ path("front.course.bachelor.attention") }}" role="tab">學士班</a>
-                </li>
-                <!-- /.A Link -->
-                <!-- A Link -->
-                <li class="list-group-item nav-item">
-                    <a class="nav-link" href="{{ path("front.course.master.attention") }}" role="tab">碩士班</a>
-                </li>
-                <!-- A Link -->
-            </ul>
-            <!-- Course Submenu -->
-
-        </div>
-        <div class="col-9" id="forVue2">
-
-            <!-- Page Title -->
-            <h5>課程資訊</h5>
-            <!-- /.Page Title -->
-
-
-            <!-- Switch Content -->
-            <div class="tab-content">
-                <!-- A Content -->
-                <div class="tab-pane active" id="course-1" role="tabpanel">
-                    <!-- Article -->
-                    <!-- subTitle -->
-                    <div class="alert alert-dark" role="alert">
-                        學士班
-                    </div>
-                    <!-- /.subTitle -->
-                    <!-- Course Link Nav -->
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ path("front.course.bachelor.attention") }}">選課注意事項</a></li>
-                            <li class="breadcrumb-item"><a href="{{ path("front.course.bachelor.architecture") }}">課程架構</a></li>
-                            <li class="breadcrumb-item"><a href="{{ path("front.course.bachelor.graduate.condition") }}">畢業條件</a></li>
-                            <li class="breadcrumb-item"><a href="{{ path("front.course.bachelor.content") }}">年度課程內容</a></li>
-                            <li class="breadcrumb-item"><a href="{{ path("front.course.bachelor.description") }}">課程內容概述</a></li>
-                        </ol>
-                    </nav>
-                    <!-- /.Course Link Nav -->
-                    <div alt="article-area">
-                        {% if page is not null %}
-                            {{ page.getName() }}
-                        {% endif %}
-                        <p>
-                            {% if page is not null %}
-                                {{ page.getContent() | raw }}
-                            {% endif %}
-                        </p>
-                        <ul>
-                            {% if page is not null %}
-                                {% if page.getAttachments() | length >= 1 %}
-                                    {% for file in page.getAttachments() %}
-                                        <li>
-                                            <a href="{{ path("file.get", {"id": file.getId()}) }}">
-                                                {{ file.getOriginName() }}
-                                            </a>
-                                            (
-                                                <a target="_blank"
-                                                   href="{{ path("file.get", {"id": file.getId(), "action": "view"}) }}">
-                                                    預覽
-                                                </a>
-                                            )
-                                        </li>
-                                    {% endfor %}
-                                {% endif %}
-                            {% endif %}
-                        </ul>
-                    </div>
-                    <!-- /.Article -->
-                </div>
-                <!-- /.A Content -->
+    <ul class="page-breadcrumb">
+        <li><a href="{{ path("front.course.bachelor.attention") }}">選課注意事項</a></li>
+        <li><a href="{{ path("front.course.bachelor.architecture") }}">課程架構</a></li>
+        <li><a href="{{ path("front.course.bachelor.graduate.condition") }}">畢業條件</a></li>
+        <li><a href="{{ path("front.course.bachelor.content") }}">年度課程內容</a></li>
+        <li><a href="{{ path("front.course.bachelor.description") }}">課程內容概述</a></li>
+    </ul>
+    {% if page is not null %}
+        <div class="primary">
+            <div class="information">
+                <h5 class="title">{{ page.getName() }}</h5>
             </div>
-            <!-- /.Switch Content -->
-        </div>
 
-    </div>
-    <!-- /.Course -->
+            <div class="article">
+                {{ page.getContent() | raw }}
+            </div>
+
+            <div class="attached">
+                <p>附加檔案</p>
+                <ul>
+                    {% for attachment in page.getAttachments() %}
+                        <li>
+                            <a href="{{ path("file.get", {"id": attachment.getId()}) }}">
+                                <i class="far fa-file-word"></i>
+                                {{ attachment.getOriginName() }}
+                                (<a href="{{ path("file.get", {"id": attachment.getId(), "action": "view"}) }}" target="_blank">
+                                    預覽
+                                </a>)
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <p class="last-modify">最後修改日期：{{ page.getUpdateTime().format("Y-m-d H:i:s") }}</p>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
