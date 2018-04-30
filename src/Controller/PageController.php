@@ -109,7 +109,6 @@ class PageController extends Controller
 
         $pageRepository = $em->getRepository(Page::class);
         $page = $pageRepository->findOneBy(array("alias"=>"history"));
-
         return $this->render("front/introduce.html.twig", array("page"=>$page));
 
     }

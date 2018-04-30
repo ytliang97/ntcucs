@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -39,6 +40,7 @@ class MemberController extends Controller
             ->add("cellPhone", TextType::class, array("label" => "手機號碼", "required" => false))
             ->add("email", EmailType::class, array("label" => "電子郵件", "required" => false))
             ->add("website", TextType::class, array("label" => "網站", "required" => false))
+            ->add("major", TextareaType::class, array("label" => "專業領域", "required" => false))
             ->add("team", EntityType::class, array(
                     "required" => false,
                     "label" => "所屬團隊",
@@ -129,6 +131,7 @@ class MemberController extends Controller
             ->add("cellPhone", TextType::class, array("label" => "手機號碼", "required" => false))
             ->add("email", EmailType::class, array("label" => "電子郵件", "required" => false))
             ->add("website", TextType::class, array("label" => "網站", "required" => false))
+            ->add("major", TextareaType::class, array("label" => "專業領域", "required" => false))
             ->add("team", EntityType::class, array(
                     "required" => false,
                     "label" => "所屬團隊",
@@ -143,7 +146,7 @@ class MemberController extends Controller
                 )
             )
             ->add('memberOrder', IntegerType::class, array("label" => "排列"))
-            ->add("submit", SubmitType::class, array("label" => "新增成員"))
+            ->add("submit", SubmitType::class, array("label" => "編輯成員"))
             ->getForm();
 
         $form->handleRequest($request);

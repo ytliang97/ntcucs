@@ -1,58 +1,18 @@
 {% extends "front/base.html.twig" %}
 
 {% block body %}
-    <!-- Introduce -->
-    <div class="row">
-        <div class="col-3">
-            <!-- Introduce Submenu -->
-            <ul class="list-group shadow">
-                <li class="list-group-item list-group-item-calm">系所介紹</li>
-                <!-- A Link -->
-                <li class="list-group-item nav-item">
-                    <a class="nav-link" href="{{ path("front.introduce.history") }}">系所歷史</a>
-                </li>
-                <!-- /.A Link -->
-                <li class="list-group-item nav-item">
-                    <a class="nav-link" href="{{ path("front.introduce.member") }}">成員介紹</a>
-                </li>
-                <li class="list-group-item nav-item">
-                    <a class="nav-link" href="{{ path("front.introduce.honor") }}">榮譽獎項</a>
-                </li>
-                <li class="list-group-item nav-item">
-                    <a class="nav-link" href="{{ path("front.introduce.lab") }}">實驗室</a>
-                </li>
-                <li class="list-group-item nav-item">
-                    <a class="nav-link" href="{{ path("front.introduce.future") }}">未來發展</a>
-                </li>
-                <li class="list-group-item nav-item">
-                    <a class="nav-link" href="{{ path("front.introduce.location") }}">系所位置</a>
-                </li>
-            </ul>
-            <!-- /.Introduce Submenu -->
-        </div>
-        <div class="col-9">
-            {% if page is not null %}
-            <!-- Page Title -->
-            <h5>{{ page.getName() }}</h5>
-            <!-- /.Page Title -->
-            <!-- Switch Content -->
-            <div class="tab-content">
-                <!-- A Content -->
-                <div class="tab-pane active" id="introduce-1" role="tabpanel">
-                    <!-- Article -->
-
-                        <div alt="article-area">
-                            <p>
-                                {{ page.getContent() | raw }}
-                            </p>
-                        </div>
-
-                    <!-- /.Article -->
-                </div>
-            </div>
-            <!-- /.Switch Content -->
-            {% endif %}
+    {% if page is not null %}
+    <ul class="page-breadcrumb">
+        <li><a href="{{ path('front.index') }}">首頁</a></li>
+        <li><a href="">{{ page.getName() }}</a></li>
+    </ul>
+    <div class="primary">
+        <h4 class="page-subtitle">{{ page.getName() }}</h4>
+        <div class="article">
+            <p>
+                {{ page.getContent() | raw }}
+            </p>
         </div>
     </div>
-    <!-- /.Introduce -->
+    {% endif %}
 {% endblock %}

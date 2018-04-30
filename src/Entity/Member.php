@@ -97,4 +97,11 @@ class Member
     private $memberOrder;
     public function setMemberOrder($order) { $this->memberOrder = $order; }
     public function getMemberOrder() { return $this->memberOrder; }
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $major;
+    public function setMajor($major) { $this->major = $major; }
+    public function getMajor() { return $this->major; }
 }

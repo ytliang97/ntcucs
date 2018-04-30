@@ -1,122 +1,72 @@
 {% extends "front/base.html.twig" %}
 
 {% block body %}
-    <!-- News -->
-    <div class="row">
+    <ul class="page-breadcrumb">
+        <li><a href="{{ path("front.index") }}">首頁</a></li>
+        <li><a href="">最新消息</a></li>
+        <li>系所公告</li>
+    </ul>
 
-        <!-- Left Side -->
-        <div class="col-3">
+    <div class="primary">
+        <div class="news-table">
 
-            <!-- News Submenu -->
-            <ul class="list-group shadow">
-                <li class="list-group-item list-group-item-calm">公告分類</li>
-                <!-- A Link -->
-                <li class="list-group-item nav-item">
-                    <a href="{{ path("front.news.category.activities") }}" class="nav-link active">活動與演講</a>
-                </li>
-                <!-- /.A Link -->
-                <li class="list-group-item nav-item">
-                    <a href="{{ path("front.news.category.hiring") }}" class="nav-link">徵才訊息</a>
-                </li>
-                <li class="list-group-item nav-item">
-                    <a href="{{ path("front.news.category.enrollment") }}" class="nav-link">招生訊息</a>
-                </li>
-                <li class="list-group-item nav-item">
-                    <a href="{{ path("front.news.category.scholarship") }}" class="nav-link">獎學金訊息</a>
-                </li>
-                <li class="list-group-item nav-item">
-                    <a href="{{ path("front.news.category.other") }}" class="nav-link">其他訊息</a>
-                </li>
-
-            </ul>
-            <!-- /.News Submenu -->
-
-        </div>
-        <!-- /.Left Side -->
-
-        <!-- Right Side -->
-        <div class="col-9">
-
-            <!-- Page Title -->
-            <h5>系所公告</h5>
-            <!-- /.Page Title -->
-            <!-- Switch Content -->
-            {% if category is not null %}
-            <div class="tab-content">
-                <!-- A Content -->
-                <div class="tab-pane active" id="news-1" role="tabpanel">
-                    <!-- Article -->
-                    <!-- News Type -->
-                    <div class="alert alert-dark" role="alert">
-                        {{ category.getName() }}
-                    </div>
-                    <!-- /.News Type -->
-
-                    <div class="row">
-
-                        <!-- News Table -->
-                        <div class="col-12" id="news">
-                            <table class="table table-striped">
-                                <thead class="thead-gray">
-                                <tr>
-                                    <th scope="col">公告日期</th>
-                                     <th scope="col">標題</th>
-                                    <!--<th scope="col">瀏覽人次</th>-->
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                <!-- Row List -->
-                                {% for post in category.getPosts() %}
-                                    <tr>
-                                        <td scope="row">{{ post.getCreateTime().format("Y-m-d") }}</td>
-                                        <th><a href="{{ path("front.post.show", {"id": post.getId()}) }}">{{ post.getName() }}</a></th>
-                                        <!--<td></td>-->
-                                    </tr>
-                                {% endfor %}
-                                {% if category.getPosts() | length == 0 %}
-                                    <tr>
-                                        <td colspan="2">還沒有任何公告</td>
-                                    </tr>
-                                {% endif %}
-                                <!-- /.Row List -->
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <!--<div class="col-12">
-                            <nav aria-label="News Table navigation">
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>-->
-                        <!-- /.News Table -->
-
-                    </div>
-                    <!-- /.Article -->
-                </div>
-            </div>
-            {% endif %}
-            <!-- /.Switch Content -->
-
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th width="15%">公告日期</th>
+                    <th>標題</th>
+                </tr>
+                {% if category is defined %}
+                    <!-- Row List -->
+                    {% for post in category.getPosts() %}
+                        <tr>
+                            <td class="date">{{ post.getCreateTime().format("Y-m-d") }}</td>
+                            <td class="title">
+                                <a href="{{ path("front.post.show", {"id": post.getId()}) }}">
+                                    {{ post.getName() | e('html') }}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    {% if category.getPosts() | length == 0 %}
+                        <tr>
+                            <td colspan="2">還沒有任何公告</td>
+                        </tr>
+                    {% endif %}
+                    <!-- /.Row List -->
+                {% else %}
+                    <!-- Row List -->
+                    {% for post in posts %}
+                        <tr>
+                            <td class="date">{{ post.getCreateTime().format("Y-m-d") }}</td>
+                            <td class="title">
+                                <a href="{{ path("front.post.show", {"id": post.getId()}) }}">
+                                    {{ post.getName() }}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    {% if posts | length == 0 %}
+                        <tr>
+                            <td colspan="2">還沒有任何公告</td>
+                        </tr>
+                    {% endif %}
+                    <!-- /.Row List -->
+                {% endif %}
+                </tbody>
+            </table>
 
         </div>
-        <!-- /.Right side -->
+
+        <!--<div class="pagination float-center">
+            <a href="#">&laquo;</a>
+            <a href="#">&lt;</a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">&gt;</a>
+            <a href="#">&raquo;</a>
+        </div>-->
+
     </div>
-    <!-- /.News -->
 {% endblock %}

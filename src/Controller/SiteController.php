@@ -34,6 +34,17 @@ class SiteController extends Controller
         return $this->render("front/course-bachelor.html.twig");
     }
 
+    public function news(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $postsRepository = $em->getRepository(Post::class);
+
+        $posts = $postsRepository->findBy(array(), array("createTime" => "DESC"));
+
+        return $this->render("front/news.html.twig", array(
+            "posts" => $posts
+        ));
+    }
+
     public function download(Request $request) {
 
         $em = $this->getDoctrine()->getManager();

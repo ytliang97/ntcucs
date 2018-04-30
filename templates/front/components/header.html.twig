@@ -1,12 +1,11 @@
 <div class="header">
     <div class="wrap">
 
-        <a href="#"><img src="{{ asset("assets/images/mainpage_02.jpg") }}"/></a>
+        <a href="{{ path("front.index") }}"><img src="{{ asset("assets/images/mainpage_02.jpg") }}"/></a>
 
         <div class="top-nav">
-            <a href="#" class="school">NTCU</a>
-            <a href="#">回首頁</a>
-            <a href="#">English</a>
+            <a href="http://www.ntcu.edu.tw/newweb/index.htm" TARGET="_blank" class="school">NTCU</a>
+            <a href="{{ path("front.index") }}">回首頁</a>
         </div>
 
         <div class="nav-justify">
@@ -14,7 +13,7 @@
                 <ul>
                     <li>
                         <div class="nav-item">
-                            <a href="">最新消息</a>
+                            <a href="{{ path("front.news") }}">最新消息</a>
                             <div class="submenu" id="subMenu1">
                                 <a href="{{ path("front.news") }}">系所公告</a>
                                 <a href="{{ path("front.news.category.activities") }}">活動演講</a>
@@ -35,6 +34,8 @@
                             <div class="submenu" id="subMenu2">
                                 <a href="{{ path("front.introduce.history") }}">系所簡介</a>
                                 <a href="{{ path("front.introduce.history") }}">系所歷史</a>
+                                <a href="{{ path("front.introduce.future") }}">未來發展</a>
+                                <a href="{{ path("front.introduce.location") }}">系所位置</a>
                             </div>
                             <div class="submenu-toggle" data-target="#subMenu2">
                                 <div class="plus"></div>
@@ -43,7 +44,7 @@
                     </li>
                     <li>
                         <div class="nav-item">
-                            <a href="">系所成員</a>
+                            <a href="{{ path('front.introduce.member') }}">系所成員</a>
                             <div class="submenu" id="subMenu3">
                                 <a href="{{ path('front.introduce.member') }}">師資</a>
                             </div>
@@ -54,7 +55,7 @@
                     </li>
                     <li>
                         <div class="nav-item">
-                            <a href="">課程資訊</a>
+                            <a href="{{ path("front.course.bachelor.attention") }}">課程資訊</a>
                             <div class="submenu" id="subMenu4">
                                 <a href="{{ path("front.course.bachelor.attention") }}">大學部</a>
                                 <a href="{{ path("front.course.master.attention") }}">碩士班</a>
@@ -66,7 +67,7 @@
                     </li>
                     <li>
                         <div class="nav-item">
-                            <a href="">招生資訊</a>
+                            <a href="{{ path("front.enrollment.bachelor") }}">招生資訊</a>
                             <div  class="submenu" id="subMenu5">
                                 <a href="{{ path("front.enrollment.bachelor") }}">學士班</a>
                                 <a href="{{ path("front.enrollment.master") }}">碩士班</a>
@@ -81,7 +82,7 @@
                     </li>
                     <li>
                         <div class="nav-item">
-                            <a href="">學術研究</a>
+                            <a href="{{ path("front.introduce.lab", {"labname": "computer-system"}) }}">學術研究</a>
                             <div class="submenu" id="subMenu7">
                                 <a href="{{ path("front.introduce.lab", {"labname": "computer-system"}) }}">計算機系統實驗室</a>
                                 <a href="{{ path("front.introduce.lab", {"labname": "software-engineering"}) }}">軟體工程實驗室</a>

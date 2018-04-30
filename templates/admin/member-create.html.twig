@@ -80,6 +80,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-row" style="margin-bottom: 15px;">
+                        <div class="col-md-12">
+                            {{ form_label(form.major) }}
+                            {{ form_widget(form.major, {'attr': {
+                                "class": "form-control"
+                            }}) }}
+                        </div>
+                    </div>
+
                     {{ form_widget(form.submit, {"attr": {
                         "class": "btn btn-primary" }}
                     ) }}
