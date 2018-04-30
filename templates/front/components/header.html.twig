@@ -1,0 +1,149 @@
+<div class="header">
+    <div class="wrap">
+
+        <a href="#"><img src="{{ asset("assets/images/mainpage_02.jpg") }}"/></a>
+
+        <div class="top-nav">
+            <a href="#" class="school">NTCU</a>
+            <a href="#">回首頁</a>
+            <a href="#">English</a>
+        </div>
+
+        <div class="nav-justify">
+            <nav class="main-nav">
+                <ul>
+                    <li>
+                        <div class="nav-item">
+                            <a href="">最新消息</a>
+                            <div class="submenu" id="subMenu1">
+                                <a href="{{ path("front.news") }}">系所公告</a>
+                                <a href="{{ path("front.news.category.activities") }}">活動演講</a>
+                                <a href="{{ path("front.news.category.hiring") }}">徵才訊息</a>
+                                <a href="{{ path("front.news.category.enrollment") }}">招生訊息</a>
+                                <a href="{{ path("front.news.category.scholarship") }}">獎學金公告</a>
+                                <a href="{{ path("front.news.category.other") }}">其他訊息</a>
+                            </div>
+                            <div class="submenu-toggle" data-target="#subMenu1">
+                                <div class="plus"></div>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li>
+                        <div class="nav-item">
+                            <a href="{{ path("front.introduce.history") }}">系所簡介</a>
+                            <div class="submenu" id="subMenu2">
+                                <a href="{{ path("front.introduce.history") }}">系所簡介</a>
+                                <a href="{{ path("front.introduce.history") }}">系所歷史</a>
+                            </div>
+                            <div class="submenu-toggle" data-target="#subMenu2">
+                                <div class="plus"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="nav-item">
+                            <a href="">系所成員</a>
+                            <div class="submenu" id="subMenu3">
+                                <a href="{{ path('front.introduce.member') }}">師資</a>
+                            </div>
+                            <div class="submenu-toggle" data-target="#subMenu3">
+                                <div class="plus"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="nav-item">
+                            <a href="">課程資訊</a>
+                            <div class="submenu" id="subMenu4">
+                                <a href="{{ path("front.course.bachelor.attention") }}">大學部</a>
+                                <a href="{{ path("front.course.master.attention") }}">碩士班</a>
+                            </div>
+                            <div class="submenu-toggle" data-target="#subMenu4">
+                                <div class="plus"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="nav-item">
+                            <a href="">招生資訊</a>
+                            <div  class="submenu" id="subMenu5">
+                                <a href="{{ path("front.enrollment.bachelor") }}">學士班</a>
+                                <a href="{{ path("front.enrollment.master") }}">碩士班</a>
+                                <a href="{{ path("front.enrollment.china") }}">中國學生</a>
+                                <a href="{{ path("front.enrollment.international") }}">國際交換生</a>
+                                <a href="{{ path("front.enrollment.faq") }}">常見問題</a>
+                            </div>
+                            <div class="submenu-toggle" data-target="#subMenu5">
+                                <div class="plus"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="nav-item">
+                            <a href="">學術研究</a>
+                            <div class="submenu" id="subMenu7">
+                                <a href="{{ path("front.introduce.lab", {"labname": "computer-system"}) }}">計算機系統實驗室</a>
+                                <a href="{{ path("front.introduce.lab", {"labname": "software-engineering"}) }}">軟體工程實驗室</a>
+                                <a href="{{ path("front.introduce.lab", {"labname": "network-and-communication-and-information-security"}) }}">網路與通訊與資訊安全實驗室</a>
+                                <a href="{{ path("front.introduce.lab", {"labname": "smart-iot"}) }}">智慧物聯網實驗室</a>
+                            </div>
+                            <div class="submenu-toggle" data-target="#subMenu7">
+                                <div class="plus"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="nav-item">
+                            <a href="{{ path('front.download') }}">法規表單</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="nav-item">
+                            <a href="{{ path("front.network.resource") }}">相關連結</a>
+                        </div>
+
+                    </li>
+                    <li>
+                        <div class="nav-item">
+                            <a href="http://www.ntcu.edu.tw/cs/2012/ieet.html" target="_blank">IEET</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="menu-toggle">
+            <div class="hamburger"></div>
+        </div>
+
+    </div>
+
+</div><!--./header-->
+
+<script>
+
+    $(document).ready(function () {
+
+        $(".menu-toggle").click(
+            function () {
+
+                $('.main-nav').toggleClass('main-nav--open',500);
+                $(this).toggleClass('open');
+
+            }
+        );
+
+        $("[data-target]").click(
+            function() {
+                var target = $(this).data('target');
+                $(target).toggleClass('submenu--open', 500);
+                $(this).toggleClass('open');
+            }
+        );
+
+
+    });
+
+
+
+</script>

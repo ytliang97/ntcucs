@@ -25,7 +25,7 @@ class SiteController extends Controller
         $bannerRepository = $em->getRepository(Banner::class);
 
         return $this->render("front/index.html.twig", array(
-            "posts" => $postsRepository->getNewestPost(5),
+            "posts" => $postsRepository->getNewestPost(8),
             "banner" => $bannerRepository->findBy(array(), array("createTime"=>"DESC"))
         ));
     }
