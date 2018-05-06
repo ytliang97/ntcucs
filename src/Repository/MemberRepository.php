@@ -30,7 +30,7 @@ class MemberRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('m')
             ->where('m.team != :teamId')
             ->setParameter('teamId', $teamId)
-            ->orderBy("m.memberOrder", "DESC")
+            ->orderBy("m.memberOrder", "ASC")
             ->getQuery()
             ->getResult();
 
