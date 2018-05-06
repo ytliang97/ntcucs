@@ -1,6 +1,7 @@
 {% extends "front/base.html.twig" %}
 
 {% block body %}
+    {% if category is not null %}
     <ul class="page-breadcrumb">
         <li><a href="">首頁</a></li>
         {% if category is not null %}
@@ -18,13 +19,13 @@
                     <th width="15%">公告日期</th>
                     <th>標題</th>
                 </tr>
-                {% for post in category.getPosts() %}
+                {% for post in posts %}
                 <tr>
-                    <td class="date">{{ post.getCreateTime().format("Y-m-d H:i:s") }}</td>
-                    <td class="title"><a href="{{ path("front.post.show", {"id": post.getId()}) }}">{{ post.getContent() }}</a></td>
+                    <td class="date">{{ post.getCreateTime().format("Y-m-d") }}</td>
+                    <td class="title"><a href="{{ path("front.post.show", {"id": post.getId()}) }}">{{ post.getName() }}</a></td>
                 </tr>
                 {% endfor %}
-                {% if category.getPosts() | length == 0 %}
+                {% if posts | length == 0 %}
                     <tr>
                         <td colspan="2">還沒有任何公告</td>
                     </tr>
@@ -35,15 +36,25 @@
         </div>
         {% endif %}
 
-        <!--<div class="pagination float-center">
-            <a href="#">&laquo;</a>
-            <a href="#">&lt;</a>
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">&gt;</a>
-            <a href="#">&raquo;</a>
-        </div>-->
+        <div class="pagination float-center">
+
+            {% if pagination['hasPrev'] %}
+                <a href="{{ path(route, {'page': 1}) }}">&laquo;</a>
+                <a href="{{ path(route, {'page': pagination['currentPageNumber'] - 1}) }}">&lt;</a>
+            {% endif %}
+            {% for page in pagination['pageList'] %}
+                {% if page == pagination['currentPageNumber'] %}
+                    <a class="active" href="#">{{ page }}</a>
+                {% else %}
+                    <a href="{{ path(route, {'page': page}) }}">{{ page }}</a>
+                {% endif %}
+            {% endfor %}
+            {% if pagination['hasNext'] %}
+                <a href="{{ path(route, {'page': pagination['currentPageNumber'] + 1}) }}">&gt;</a>
+                <a href="{{ path(route, {'page': pagination['maxPageNumber'] + 1}) }}">&raquo;</a>
+            {% endif %}
+        </div>
 
     </div>
+    {% endif %}
 {% endblock %}

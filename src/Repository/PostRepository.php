@@ -34,4 +34,27 @@ class PostRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getPostInCategory($categoryId, $page, $perPage = 20) {
+        return $this->createQueryBuilder('p')
+            ->innerJoin('p.categories', 'c')
+            ->where('c.id = :categoryId')
+            ->setParameter('categoryId', $categoryId)
+            ->orderBy('p.createTime', 'DESC')
+            ->setFirstResult(($page - 1) * $perPage)
+            ->setMaxResults($perPage)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function countPostInCategory($categoryAlias) {
+        return $this->createQueryBuilder('p')
+            ->select('COUNT(p)')
+            ->innerJoin('p.categories', 'c')
+            ->where('c.alias = :categoryAlias')
+            ->setParameter('categoryAlias', $categoryAlias)
+            ->orderBy('p.createTime', 'DESC')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }
