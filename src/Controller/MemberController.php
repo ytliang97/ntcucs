@@ -12,7 +12,6 @@ use App\Entity\Member;
 use App\Entity\PublicUploaded;
 use App\Entity\Team;
 use App\Repository\MemberRepository;
-use App\Repository\TeamRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -230,27 +229,9 @@ class MemberController extends Controller
     public function listAll(Request $request) {
 
         $em = $this->getDoctrine()->getManager();
-
-        /**
-         * @var TeamRepository $teamRepository
-         */
-        $teamRepository = $em->getRepository(Team::class);
-        /**
-         * @var Team $team
-         */
-        $team = $teamRepository->findOneBy(array('alias' => 'department-office'));
-        /**
-         * @var MemberRepository $memberRepository
-         */
         $memberRepository = $em->getRepository(Member::class);
-        $members = null;
-        if ($team) {
-            $members = $memberRepository->findAllMemberWithoutTeam($team->getId());
-        }
-        else {
-            $members = $memberRepository->findBy(array(), array('memberOrder' => 'DESC'));
-        }
-
+        $members = $memberRepository->findAll();
         return $this->render("admin/member-list.html.twig", array("members" => $members));
+
     }
 }

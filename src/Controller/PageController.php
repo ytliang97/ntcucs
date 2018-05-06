@@ -13,6 +13,8 @@ use App\Entity\Member;
 use App\Entity\Page;
 use App\Entity\Team;
 use App\Form\Type\PageType;
+use App\Repository\MemberRepository;
+use App\Repository\TeamRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -116,10 +118,29 @@ class PageController extends Controller
     public function showMember(Request $request) {
 
         $em = $this->getDoctrine()->getManager();
-        $memberRepository = $em->getRepository(Member::class);
-        $members = $memberRepository->findBy(array(), array("memberOrder"=>"ASC"));
 
-        return $this->render("front/introduce-member.html.twig", array("members"=>$members));
+        /**
+         * @var TeamRepository $teamRepository
+         */
+        $teamRepository = $em->getRepository(Team::class);
+        /**
+         * @var Team $team
+         */
+        $team = $teamRepository->findOneBy(array('alias' => 'department-office'));
+        /**
+         * @var MemberRepository $memberRepository
+         */
+        $memberRepository = $em->getRepository(Member::class);
+        $members = null;
+        if ($team) {
+            $members = $memberRepository->findAllMemberWithoutTeam($team->getId());
+        }
+        else {
+            $members = $memberRepository->findBy(array(), array('memberOrder' => 'DESC'));
+        }
+
+        return $this->render("admin/introduce-member.html.twig", array("members" => $members));
+
 
     }
 
