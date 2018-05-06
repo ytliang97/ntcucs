@@ -4,18 +4,18 @@
     <ul class="page-breadcrumb">
         <li><a href="{{ path("front.index") }}">首頁</a></li>
         {% if page is not null %}
-        <li><a href="#">{{ page.getName() }}</a></li>
+            <li><a href="#">{{ page.getName() }}</a></li>
         {% endif %}
     </ul>
     <div class="primary">
         {% if page is not null %}
-        <h4 class="page-subtitle">{{ page.getName() }}</h4>
-        <div class="article">
-            {% if page is not null %}
-                {{ page.getContent() | default("") | raw }}
-            {% endif %}
-        </div>
-        <h4 class="page-subtitle">師資陣容</h4>
+            <h4 class="page-subtitle">{{ page.getName() }}</h4>
+            <div class="article">
+                {% if page is not null %}
+                    {{ page.getContent() | default("") | raw }}
+                {% endif %}
+            </div>
+            <h4 class="page-subtitle">行政人員</h4>
             {% for member in members %}
                 <div class="profile-card">
                     {% if member.getAvatar() is not null %}
