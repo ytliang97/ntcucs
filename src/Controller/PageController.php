@@ -317,6 +317,6 @@ class PageController extends Controller
         $pageRepository = $em->getRepository(Page::class);
         $page = $pageRepository->findOneBy(array("alias"=>"department-office"));
 
-        return $this->render("front/introduce-lab.html.twig", array("page"=>$page, "members"=>$members));
+        return $this->render("front/introduce-officer.html.twig", array("page"=>$page, "members"=>$members));
     }
 }
