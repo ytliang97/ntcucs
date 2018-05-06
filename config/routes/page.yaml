@@ -85,7 +85,7 @@ front.course.bachelor.content:
 front.course.bachelor.description:
     path: /course/bachelor/description
     controller: App\Controller\PageController::bachelorCourseDescription
-      front.course.dual.education:
+front.course.dual.education:
     path: /course/dual-education
     controller: App\Controller\PageController::showDualEducation
 
