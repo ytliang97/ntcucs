@@ -53,7 +53,26 @@ class PostRepository extends ServiceEntityRepository
             ->innerJoin('p.categories', 'c')
             ->where('c.alias = :categoryAlias')
             ->setParameter('categoryAlias', $categoryAlias)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function getAllNewsByPage($page, $perPage = 20) {
+        return $this->createQueryBuilder('p')
+            ->where('p.id > :id')
+            ->setParameter('id', 0)
+            ->setFirstResult(($page - 1) * $perPage)
+            ->setMaxResults($perPage)
             ->orderBy('p.createTime', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function countAllNews() {
+        return $this->createQueryBuilder('p')
+            ->select('COUNT(p)')
+            ->where('p.id > :id')
+            ->setParameter('id', 0)
             ->getQuery()
             ->getSingleScalarResult();
     }

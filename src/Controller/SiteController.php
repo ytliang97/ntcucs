@@ -12,6 +12,9 @@ namespace App\Controller;
 use App\Entity\Banner;
 use App\Entity\FileArchive;
 use App\Entity\Post;
+use App\Exception\PageRequestOutOfRange;
+use App\Repository\PostRepository;
+use App\Services\PaginationService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -34,14 +37,37 @@ class SiteController extends Controller
         return $this->render("front/course-bachelor.html.twig");
     }
 
-    public function news(Request $request) {
+    public function news(Request $request, $page) {
         $em = $this->getDoctrine()->getManager();
+
+        /**
+         * @var PostRepository $postsRepository
+         */
         $postsRepository = $em->getRepository(Post::class);
 
-        $posts = $postsRepository->findBy(array(), array("createTime" => "DESC"));
 
-        return $this->render("front/news.html.twig", array(
-            "posts" => $posts
+        $posts = $postsRepository->getAllNewsByPage($page);
+
+        /**
+         * @var PaginationService $paginationService
+         */
+        $paginationService = $this->get('pagination');
+        $pagination = null;
+        try {
+            $pagination = $paginationService->
+            getPagination($page,
+                $postsRepository->countAllNews());
+        } catch (PageRequestOutOfRange $e) {
+            return $this->redirectToRoute("front.news",
+                array(
+                    "page" => $e->getMaxPage()
+                )
+            );
+        }
+
+        return $this->render("front/all-news-list.html.twig", array(
+            "posts" => $posts,
+            "pagination" => $pagination
         ));
     }
 

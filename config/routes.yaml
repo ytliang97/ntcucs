@@ -20,8 +20,12 @@ logout:
     path: /logout
 
 front.news:
-    path: /news
+    path: /news/{page}
     controller: App\Controller\SiteController::news
+    defaults:
+        page: 1
+    requirements:
+        page: '\d+'
 
 front.introduce:
     path: /introduce
