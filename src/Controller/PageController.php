@@ -136,7 +136,7 @@ class PageController extends Controller
             $members = $memberRepository->findAllMemberWithoutTeam($team->getId());
         }
         else {
-            $members = $memberRepository->findBy(array(), array('memberOrder' => 'DESC'));
+            $members = $memberRepository->findBy(array(), array('memberOrder' => 'ASC'));
         }
 
         return $this->render("front/introduce-member.html.twig", array("members" => $members));
