@@ -25,4 +25,14 @@ class MemberRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findAllMemberWithoutTeam($teamId) {
+        return $this->createQueryBuilder('m')
+            ->where('m.team != :teamId')
+            ->setParameter('teamId', $teamId)
+            ->orderBy("m.memberOrder", "DESC")
+            ->getQuery()
+            ->getResult();
+
+    }
 }
