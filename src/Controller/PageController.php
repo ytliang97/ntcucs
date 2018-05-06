@@ -280,4 +280,43 @@ class PageController extends Controller
         return $this->render("front/course-master.html.twig", array("page"=>$page));
 
     }
+
+    public function showEducationAchievements(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"education-achievements"));
+
+        return $this->render("front/introduce.html.twig", array("page"=>$page));
+    }
+
+    public function showCoreAbilities(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"core-abilities"));
+
+        return $this->render("front/introduce.html.twig", array("page"=>$page));
+    }
+
+    public function showDualEducation(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"dual-education"));
+
+        return $this->render("front/introduce.html.twig", array("page"=>$page));
+    }
+
+    public function showOfficer(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $teamRepository = $em->getRepository(Team::class);
+        $team = $teamRepository->findOneBy(array("alias"=>"department-office"));
+        $membersRepository = $em->getRepository(Member::class);
+        $members = $membersRepository->findBy(array("team"=>$team), array("memberOrder"=>"ASC"));
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"department-office"));
+
+        return $this->render("front/introduce-lab.html.twig", array("page"=>$page, "members"=>$members));
+    }
 }

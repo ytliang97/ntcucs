@@ -38,6 +38,9 @@ front.introduce.history:
 front.introduce.member:
     path: /introduce/member
     controller: App\Controller\PageController::showMember
+front.introduce.officer:
+    path: /introduct/officer
+    controller: App\Controller\PageController::showOfficer
 front.introduce.honor:
     path: /introduce/honor
     controller: App\Controller\PageController::showHonor
@@ -52,6 +55,12 @@ front.introduce.future:
 front.introduce.location:
     path: /introduce/location
     controller: App\Controller\PageController::showLocation
+front.introduce.education.achievements:
+    path: /introduce/education-achievements
+    controller: App\Controller\PageController::showEducationAchievements
+front.introduce.core.abilities:
+    path: /introduce/core-abilities
+    controller: App\Controller\PageController::showCoreAbilities
 
 front.network.resource:
     path: /network-resource
@@ -76,6 +85,9 @@ front.course.bachelor.content:
 front.course.bachelor.description:
     path: /course/bachelor/description
     controller: App\Controller\PageController::bachelorCourseDescription
+front.course.dual.education:
+    path: /course/dual-education
+    controller: App\Controller\PageController::showDualEducation
 
 front.course.master.attention:
     path: /course/master/attention
