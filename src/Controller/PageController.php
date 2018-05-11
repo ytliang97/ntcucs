@@ -319,4 +319,44 @@ class PageController extends Controller
 
         return $this->render("front/introduce-officer.html.twig", array("page"=>$page, "members"=>$members));
     }
+
+    public function showEnrollmentBachelor(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias" => 'enrollment-bachelor'));
+
+        return $this->render("front/enrollment.html.twig", array("page" => $page));
+    }
+
+    public function showEnrollmentMaster(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias" => 'enrollment-master'));
+
+        return $this->render("front/enrollment.html.twig", array("page" => $page));
+    }
+
+    public function showEnrollmentChina(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias" => 'enrollment-china'));
+
+        return $this->render("front/enrollment.html.twig", array("page" => $page));
+    }
+
+    public function showEnrollmentInternational(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias" => 'enrollment-international'));
+
+        return $this->render("front/enrollment.html.twig", array("page" => $page));
+    }
+
+    public function showEnrollmentFaq(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias" => 'enrollment-faq'));
+
+        return $this->render("front/enrollment.html.twig", array("page" => $page));
+    }
 }

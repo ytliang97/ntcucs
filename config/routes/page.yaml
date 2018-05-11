@@ -104,3 +104,19 @@ front.course.master.content:
 front.course.master.description:
     path: /course/master/description
     controller: App\Controller\PageController::masterCourseDescription
+
+front.enrollment.bachelor:
+    path: /enrollment/bachelor
+    controller: App\Controller\PageController::showEnrollmentBachelor
+front.enrollment.master:
+    path: /enrollment/master
+    controller: App\Controller\PageController::showEnrollmentMaster
+front.enrollment.china:
+    path: /enrollment/china
+    controller: App\Controller\PageController::showEnrollmentChina
+front.enrollment.international:
+    path: /enrollment/international
+    controller: App\Controller\PageController::showEnrollmentInternational
+front.enrollment.faq:
+    path: /enrollment/faq
+    controller: App\Controller\PageController::showEnrollmentFaq
