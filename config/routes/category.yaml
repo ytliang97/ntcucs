@@ -67,38 +67,3 @@ front.news.category.other:
         page: 1
     requirements:
         page: '\d+'
-front.enrollment.bachelor:
-    path: /enrollment/bachelor/{page}
-    controller: App\Controller\CategoryController::showEnrollmentBachelor
-    defaults:
-        page: 1
-    requirements:
-        page: '\d+'
-front.enrollment.master:
-    path: /enrollment/master/{page}
-    controller: App\Controller\CategoryController::showEnrollmentMaster
-    defaults:
-        page: 1
-    requirements:
-        page: '\d+'
-front.enrollment.china:
-    path: /enrollment/china/{page}
-    controller: App\Controller\CategoryController::showEnrollmentChina
-    defaults:
-        page: 1
-    requirements:
-        page: '\d+'
-front.enrollment.international:
-    path: /enrollment/international/{page}
-    controller: App\Controller\CategoryController::showEnrollmentInternational
-    defaults:
-        page: 1
-    requirements:
-        page: '\d+'
-front.enrollment.faq:
-    path: /enrollment/faq/{page}
-    controller: App\Controller\CategoryController::showEnrollmentFaq
-    defaults:
-        page: 1
-    requirements:
-        page: '\d+'
