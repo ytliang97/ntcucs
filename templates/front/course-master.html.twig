@@ -2,38 +2,49 @@
 
 {% block body %}
     <ul class="page-breadcrumb">
-        <li><a href="{{ path("front.course.master.attention") }}">選課注意事項</a></li>
-        <li><a href="{{ path("front.course.master.architecture") }}">課程架構</a></li>
-        <li><a href="{{ path("front.course.master.graduate.condition") }}">畢業條件</a></li>
-        <li><a href="{{ path("front.course.master.content") }}">年度課程內容</a></li>
-        <li><a href="{{ path("front.course.master.description") }}">課程內容概述</a></li>
+        <li><a href="{{ path('front.index') }}">首頁</a></li>
+        <li><a href="">{{ page.getName() }}</a></li>
     </ul>
     {% if page is not null %}
         <div class="primary">
-            <div class="information">
-                <h5 class="title">{{ page.getName() }}</h5>
-            </div>
-
+            <h4 class="page-subtitle">選課注意事項</h4>
             <div class="article">
                 {{ page.getContent() | raw }}
             </div>
 
-            <div class="attached">
-                <p>附加檔案</p>
-                <ul>
-                    {% for attachment in page.getAttachments() %}
-                        <li>
-                            <a href="{{ path("file.get", {"id": attachment.getId()}) }}">
-                                <i class="far fa-file-word"></i>
-                                {{ attachment.getOriginName() }}
-                                (<a href="{{ path("file.get", {"id": attachment.getId(), "action": "view"}) }}" target="_blank">
-                                    預覽
-                                </a>)
-                            </a>
-                        </li>
-                    {% endfor %}
+            <h4 class="page-subtitle">課程架構</h4>
+            <div class="download">
+                <ul class="no-title">
+                    <ul>
+                        {% if fileArchives["student-bachelor-course-architecture"] is not null %}
+                            {% for file in fileArchives["student-bachelor-course-architecture"].getFiles() %}
+                                <li>
+                                    <a href="{{ path("file.get", {"id": file.getId()}) }}">{{ file.getTitle() }}</a>
+                                    (
+                                    <a target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
+                                        預覽
+                                    </a>
+                                    )
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
                 </ul>
-                <p class="last-modify">最後修改日期：{{ page.getUpdateTime().format("Y-m-d H:i:s") }}</p>
+            </div>
+
+            <h4 class="page-subtitle">畢業條件</h4>
+            <div class="article">
+                {{  page.getContent() | raw }}
+            </div>
+
+            <h4 class="page-subtitle">年度課程內容</h4>
+            <div class="article">
+                {{  page.getContent() | raw }}
+            </div>
+
+            <h4 class="page-subtitle">課程內容概述</h4>
+            <div class="article">
+                {{  page.getContent() | raw }}
             </div>
         </div>
     {% endif %}
