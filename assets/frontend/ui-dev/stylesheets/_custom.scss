@@ -66,7 +66,7 @@
 .main-nav {
   position: absolute;
   top: 0;
-  left: 0;
+  left: -300px;
   background-color: #fdfdfc;
   padding: 50px;
   display: none;
@@ -90,7 +90,12 @@
   }
 }
 
+.main-nav:last-child {
+  padding-bottom: 100%;
+}
+
 .main-nav--open {
+  left: 0px;
   display: block;
   z-index: 1;
 }
@@ -564,7 +569,7 @@ a.linkbtn {
       display: block;
       margin: auto;
       max-width: 350px;
-      max-height: 208px;
+      height: 208px;
     }
   }
   .card-mail {
