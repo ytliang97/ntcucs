@@ -393,7 +393,7 @@ class PageController extends Controller
     public function showGraduateAssociationLeader(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $pageRepository = $em->getRepository(Page::class);
-        $page = $pageRepository->findOneBy(array("alias" => 'student-association-leader'));
+        $page = $pageRepository->findOneBy(array("alias" => 'graduate-association-leader'));
 
         return $this->render("front/association.html.twig", array("page" => $page));
     }
