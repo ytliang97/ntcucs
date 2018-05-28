@@ -1,0 +1,19 @@
+{% extends "front/base.html.twig" %}
+
+{% block body %}
+    {% if page is not null %}
+        <ul class="page-breadcrumb">
+            <li><a href="{{ path('front.index') }}">首頁</a></li>
+            <li><a href="#">學生資訊</a></li>
+            <li><a href="#">{{ page.getName() }}</a></li>
+        </ul>
+        <div class="primary">
+            <h4 class="page-subtitle">{{ page.getName() }}</h4>
+            <div class="article">
+                <p>
+                    {{ page.getContent() | raw }}
+                </p>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

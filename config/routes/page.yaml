@@ -120,3 +120,10 @@ front.enrollment.international:
 front.enrollment.faq:
     path: /enrollment/faq
     controller: App\Controller\PageController::showEnrollmentFaq
+
+front.leader.student.association:
+    path: /student/association/leader
+    controller: App\Controller\PageController::showStudentAssociationLeader
+front.leader.graduate.association:
+    path: /graduate/association/leader
+    controller: App\Controller\PageController::showGraduateAssociationLeader

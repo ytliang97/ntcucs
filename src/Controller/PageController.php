@@ -382,5 +382,19 @@ class PageController extends Controller
 
         return $this->render("front/enrollment.html.twig", array("page" => $page));
     }
+    public function showStudentAssociationLeader(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias" => 'student-association-leader'));
 
+        return $this->render("front/association.html.twig", array("page" => $page));
+    }
+
+    public function showGraduateAssociationLeader(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias" => 'student-association-leader'));
+
+        return $this->render("front/association.html.twig", array("page" => $page));
+    }
 }
