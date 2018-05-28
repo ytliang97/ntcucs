@@ -144,7 +144,7 @@ class PageController extends Controller
         return $this->render("front/introduce-member.html.twig",
             array(
                 "members" => $members,
-                "adjunct-teachears" => $adjunctTeacherTeam->getMembers()
+                "adjunct" => $adjunctTeacherTeam->getMembers()
             )
         );
 

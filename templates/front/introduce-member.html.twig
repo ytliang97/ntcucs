@@ -30,7 +30,7 @@
                         <a href="{{ member.getWebsite() }}"></a>
                     </p>
                 {% endif %}
-                {% if member.getCellphone() is not null %}
+                 {% if member.getCellphone() is not null %}
                     <p class="text-center">
                         <a href="tel:{{ member.getCellphone() }}">
                         {{ member.getCellphone() }}
@@ -44,7 +44,7 @@
 
         <h4 class="page-subtitle">兼任師資</h4>
         <!-- card -->
-        {% for member in adjunct-teachears %}
+        {% for member in adjunct %}
             <div class="profile-card">
                 <div class="card-pic">
                     {% if member.getAvatar() is not null %}
