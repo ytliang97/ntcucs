@@ -13,6 +13,8 @@ use App\Entity\Member;
 use App\Entity\Page;
 use App\Entity\Team;
 use App\Form\Type\PageType;
+use App\Repository\MemberRepository;
+use App\Repository\TeamRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -116,10 +118,29 @@ class PageController extends Controller
     public function showMember(Request $request) {
 
         $em = $this->getDoctrine()->getManager();
-        $memberRepository = $em->getRepository(Member::class);
-        $members = $memberRepository->findBy(array(), array("memberOrder"=>"ASC"));
 
-        return $this->render("front/introduce-member.html.twig", array("members"=>$members));
+        /**
+         * @var TeamRepository $teamRepository
+         */
+        $teamRepository = $em->getRepository(Team::class);
+        /**
+         * @var Team $team
+         */
+        $team = $teamRepository->findOneBy(array('alias' => 'department-office'));
+        /**
+         * @var MemberRepository $memberRepository
+         */
+        $memberRepository = $em->getRepository(Member::class);
+        $members = null;
+        if ($team) {
+            $members = $memberRepository->findAllMemberWithoutTeam($team->getId());
+        }
+        else {
+            $members = $memberRepository->findBy(array(), array('memberOrder' => 'ASC'));
+        }
+
+        return $this->render("front/introduce-member.html.twig", array("members" => $members));
+
 
     }
 
@@ -279,5 +300,84 @@ class PageController extends Controller
 
         return $this->render("front/course-master.html.twig", array("page"=>$page));
 
+    }
+
+    public function showEducationAchievements(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"education-achievements"));
+
+        return $this->render("front/introduce.html.twig", array("page"=>$page));
+    }
+
+    public function showCoreAbilities(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"core-abilities"));
+
+        return $this->render("front/introduce.html.twig", array("page"=>$page));
+    }
+
+    public function showDualEducation(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"dual-education"));
+
+        return $this->render("front/introduce.html.twig", array("page"=>$page));
+    }
+
+    public function showOfficer(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $teamRepository = $em->getRepository(Team::class);
+        $team = $teamRepository->findOneBy(array("alias"=>"department-office"));
+        $membersRepository = $em->getRepository(Member::class);
+        $members = $membersRepository->findBy(array("team"=>$team), array("memberOrder"=>"ASC"));
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"department-office"));
+
+        return $this->render("front/introduce-officer.html.twig", array("page"=>$page, "members"=>$members));
+    }
+
+    public function showEnrollmentBachelor(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias" => 'enrollment-bachelor'));
+
+        return $this->render("front/enrollment.html.twig", array("page" => $page));
+    }
+
+    public function showEnrollmentMaster(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias" => 'enrollment-master'));
+
+        return $this->render("front/enrollment.html.twig", array("page" => $page));
+    }
+
+    public function showEnrollmentChina(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias" => 'enrollment-china'));
+
+        return $this->render("front/enrollment.html.twig", array("page" => $page));
+    }
+
+    public function showEnrollmentInternational(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias" => 'enrollment-international'));
+
+        return $this->render("front/enrollment.html.twig", array("page" => $page));
+    }
+
+    public function showEnrollmentFaq(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias" => 'enrollment-faq'));
+
+        return $this->render("front/enrollment.html.twig", array("page" => $page));
     }
 }

@@ -11,6 +11,9 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Post;
+use App\Exception\PageRequestOutOfRange;
+use App\Repository\PostRepository;
+use App\Services\PaginationService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -119,83 +122,133 @@ class CategoryController extends Controller
         return $this->render("front/news.html.twig", array("category" => $category));
     }
 
-    public function showActivities(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-        $categoryRepository = $em->getRepository(Category::class);
-        $category = $categoryRepository->findOneBy(array("alias" => "activities"));
-
-        return $this->render("front/news.html.twig", array("category" => $category));
+    public function showActivities(Request $request, $page) {
+        return $this->renderNewsList($request, "activities", $page);
     }
 
-    public function showHiring(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-        $categoryRepository = $em->getRepository(Category::class);
-        $category = $categoryRepository->findOneBy(array("alias" => "hiring"));
-
-        return $this->render("front/news.html.twig", array("category" => $category));
+    public function showHiring(Request $request, $page) {
+        return $this->renderNewsList($request, "hiring", $page);
     }
 
-    public function showEnrollment(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-        $categoryRepository = $em->getRepository(Category::class);
-        $category = $categoryRepository->findOneBy(array("alias" => "enrollment"));
-
-        return $this->render("front/news.html.twig", array("category" => $category));
+    public function showEnrollment(Request $request, $page) {
+        return $this->renderNewsList($request, "enrollment", $page);
     }
 
-    public function showScholarship(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-        $categoryRepository = $em->getRepository(Category::class);
-        $category = $categoryRepository->findOneBy(array("alias" => "scholarship"));
-
-        return $this->render("front/news.html.twig", array("category" => $category));
+    public function showScholarship(Request $request, $page) {
+        return $this->renderNewsList($request, "scholarship", $page);
     }
 
-    public function showOther(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-        $categoryRepository = $em->getRepository(Category::class);
-        $category = $categoryRepository->findOneBy(array("alias" => "other"));
-
-        return $this->render("front/news.html.twig", array("category" => $category));
+    public function showOther(Request $request, $page) {
+        return $this->renderNewsList($request, "other", $page);
     }
 
-    public function showEnrollmentBachelor(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-        $categoryRepository = $em->getRepository(Category::class);
-        $category = $categoryRepository->findOneBy(array("alias" => "enrollment-bachelor"));
-
-        return $this->render("front/enrollment.html.twig", array("category" => $category));
+    public function showEnrollmentBachelor(Request $request, $page) {
+        return $this->renderEnrollmentList($request, "enrollment-bachelor", $page);
     }
 
-    public function showEnrollmentMaster(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-        $categoryRepository = $em->getRepository(Category::class);
-        $category = $categoryRepository->findOneBy(array("alias" => "enrollment-master"));
-
-        return $this->render("front/enrollment.html.twig", array("category" => $category));
+    public function showEnrollmentMaster(Request $request, $page) {
+        return $this->renderEnrollmentList($request, "enrollment-master", $page);
     }
 
-    public function showEnrollmentChina(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-        $categoryRepository = $em->getRepository(Category::class);
-        $category = $categoryRepository->findOneBy(array("alias" => "enrollment-china"));
-
-        return $this->render("front/enrollment.html.twig", array("category" => $category));
+    public function showEnrollmentChina(Request $request, $page) {
+        return $this->renderEnrollmentList($request, "enrollment-china", $page);
     }
 
-    public function showEnrollmentInternational(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-        $categoryRepository = $em->getRepository(Category::class);
-        $category = $categoryRepository->findOneBy(array("alias" => "enrollment-international"));
-
-        return $this->render("front/enrollment.html.twig", array("category" => $category));
+    public function showEnrollmentInternational(Request $request, $page) {
+        return $this->renderEnrollmentList($request, "enrollment-international", $page);
     }
 
-    public function showEnrollmentFaq(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-        $categoryRepository = $em->getRepository(Category::class);
-        $category = $categoryRepository->findOneBy(array("alias" => "enrollment-faq"));
+    public function showEnrollmentFaq(Request $request, $page) {
+        return $this->renderEnrollmentList($request, "enrollment-faq", $page);
+    }
 
-        return $this->render("front/enrollment.html.twig", array("category" => $category));
+    public function renderNewsList(Request $request, $alias, $page) {
+        $em = $this->getDoctrine()->getManager();
+
+        /**
+         * @var Category $category
+         */
+        $categoryRepository = $em->getRepository(Category::class);
+        $category = $categoryRepository->findOneBy(array("alias" => $alias));
+        if ($category) {
+
+            /**
+             * @var PostRepository $postsRepository
+             */
+            $postsRepository = $em->getRepository(Post::class);
+            $posts = $postsRepository->getPostInCategory($category->getId(), $page);
+
+            /**
+             * @var PaginationService $paginationService
+             */
+            $paginationService = $this->get('pagination');
+            $pagination = null;
+            try {
+                $pagination = $paginationService->
+                getPagination($page,
+                    $postsRepository->countPostInCategory($alias));
+            } catch (PageRequestOutOfRange $e) {
+                return $this->redirectToRoute($request->get('_route'),
+                    array(
+                        "page" => $e->getMaxPage()
+                    )
+                );
+            }
+
+            return $this->render("front/news.html.twig", array(
+                    "category" => $category,
+                    "posts" => $posts,
+                    "pagination" => $pagination,
+                    "route" => $request->get('_route')
+                )
+            );
+        }
+        return $this->render("front/news.html.twig", array("category" => null)
+        );
+    }
+    public function renderEnrollmentList(Request $request, $alias, $page) {
+        $em = $this->getDoctrine()->getManager();
+
+        /**
+         * @var Category $category
+         */
+        $categoryRepository = $em->getRepository(Category::class);
+        $category = $categoryRepository->findOneBy(array("alias" => $alias));
+
+        if ($category) {
+
+            /**
+             * @var PostRepository $postsRepository
+             */
+            $postsRepository = $em->getRepository(Post::class);
+            $posts = $postsRepository->getPostInCategory($category->getId(), $page);
+
+            /**
+             * @var PaginationService $paginationService
+             */
+            $paginationService = $this->get('pagination');
+            $pagination = null;
+            try {
+                $pagination = $paginationService->
+                getPagination($page,
+                    $postsRepository->countPostInCategory($alias));
+            } catch (PageRequestOutOfRange $e) {
+                return $this->redirectToRoute($request->get('_route'),
+                    array(
+                        "page" => $e->getMaxPage()
+                    )
+                );
+            }
+
+            return $this->render("front/enrollment.html.twig", array(
+                    "category" => $category,
+                    "posts" => $posts,
+                    "pagination" => $pagination,
+                    "route" => $request->get('_route')
+                )
+            );
+        }
+        return $this->render("front/enrollment.html.twig", array("category" => null)
+        );
     }
 }

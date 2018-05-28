@@ -11,6 +11,7 @@ namespace App\Controller;
 use App\Entity\Member;
 use App\Entity\PublicUploaded;
 use App\Entity\Team;
+use App\Repository\MemberRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -229,8 +230,8 @@ class MemberController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $memberRepository = $em->getRepository(Member::class);
-        $members = $memberRepository->findBy(array(), array("memberOrder"=>"DESC"));
-
+        $members = $memberRepository->findAll();
         return $this->render("admin/member-list.html.twig", array("members" => $members));
+
     }
 }

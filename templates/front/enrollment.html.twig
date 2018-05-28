@@ -1,49 +1,18 @@
 {% extends "front/base.html.twig" %}
 
 {% block body %}
-    <ul class="page-breadcrumb">
-        <li><a href="">首頁</a></li>
-        {% if category is not null %}
-            <li><a href="#">{{ category.getName() }}</a></li>
-        {% endif %}
-    </ul>
-
-    <div class="primary">
-        {% if category is not null %}
-        <div class="news-table">
-
-            <table class="table">
-                <tbody>
-                <tr>
-                    <th width="15%">公告日期</th>
-                    <th>標題</th>
-                </tr>
-                {% for post in category.getPosts() %}
-                <tr>
-                    <td class="date">{{ post.getCreateTime().format("Y-m-d H:i:s") }}</td>
-                    <td class="title"><a href="{{ path("front.post.show", {"id": post.getId()}) }}">{{ post.getContent() }}</a></td>
-                </tr>
-                {% endfor %}
-                {% if category.getPosts() | length == 0 %}
-                    <tr>
-                        <td colspan="2">還沒有任何公告</td>
-                    </tr>
-                {% endif %}
-                </tbody>
-            </table>
-
+    {% if page is not null %}
+        <ul class="page-breadcrumb">
+            <li><a href="{{ path('front.index') }}">首頁</a></li>
+            <li><a href="">{{ page.getName() }}</a></li>
+        </ul>
+        <div class="primary">
+            <h4 class="page-subtitle">{{ page.getName() }}</h4>
+            <div class="article">
+                <p>
+                    {{ page.getContent() | raw }}
+                </p>
+            </div>
         </div>
-        {% endif %}
-
-        <!--<div class="pagination float-center">
-            <a href="#">&laquo;</a>
-            <a href="#">&lt;</a>
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">&gt;</a>
-            <a href="#">&raquo;</a>
-        </div>-->
-
-    </div>
+    {% endif %}
 {% endblock %}

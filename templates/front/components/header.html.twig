@@ -6,6 +6,7 @@
         <div class="top-nav">
             <a href="http://www.ntcu.edu.tw/newweb/index.htm" TARGET="_blank" class="school">NTCU</a>
             <a href="{{ path("front.index") }}">回首頁</a>
+            <a target="_blank" href="http://home.ntcu.edu.tw/CS/intro/super_pages.php?ID=intro1">英文版</a>
         </div>
 
         <div class="nav-justify">
@@ -33,8 +34,8 @@
                             <a href="#">系所簡介</a>
                             <div class="submenu" id="subMenu2">
                                 <a href="{{ path("front.introduce.history") }}">系所簡介</a>
-                                <a href="{{ path("front.introduce.history") }}">系所歷史</a>
-                                <a href="{{ path("front.introduce.future") }}">未來發展</a>
+                                <a href="{{ path("front.introduce.education.achievements") }}">教育目標</a>
+                                <a href="{{ path("front.introduce.core.abilities") }}">核心能力</a>
                                 <a href="{{ path("front.introduce.location") }}">系所位置</a>
                             </div>
                             <div class="submenu-toggle" data-target="#subMenu2">
@@ -47,6 +48,7 @@
                             <a href="#">系所成員</a>
                             <div class="submenu" id="subMenu3">
                                 <a href="{{ path('front.introduce.member') }}">師資</a>
+                                <a href="{{ path('front.introduce.officer') }}">行政人員</a>
                             </div>
                             <div class="submenu-toggle" data-target="#subMenu3">
                                 <div class="plus"></div>
@@ -59,6 +61,7 @@
                             <div class="submenu" id="subMenu4">
                                 <a href="{{ path("front.course.bachelor.attention") }}">大學部</a>
                                 <a href="{{ path("front.course.master.attention") }}">碩士班</a>
+                                <a href="{{ path("front.course.dual.education") }}">雙聯學制</a>
                             </div>
                             <div class="submenu-toggle" data-target="#subMenu4">
                                 <div class="plus"></div>
@@ -71,7 +74,7 @@
                             <div  class="submenu" id="subMenu5">
                                 <a href="{{ path("front.enrollment.bachelor") }}">學士班</a>
                                 <a href="{{ path("front.enrollment.master") }}">碩士班</a>
-                                <a href="{{ path("front.enrollment.china") }}">中國學生</a>
+                                <a href="{{ path("front.enrollment.china") }}">大陸地區學生</a>
                                 <a href="{{ path("front.enrollment.international") }}">國際交換生</a>
                                 <a href="{{ path("front.enrollment.faq") }}">常見問題</a>
                             </div>
@@ -86,7 +89,8 @@
                             <div class="submenu" id="subMenu7">
                                 <a href="{{ path("front.introduce.lab", {"labname": "computer-system"}) }}">計算機系統實驗室</a>
                                 <a href="{{ path("front.introduce.lab", {"labname": "software-engineering"}) }}">軟體工程實驗室</a>
-                                <a href="{{ path("front.introduce.lab", {"labname": "network-and-communication-and-information-security"}) }}">網路與通訊與資訊安全實驗室</a>
+                                <a href="{{ path("front.introduce.lab", {"labname": "network-and-communication"}) }}">網路與通訊實驗室</a>
+                                <a href="{{ path("front.introduce.lab", {"labname": "information-security"}) }}">資訊安全實驗室</a>
                                 <a href="{{ path("front.introduce.lab", {"labname": "smart-iot"}) }}">智慧物聯網實驗室</a>
                             </div>
                             <div class="submenu-toggle" data-target="#subMenu7">

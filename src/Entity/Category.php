@@ -56,6 +56,7 @@ class Category
 
     /**
      * @ORM\ManyToMany(targetEntity="Post", mappedBy="categories")
+     * @ORM\OrderBy({"createTime" = "DESC"})
      */
     private $posts;
     public function addPosts(Post $post) {

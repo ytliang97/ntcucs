@@ -29,36 +29,41 @@ admin.category.list:
   requirements:
     page: '\d+'
 
-front.category.show:
-  path: /news/category/{alias}
-  controller: App\Controller\CategoryController::show
+#front.category.show:
+#    path: /news/category/{alias}
+#    controller: App\Controller\CategoryController::show
 front.news.category.activities:
-    path: /news/category/activities
+    path: /news/category/activities/{page}
     controller: App\Controller\CategoryController::showActivities
+    defaults:
+        page: 1
+    requirements:
+        page: '\d+'
 front.news.category.hiring:
-    path: /news/category/hiring
+    path: /news/category/hiring/{page}
     controller: App\Controller\CategoryController::showHiring
+    defaults:
+        page: 1
+    requirements:
+        page: '\d+'
 front.news.category.enrollment:
-    path: /news/category/enrollment
+    path: /news/category/enrollment/{page}
     controller: App\Controller\CategoryController::showEnrollment
+    defaults:
+        page: 1
+    requirements:
+        page: '\d+'
 front.news.category.scholarship:
-    path: /news/category/scholarship
+    path: /news/category/scholarship/{page}
     controller: App\Controller\CategoryController::showScholarship
+    defaults:
+        page: 1
+    requirements:
+        page: '\d+'
 front.news.category.other:
-    path: /news/category/other
+    path: /news/category/other/{page}
     controller: App\Controller\CategoryController::showOther
-front.enrollment.bachelor:
-    path: /enrollment/bachelor
-    controller: App\Controller\CategoryController::showEnrollmentBachelor
-front.enrollment.master:
-    path: /enrollment/master
-    controller: App\Controller\CategoryController::showEnrollmentMaster
-front.enrollment.china:
-    path: /enrollment/china
-    controller: App\Controller\CategoryController::showEnrollmentChina
-front.enrollment.international:
-    path: /enrollment/international
-    controller: App\Controller\CategoryController::showEnrollmentInternational
-front.enrollment.faq:
-    path: /enrollment/faq
-    controller: App\Controller\CategoryController::showEnrollmentFaq
+    defaults:
+        page: 1
+    requirements:
+        page: '\d+'
