@@ -137,7 +137,7 @@ class SiteController extends Controller
         $pageRepository = $em->getRepository(Page::class);
         $page = $pageRepository->findOneBy(array("alias"=>"bachelor-admit-list"));
 
-        return $this->render("front/course-admit-list.html.twig", array("page"=>$page));
+        return $this->render("front/bachelor-admit-list.html.twig", array("page"=>$page));
     }
 
     public function masterEnrollmentRule(Request $request) {
