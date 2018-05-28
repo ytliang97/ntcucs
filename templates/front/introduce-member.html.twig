@@ -12,21 +12,22 @@
         <!-- card -->
         {% for member in members %}
         <div class="profile-card">
+            <div class="card-pic">
             {% if member.getAvatar() is not null %}
-                <div class="card-pic">
-                    <img class="card-img-top" src="/uploaded/{{ member.getAvatar().getFullPath() }}" alt="{{ member.getName() }}個人照片">
-                </div>
+                <img src="/uploaded/{{ member.getAvatar().getFullPath() }}" alt="{{ member.getName() }}個人照片">
             {% endif %}
+            </div>
             <div class="card-mail">
                 <div class="icon"><a href="mailto:{{ member.getEmail() }}"><i class="fas fa-envelope fa-2x"></i></a></div>
             </div>
             <div class="card-body">
-                <h5 class="text-center"><a href="{{ member.getWebsite() }}" class="slash">{{ member.getName() }}</a>{{ member.getTitle() }}</h5>
+                <h5 class="text-center">{{ member.getName() }}<a class="slash"></a>{{ member.getTitle() }}</h5>
                 {% if member.getOfficeNumber() is not null %}
                     <p class="text-center">
-                        <a href="tel:{{ member.getOfficeNumber() }}">
+                        <a class="slash" href="tel:{{ member.getOfficeNumber() }}">
                         {{ member.getOfficeNumber() }}
                         </a>
+                        <a href="{{ member.getWebsite() }}"></a>
                     </p>
                 {% endif %}
                 {% if member.getCellphone() is not null %}
