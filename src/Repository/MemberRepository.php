@@ -31,7 +31,7 @@ class MemberRepository extends ServiceEntityRepository
 
         if (is_array($teamId)) {
             foreach ($teamId as $id) {
-                $qb->orWhere("m.team != :teamId".$id)
+                $qb->andWhere("m.team != :teamId".$id)
                     ->setParameter("teamId".$id, $id);
             }
         } else {

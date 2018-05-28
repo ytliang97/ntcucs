@@ -141,7 +141,12 @@ class PageController extends Controller
             $members = $memberRepository->findBy(array(), array('memberOrder' => 'ASC'));
         }
 
-        return $this->render("front/introduce-member.html.twig", array("members" => $members));
+        return $this->render("front/introduce-member.html.twig",
+            array(
+                "members" => $members,
+                "adjunct-teachears" => $adjunctTeacherTeam->getMembers()
+            )
+        );
 
 
     }
