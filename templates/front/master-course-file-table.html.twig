@@ -1,0 +1,33 @@
+{% extends "front/base.html.twig" %}
+
+{% block body %}
+    <ul class="page-breadcrumb">
+        <li><a href="{{ path('front.course.master.enrollment.rule') }}">修業規定</a></li>
+        <li><a href="{{ path('front.course.master.course.data') }}">歷年修課資料</a></li>
+    </ul>
+    <div class="news-table">
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>標題</th>
+                <th>操作</th>
+            </tr>
+            <!-- Row List -->
+            {% for file in archive.getFiles() %}
+                <tr>
+                    <td class="title">
+                        {{ file.getTitle() }}
+                    </td>
+                    <td>
+                        <a style="display: inline"
+                           href="{{ path("file.get", {"id": file.getId()}) }}">下載</a> |
+                        <a style="display: inline"  target="_blank" href="{{ path("file.get", {'id': file.getId(), 'action': "view"}) }}">
+                            預覽
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "front/base.html.twig" %}
+
+{% block body %}
+    {% if page is not null %}
+        <ul class="page-breadcrumb">
+            <li><a href="{{ path('front.course.bachelor.enrollment.rule') }}">修業規定</a></li>
+            <li><a href="{{ path('front.course.bachelor.admit.list') }}">修課認列表</a></li>
+            <li><a href="{{ path('front.course.bachelor.course.data') }}">歷年修課資料</a></li>
+        </ul>
+        <div class="primary">
+            <h4 class="page-subtitle">{{ page.getName() }}</h4>
+            <div class="article">
+                <p>
+                    {{ page.getContent() | raw }}
+                </p>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

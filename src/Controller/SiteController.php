@@ -12,6 +12,7 @@ namespace App\Controller;
 use App\Entity\Album;
 use App\Entity\Banner;
 use App\Entity\FileArchive;
+use App\Entity\Page;
 use App\Entity\Post;
 use App\Exception\PageRequestOutOfRange;
 use App\Repository\PostRepository;
@@ -111,5 +112,49 @@ class SiteController extends Controller
         $album = $albumRepository->find($id);
 
         return $this->render("front/album-show.html.twig", array("album" => $album));
+    }
+
+    public function bachelorEnrollmentRule(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $fileArchiveRepository = $em->getRepository(FileArchive::class);
+
+        $archive = $fileArchiveRepository->findOneBy(array("alias"=>"bachelor-enrollment-rule"));
+
+        return $this->render("front/bachelor-course-file-table.html.twig", array("archive" => $archive));
+    }
+
+    public function bachelorCourseData(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $fileArchiveRepository = $em->getRepository(FileArchive::class);
+
+        $archive = $fileArchiveRepository->findOneBy(array("alias"=>"bachelor-course-data"));
+
+        return $this->render("front/bachelor-course-file-table.html.twig", array("archive" => $archive));
+    }
+
+    public function bachelorAdmitList(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"bachelor-admit-list"));
+
+        return $this->render("front/course-admit-list.html.twig", array("page"=>$page));
+    }
+
+    public function masterEnrollmentRule(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $fileArchiveRepository = $em->getRepository(FileArchive::class);
+
+        $archive = $fileArchiveRepository->findOneBy(array("alias"=>"master-enrollment-rule"));
+
+        return $this->render("front/master-course-file-table.html.twig", array("archive" => $archive));
+    }
+
+    public function masterCourseData(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $fileArchiveRepository = $em->getRepository(FileArchive::class);
+
+        $archive = $fileArchiveRepository->findOneBy(array("alias"=>"master-course-data"));
+
+        return $this->render("front/master-course-file-table.html.twig", array("archive" => $archive));
     }
 }

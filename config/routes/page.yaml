@@ -85,6 +85,15 @@ front.course.bachelor.content:
 front.course.bachelor.description:
     path: /course/bachelor/description
     controller: App\Controller\PageController::bachelorCourseDescription
+front.course.bachelor.enrollment.rule:
+    path: /course/bachelor/enrollment-rule
+    controller: App\Controller\SiteController::bachelorEnrollmentRule
+front.course.bachelor.course.data:
+    path: /course/bachelor/course-data
+    controller: App\Controller\SiteController::bachelorCourseData
+front.course.bachelor.admit.list:
+    path: /course/bachelor/admit-list
+    controller: App\Controller\SiteController::bachelorAdmitList
 front.course.dual.education:
     path: /course/dual-education
     controller: App\Controller\PageController::showDualEducation
@@ -104,6 +113,12 @@ front.course.master.content:
 front.course.master.description:
     path: /course/master/description
     controller: App\Controller\PageController::masterCourseDescription
+front.course.master.enrollment.rule:
+    path: /course/master/enrollment-rule
+    controller: App\Controller\SiteController::masterEnrollmentRule
+front.course.master.course.data:
+    path: /course/master/course-data
+    controller: App\Controller\SiteController::masterCourseData
 
 front.enrollment.bachelor:
     path: /enrollment/bachelor
