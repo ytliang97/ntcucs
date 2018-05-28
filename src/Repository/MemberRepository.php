@@ -27,9 +27,20 @@ class MemberRepository extends ServiceEntityRepository
     */
 
     public function findAllMemberWithoutTeam($teamId) {
-        return $this->createQueryBuilder('m')
-            ->where('m.team != :teamId')
-            ->setParameter('teamId', $teamId)
+        $qb = $this->createQueryBuilder('m');
+
+        if (is_array($teamId)) {
+            foreach ($teamId as $id) {
+                $qb->orWhere("m.team != :teamId".$id)
+                    ->setParameter("teamId".$id, $id);
+            }
+        } else {
+            $qb->where('m.team != :teamId')
+            ->setParameter('teamId', $teamId);
+        }
+
+
+        return $qb
             ->orderBy("m.memberOrder", "ASC")
             ->getQuery()
             ->getResult();

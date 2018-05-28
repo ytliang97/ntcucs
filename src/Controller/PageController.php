@@ -125,15 +125,17 @@ class PageController extends Controller
         $teamRepository = $em->getRepository(Team::class);
         /**
          * @var Team $team
+         * @var Team $adjunctTeacherTeam
          */
         $team = $teamRepository->findOneBy(array('alias' => 'department-office'));
+        $adjunctTeacherTeam = $teamRepository->findOneBy(array('alias' => 'adjunct-teacher'));
         /**
          * @var MemberRepository $memberRepository
          */
         $memberRepository = $em->getRepository(Member::class);
         $members = null;
         if ($team) {
-            $members = $memberRepository->findAllMemberWithoutTeam($team->getId());
+            $members = $memberRepository->findAllMemberWithoutTeam(array($team->getId(), $adjunctTeacherTeam->getId()));
         }
         else {
             $members = $memberRepository->findBy(array(), array('memberOrder' => 'ASC'));
@@ -380,4 +382,5 @@ class PageController extends Controller
 
         return $this->render("front/enrollment.html.twig", array("page" => $page));
     }
+
 }

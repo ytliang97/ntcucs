@@ -1,0 +1,23 @@
+{% extends "front/base.html.twig" %}
+
+{% block body %}
+    <ul class="page-breadcrumb">
+        <li><a href="{{ path("front.index") }}">首頁</a></li>
+        <li><a href="">活動花絮</a></li>
+    </ul>
+
+    <div class="primary">
+        {% for album in albums %}
+        <div class="gallery">
+            <div class="holder {% if album.getId() % 2 == 0 %}left{% else %}right{% endif %}">
+                <div class="content">
+                    <h3 style="font-size: 1.3rem">{{ album.getName() }}</h3>
+                    <h5 class="date">{{ album.getCreateTime().format('Y-m-d') }}</h5>
+                    <p class="description">{{ album.getDescription() }}</p>
+                    <img src="/uploaded{{ album.getContent()[0].getFullPath() }}"/>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

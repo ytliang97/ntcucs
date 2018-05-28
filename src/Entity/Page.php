@@ -60,6 +60,7 @@ class Page
      *     joinColumns={@ORM\JoinColumn(name="page_id", referencedColumnName="id", onDelete="CASCADE")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="attachment_id", referencedColumnName="id", onDelete="CASCADE")}
      * )
+     * @ORM\OrderBy({"id"="DESC"})
      */
     private $attachments;
     public function setAttachments($attachments)

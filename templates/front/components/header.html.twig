@@ -4,8 +4,15 @@
         <a href="{{ path("front.index") }}"><img src="{{ asset("assets/images/mainpage_02.jpg") }}"/></a>
 
         <div class="top-nav">
-            <a href="http://www.ntcu.edu.tw/newweb/index.htm" TARGET="_blank" class="school">NTCU</a>
+            <a href="http://www.ntcu.edu.tw/newweb/index.htm" TARGET="_blank" class="school">學校首頁</a>
             <a href="{{ path("front.index") }}">回首頁</a>
+            <a href="{{ path("admin.index") }}">
+                {% if is_granted('ROLE_ADMIN') %}
+                    後台管理
+                {% else %}
+                    登入
+                {% endif %}
+            </a>
             <a target="_blank" href="http://home.ntcu.edu.tw/CS/intro/super_pages.php?ID=intro1">英文版</a>
         </div>
 
@@ -92,6 +99,19 @@
                                 <a href="{{ path("front.introduce.lab", {"labname": "network-and-communication"}) }}">網路與通訊實驗室</a>
                                 <a href="{{ path("front.introduce.lab", {"labname": "information-security"}) }}">資訊安全實驗室</a>
                                 <a href="{{ path("front.introduce.lab", {"labname": "smart-iot"}) }}">智慧物聯網實驗室</a>
+                            </div>
+                            <div class="submenu-toggle" data-target="#subMenu7">
+                                <div class="plus"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="nav-item">
+                            <a href="#">學生資訊</a>
+                            <div class="submenu" id="subMenu8">
+                                <a href="#">系學會</a>
+                                <a href="#">系友會</a>
+                                <a href="{{ path('front.album') }}">活動花絮</a>
                             </div>
                             <div class="submenu-toggle" data-target="#subMenu7">
                                 <div class="plus"></div>

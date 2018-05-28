@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Album;
 use App\Entity\Banner;
 use App\Entity\FileArchive;
 use App\Entity\Post;
@@ -95,5 +96,11 @@ class SiteController extends Controller
         return $this->render("front/student.html.twig");
     }
 
+    public function showAlbums(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $albumRepository = $em->getRepository(Album::class);
+        $albums = $albumRepository->findBy(array(), array("createTime" => "DESC"));
 
+        return $this->render("front/album.html.twig", array("albums" => $albums));
+    }
 }

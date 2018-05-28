@@ -42,3 +42,7 @@ front.download:
 front.student.info:
     path: /student-info
     controller: App\Controller\SiteController::studentInfo
+
+front.album:
+    path: /album
+    controller: App\Controller\SiteController::showAlbums
