@@ -17,8 +17,3 @@ admin.album.list:
 admin.album.delete:
     path: /admin/album/delete/{id}
     controller: App\Controller\AlbumController::delete
-
-
-front.album.show:
-    path: /album/{id}
-    controller: App\Controller\AlbumController::showAlbum

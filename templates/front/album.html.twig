@@ -2,22 +2,62 @@
 
 {% block body %}
     <ul class="page-breadcrumb">
-        <li><a href="{{ path("front.index") }}">首頁</a></li>
+        <li><a href="{{ path('front.index') }}">首頁</a></li>
         <li><a href="">活動花絮</a></li>
     </ul>
-
     <div class="primary">
+    {% if albums | length == 0 %}
+        <tr>
+            <td>還沒有任何相簿</td>
+        </tr>
+    {% endif %}
+    <div class="gallery">
         {% for album in albums %}
-        <div class="gallery">
-            <div class="holder {% if album.getId() % 2 == 0 %}left{% else %}right{% endif %}">
-                <div class="content">
-                    <h3 style="font-size: 1.3rem">{{ album.getName() }}</h3>
-                    <h5 class="date">{{ album.getCreateTime().format('Y-m-d') }}</h5>
-                    <p class="description">{{ album.getDescription() }}</p>
-                    <img src="/uploaded{{ album.getContent()[0].getFullPath() }}"/>
+            {% if album.getId() is odd %}
+                <div class="holder right">
+                    <div class="content">
+                        <h3 style="font-size: 1.3rem">{{ album.getName() }}</h3>
+                        <h5 class="date">{{ album.getCreateTime().format('Y-m-d') }}</h5>
+                        <p class="description">{{ album.getDescription() }}</p>
+                        <div class="cursor">
+                            <div class="album-cover">
+                                {% set hasCover = false %}
+                                {% for image in album.getContent() %}
+                                    <a href="/uploaded{{ image.getFullPath() }}"
+                                       data-lightbox="{{ album.getId() }}">
+                                        {% if not hasCover %}
+                                            <img src="/uploaded{{ image.getFullPath() }}"/>
+                                            {% set hasCover = true %}
+                                        {% endif %}
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            {% else %}
+                <div class="holder left">
+                    <div class="content">
+                        <h3 style="font-size: 1.3rem">{{ album.getName() }}</h3>
+                        <h5 class="date">{{ album.getCreateTime().format('Y-m-d') }}</h5>
+                        <p class="description">{{ album.getDescription() }}</p>
+                        <div class="cursor " onclick="openWindow();">
+                            <div class="album-cover">
+                                {% set hasCover = false %}
+                                {% for image in album.getContent() %}
+                                    <a href="/uploaded{{ image.getFullPath() }}"
+                                       data-lightbox="{{ album.getId() }}">
+                                        {% if not hasCover %}
+                                            <img src="/uploaded{{ image.getFullPath() }}"/>
+                                            {% set hasCover = true %}
+                                        {% endif %}
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         {% endfor %}
     </div>
 {% endblock %}

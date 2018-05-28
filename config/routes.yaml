@@ -46,3 +46,6 @@ front.student.info:
 front.album:
     path: /album
     controller: App\Controller\SiteController::showAlbums
+front.show.album:
+    path: /album/{id}
+    controller: App\Controller\SiteController::showAlbumPhotos

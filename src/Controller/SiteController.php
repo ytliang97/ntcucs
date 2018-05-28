@@ -103,4 +103,13 @@ class SiteController extends Controller
 
         return $this->render("front/album.html.twig", array("albums" => $albums));
     }
+
+    public function showAlbumPhotos(Request $request, $id) {
+
+        $em = $this->getDoctrine()->getManager();
+        $albumRepository = $em->getRepository(Album::class);
+        $album = $albumRepository->find($id);
+
+        return $this->render("front/album-show.html.twig", array("album" => $album));
+    }
 }

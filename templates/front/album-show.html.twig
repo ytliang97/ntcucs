@@ -1,0 +1,13 @@
+{% extends "front/base.html.twig" %}
+
+{% block body %}
+    <ul class="page-breadcrumb">
+        <li><a href="{{ path("front.index") }}">首頁</a></li>
+        <li><a href="{{ path('front.album') }}">活動花絮</a></li>
+        <li><a href="#">{{ album.getName() }}</a></li>
+    </ul>
+
+    <div class="primary">
+
+    </div>
+{% endblock %}
