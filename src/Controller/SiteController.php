@@ -115,21 +115,22 @@ class SiteController extends Controller
     }
 
     public function bachelorEnrollmentRule(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"bachelor-enrollment-rule"));
+
+        return $this->render("front/bachelor-enrollment-rule.html.twig", array("page"=>$page));
+    }
+
+    public function bachelorCourseData(Request $request) {
+
         $em = $this->getDoctrine()->getManager();
         $fileArchiveRepository = $em->getRepository(FileArchive::class);
 
         $archive = $fileArchiveRepository->findOneBy(array("alias"=>"bachelor-enrollment-rule"));
 
         return $this->render("front/bachelor-course-file-table.html.twig", array("archive" => $archive));
-    }
-
-    public function bachelorCourseData(Request $request) {
-
-        $em = $this->getDoctrine()->getManager();
-        $pageRepository = $em->getRepository(Page::class);
-        $page = $pageRepository->findOneBy(array("alias"=>"bachelor-course-data"));
-
-        return $this->render("front/bachelor-course-data.html.twig", array("page"=>$page));
     }
 
     public function bachelorAdmitList(Request $request) {
