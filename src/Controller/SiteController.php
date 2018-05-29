@@ -128,7 +128,7 @@ class SiteController extends Controller
         $em = $this->getDoctrine()->getManager();
         $fileArchiveRepository = $em->getRepository(FileArchive::class);
 
-        $archive = $fileArchiveRepository->findOneBy(array("alias"=>"bachelor-enrollment-rule"));
+        $archive = $fileArchiveRepository->findOneBy(array("alias"=>"bachelor-course-data"));
 
         return $this->render("front/bachelor-course-file-table.html.twig", array("archive" => $archive));
     }
