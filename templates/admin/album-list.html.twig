@@ -21,9 +21,6 @@
                 <td>{{ album.getContent() | length }}</td>
                 <td>{{ album.getCreateTime().format("Y-m-d H:i:s") }}</td>
                 <td>
-                    <a href="{{ path("front.album.show", {'id': album.getId()}) }}">
-                        <button class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button>
-                    </a>
                     <a href="{{ path("admin.album.edit", {'id': album.getId()}) }}">
                         <button class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></button>
                     </a>
