@@ -110,7 +110,7 @@ class CategoryController extends Controller
         return $this->render("admin/categories-list.html.twig", array("categories"=>$categories));
     }
 
-    public function show(Request $request, $alias) {
+    public function show(Request $request, $alias, $route) {
 
         $em = $this->getDoctrine()->getManager();
         $categoryRepository = $em->getRepository(Category::class);
@@ -119,27 +119,27 @@ class CategoryController extends Controller
             $category = $categoryRepository->getCategory("activities");
         }
 
-        return $this->render("front/news.html.twig", array("category" => $category));
+        return $this->render("front/news.html.twig", array("category" => $category, 'route' => $route));
     }
 
     public function showActivities(Request $request, $page) {
-        return $this->renderNewsList($request, "activities", $page);
+        return $this->renderNewsList($request, "activities", $page, "front.news.category.activities");
     }
 
     public function showHiring(Request $request, $page) {
-        return $this->renderNewsList($request, "hiring", $page);
+        return $this->renderNewsList($request, "hiring", $page, "front.news.category.hiring");
     }
 
     public function showEnrollment(Request $request, $page) {
-        return $this->renderNewsList($request, "enrollment", $page);
+        return $this->renderNewsList($request, "enrollment", $page, "front.news.category.enrollment");
     }
 
     public function showScholarship(Request $request, $page) {
-        return $this->renderNewsList($request, "scholarship", $page);
+        return $this->renderNewsList($request, "scholarship", $page, "front.news.category.scholarship");
     }
 
     public function showOther(Request $request, $page) {
-        return $this->renderNewsList($request, "other", $page);
+        return $this->renderNewsList($request, "other", $page, "front.news.category.other");
     }
 
     public function showEnrollmentBachelor(Request $request, $page) {

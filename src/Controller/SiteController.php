@@ -69,7 +69,8 @@ class SiteController extends Controller
 
         return $this->render("front/all-news-list.html.twig", array(
             "posts" => $posts,
-            "pagination" => $pagination
+            "pagination" => $pagination,
+            "route" => 'front.news'
         ));
     }
 
