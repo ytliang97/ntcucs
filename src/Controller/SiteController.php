@@ -145,11 +145,10 @@ class SiteController extends Controller
 
     public function masterEnrollmentRule(Request $request) {
         $em = $this->getDoctrine()->getManager();
-        $fileArchiveRepository = $em->getRepository(FileArchive::class);
+        $pageRepository = $em->getRepository(Page::class);
+        $page = $pageRepository->findOneBy(array("alias"=>"master-enrollment-rule"));
 
-        $archive = $fileArchiveRepository->findOneBy(array("alias"=>"master-enrollment-rule"));
-
-        return $this->render("front/master-course-file-table.html.twig", array("archive" => $archive));
+        return $this->render("front/master-enrollment-rule.html.twig", array("page"=>$page));
     }
 
     public function masterCourseData(Request $request) {
