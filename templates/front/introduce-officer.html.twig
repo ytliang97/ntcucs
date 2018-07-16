@@ -1,4 +1,4 @@
-{% extends "front/base.html.twig" %}
+﻿{% extends "front/base.html.twig" %}
 
 {% block body %}
     <ul class="page-breadcrumb">
@@ -23,16 +23,17 @@
                             <img class="card-img-top" src="/uploaded/{{ member.getAvatar().getFullPath() }}" alt="{{ member.getName() }}個人照片">
                         </div>
                     {% endif %}
-                    <div class="card-mail">
-                        <div class="icon"><a href="mailto:{{ member.getEmail() }}"><i class="fas fa-envelope fa-2x"></i></a></div>
-                    </div>
                     <div class="card-body">
-                        <h5 class="text-center"><a href="{{ member.getWebsite() }}" class="slash">{{ member.getName() }}</a>{{ member.getTitle() }}</h5>
+                        <h5 class="text-center">{{ member.getName() }}&nbsp/{{ member.getTitle() }}</h5>
                         {% if member.getOfficeNumber() is not null %}
                             <p class="text-center">
+                                <a href="mailto:{{ member.getEmail() }}">
+                                    {{ member.getEmail() }}
+                                </a><br>
                                 <a href="tel:{{ member.getOfficeNumber() }}">
                                     {{ member.getOfficeNumber() }}
-                                </a>
+                                </a><br>
+                                <a href="{{ member.getWebsite() }}">{{ member.getWebsite() }}</a>
                             </p>
                         {% endif %}
                         {% if member.getCellphone() is not null %}
